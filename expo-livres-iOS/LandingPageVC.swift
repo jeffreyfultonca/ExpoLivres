@@ -10,16 +10,36 @@ import UIKit
 
 class LandingPageVC: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
+    
+    @IBOutlet weak var frenchButton: LandingPageGradientButton!
+    @IBOutlet weak var englishButton: LandingPageGradientButton!
+    
+    override func viewDidDisappear(animated: Bool) {
+        backgroundImageView.image = nil
+        logoImageView.image = nil
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(animated: Bool) {
+        backgroundImageView.image = UIImage(named: "Landing Page Background")
+        logoImageView.image = UIImage(named: "Logo")
     }
-
-
+    
+    @IBAction func enterApplicationPressed(sender: AnyObject?) {
+        performSegueWithIdentifier("enterApplication", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let senderButton = sender as? LandingPageGradientButton {
+            
+            if senderButton == frenchButton {
+                println("Set language to french")
+            } else {
+                println("Set language to english")
+            }
+        }
+        
+    }
 }
 

@@ -18,6 +18,8 @@
 		00F7C35E1B7647BA00D15954 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C35C1B7647BA00D15954 /* Book.swift */; };
 		00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */; };
 		00F7C3621B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */; };
+		00F7C3651B76B01A00D15954 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3641B76B01A00D15954 /* UserInfoVC.swift */; };
+		00F7C3661B76B01A00D15954 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3641B76B01A00D15954 /* UserInfoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 		00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expo_livres_iOSTests.swift; sourceTree = "<group>"; };
 		00F7C35C1B7647BA00D15954 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageGradientButton.swift; sourceTree = "<group>"; };
+		00F7C3641B76B01A00D15954 /* UserInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,7 @@
 			children = (
 				00F7C3361B76447500D15954 /* AppDelegate.swift */,
 				00F7C33B1B76447500D15954 /* LandingPageVC.swift */,
+				00F7C3641B76B01A00D15954 /* UserInfoVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -260,6 +264,7 @@
 				00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */,
 				00F7C33A1B76447500D15954 /* expo_livres_iOS.xcdatamodeld in Sources */,
 				00F7C3371B76447500D15954 /* AppDelegate.swift in Sources */,
+				00F7C3651B76B01A00D15954 /* UserInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +275,7 @@
 				00F7C35E1B7647BA00D15954 /* Book.swift in Sources */,
 				00F7C3501B76447500D15954 /* expo_livres_iOSTests.swift in Sources */,
 				00F7C3621B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */,
+				00F7C3661B76B01A00D15954 /* UserInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
