@@ -22,8 +22,12 @@ class LandingPageVC: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        backgroundImageView.image = UIImage(named: "Landing Page Background")
+        backgroundImageView.image = UIImage(named: "LandingPageBackground")
         logoImageView.image = UIImage(named: "Logo")
+    }
+    
+    deinit {
+        println("LandingPageVC.deinit")
     }
     
     @IBAction func enterApplicationPressed(sender: AnyObject?) {
