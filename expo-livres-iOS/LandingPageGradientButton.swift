@@ -16,7 +16,7 @@ class LandingPageGradientButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.cornerRadius = 2.0
+        self.layer.cornerRadius = 3.0
         self.layer.borderColor = UIColor(white: 0.8, alpha: 1.0).CGColor
         self.layer.borderWidth = 1.0
         

@@ -22,22 +22,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Bienvenue à EXPO-LIVRES 2015" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hch-ZK-bnk">
-                                <rect key="frame" x="16" y="324" width="568" height="48"/>
+                                <rect key="frame" x="16" y="239" width="568" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="580" id="h9d-oL-CFK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="35"/>
+                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Use this app to create a list of books by scanning barcodes with your device's camera" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzl-za-wbG">
-                                <rect key="frame" x="16" y="380" width="568" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="297" width="568" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.7803921568627451" green="0.74901960784313726" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-74-qUf" userLabel="Allons-y" customClass="LandingPageGradientButton" customModule="expo_livres_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="526" width="274" height="54"/>
+                                <rect key="frame" x="12" y="506" width="282" height="54"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="51a-kt-e7n"/>
@@ -50,7 +50,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6co-vJ-3Tw" userLabel="Get Started" customClass="LandingPageGradientButton" customModule="expo_livres_iOS" customModuleProvider="target">
-                                <rect key="frame" x="310" y="526" width="274" height="54"/>
+                                <rect key="frame" x="306" y="506" width="282" height="54"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -60,7 +60,7 @@
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="6Bv-vL-VoS">
-                                <rect key="frame" x="16" y="20" width="568" height="284"/>
+                                <rect key="frame" x="89" y="20" width="422" height="211"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Bv-vL-VoS" secondAttribute="height" multiplier="2:1" id="JL4-kE-qon"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="qfE-Xy-tB9"/>
@@ -69,10 +69,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6co-vJ-3Tw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="4Z8-Hw-Ozp"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cCd-74-qUf" secondAttribute="bottom" constant="20" id="5Tb-bc-bwC"/>
+                            <constraint firstAttribute="trailing" secondItem="6co-vJ-3Tw" secondAttribute="trailing" constant="12" id="4Z8-Hw-Ozp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cCd-74-qUf" secondAttribute="bottom" constant="20" id="5Tb-bc-bwC"/>
                             <constraint firstAttribute="trailing" secondItem="fPb-0y-Xrx" secondAttribute="trailing" id="AJB-YA-x5I"/>
-                            <constraint firstItem="cCd-74-qUf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ESh-KZ-bU0"/>
+                            <constraint firstItem="cCd-74-qUf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="12" id="ESh-KZ-bU0"/>
                             <constraint firstItem="fPb-0y-Xrx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FJD-89-aKF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hch-ZK-bnk" secondAttribute="trailing" priority="999" id="HXu-71-IWo"/>
                             <constraint firstItem="nzl-za-wbG" firstAttribute="trailing" secondItem="Hch-ZK-bnk" secondAttribute="trailing" id="IhG-gh-6Lx"/>
@@ -80,12 +80,15 @@
                             <constraint firstItem="fPb-0y-Xrx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="OkA-KU-OG6"/>
                             <constraint firstAttribute="centerX" secondItem="6Bv-vL-VoS" secondAttribute="centerX" id="QKV-GA-b8S"/>
                             <constraint firstItem="Hch-ZK-bnk" firstAttribute="centerX" secondItem="6Bv-vL-VoS" secondAttribute="centerX" id="QaE-60-hLr"/>
-                            <constraint firstItem="6co-vJ-3Tw" firstAttribute="leading" secondItem="cCd-74-qUf" secondAttribute="trailing" constant="20" id="QcX-Q2-IOx"/>
-                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="top" secondItem="6Bv-vL-VoS" secondAttribute="bottom" constant="20" id="RAX-3G-cgM"/>
+                            <constraint firstItem="6co-vJ-3Tw" firstAttribute="leading" secondItem="cCd-74-qUf" secondAttribute="trailing" constant="12" id="QcX-Q2-IOx"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Bv-vL-VoS" secondAttribute="bottom" constant="8" id="RAX-3G-cgM"/>
                             <constraint firstItem="6Bv-vL-VoS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RG8-22-SKc"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-36" id="ZmR-6z-M1i"/>
+                            <constraint firstItem="cCd-74-qUf" firstAttribute="centerY" secondItem="6co-vJ-3Tw" secondAttribute="centerY" id="a5L-NZ-8CE"/>
                             <constraint firstItem="Hch-ZK-bnk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" priority="999" id="aFn-tI-94I"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fPb-0y-Xrx" secondAttribute="bottom" id="aTD-UO-vbf"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6co-vJ-3Tw" secondAttribute="bottom" constant="20" id="d9f-hT-n5O"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cCd-74-qUf" secondAttribute="bottom" priority="500" constant="40" id="eBJ-Mb-7Mn"/>
                             <constraint firstItem="6Bv-vL-VoS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" priority="750" id="ewK-Rh-7m1"/>
                             <constraint firstItem="nzl-za-wbG" firstAttribute="leading" secondItem="Hch-ZK-bnk" secondAttribute="leading" id="hoS-ya-Z1g"/>
                             <constraint firstItem="cCd-74-qUf" firstAttribute="height" secondItem="6co-vJ-3Tw" secondAttribute="height" id="iia-q1-Aud"/>
@@ -93,6 +96,11 @@
                             <constraint firstItem="6Bv-vL-VoS" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" priority="750" id="oN4-vj-ixw"/>
                             <constraint firstItem="cCd-74-qUf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nzl-za-wbG" secondAttribute="bottom" constant="20" id="vMc-vo-ZEI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="d9f-hT-n5O"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
