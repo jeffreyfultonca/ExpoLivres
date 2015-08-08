@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		00F7C3371B76447500D15954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3361B76447500D15954 /* AppDelegate.swift */; };
 		00F7C33A1B76447500D15954 /* expo_livres_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3381B76447500D15954 /* expo_livres_iOS.xcdatamodeld */; };
-		00F7C33C1B76447500D15954 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C33B1B76447500D15954 /* ViewController.swift */; };
+		00F7C33C1B76447500D15954 /* LandingPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C33B1B76447500D15954 /* LandingPageVC.swift */; };
 		00F7C33F1B76447500D15954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F7C33D1B76447500D15954 /* Main.storyboard */; };
 		00F7C3411B76447500D15954 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F7C3401B76447500D15954 /* Images.xcassets */; };
 		00F7C3441B76447500D15954 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F7C3421B76447500D15954 /* LaunchScreen.xib */; };
 		00F7C3501B76447500D15954 /* expo_livres_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */; };
+		00F7C35D1B7647BA00D15954 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C35C1B7647BA00D15954 /* Book.swift */; };
+		00F7C35E1B7647BA00D15954 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C35C1B7647BA00D15954 /* Book.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +33,14 @@
 		00F7C3351B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F7C3361B76447500D15954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F7C3391B76447500D15954 /* expo_livres_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = expo_livres_iOS.xcdatamodel; sourceTree = "<group>"; };
-		00F7C33B1B76447500D15954 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		00F7C33B1B76447500D15954 /* LandingPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageVC.swift; sourceTree = "<group>"; };
 		00F7C33E1B76447500D15954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00F7C3401B76447500D15954 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		00F7C3431B76447500D15954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		00F7C3491B76447500D15954 /* expo-livres-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "expo-livres-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F7C34E1B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expo_livres_iOSTests.swift; sourceTree = "<group>"; };
+		00F7C35C1B7647BA00D15954 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +82,9 @@
 		00F7C3331B76447500D15954 /* expo-livres-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				00F7C3361B76447500D15954 /* AppDelegate.swift */,
-				00F7C33B1B76447500D15954 /* ViewController.swift */,
-				00F7C33D1B76447500D15954 /* Main.storyboard */,
-				00F7C3401B76447500D15954 /* Images.xcassets */,
-				00F7C3421B76447500D15954 /* LaunchScreen.xib */,
-				00F7C3381B76447500D15954 /* expo_livres_iOS.xcdatamodeld */,
+				00F7C3591B7646FA00D15954 /* Model */,
+				00F7C35A1B76470D00D15954 /* View */,
+				00F7C35B1B76471800D15954 /* Controller */,
 				00F7C3341B76447500D15954 /* Supporting Files */,
 			);
 			path = "expo-livres-iOS";
@@ -113,6 +113,34 @@
 				00F7C34E1B76447500D15954 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00F7C3591B7646FA00D15954 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00F7C3381B76447500D15954 /* expo_livres_iOS.xcdatamodeld */,
+				00F7C35C1B7647BA00D15954 /* Book.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		00F7C35A1B76470D00D15954 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00F7C33D1B76447500D15954 /* Main.storyboard */,
+				00F7C3401B76447500D15954 /* Images.xcassets */,
+				00F7C3421B76447500D15954 /* LaunchScreen.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		00F7C35B1B76471800D15954 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				00F7C3361B76447500D15954 /* AppDelegate.swift */,
+				00F7C33B1B76447500D15954 /* LandingPageVC.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00F7C33C1B76447500D15954 /* ViewController.swift in Sources */,
+				00F7C35D1B7647BA00D15954 /* Book.swift in Sources */,
+				00F7C33C1B76447500D15954 /* LandingPageVC.swift in Sources */,
 				00F7C33A1B76447500D15954 /* expo_livres_iOS.xcdatamodeld in Sources */,
 				00F7C3371B76447500D15954 /* AppDelegate.swift in Sources */,
 			);
@@ -225,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F7C35E1B7647BA00D15954 /* Book.swift in Sources */,
 				00F7C3501B76447500D15954 /* expo_livres_iOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -334,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

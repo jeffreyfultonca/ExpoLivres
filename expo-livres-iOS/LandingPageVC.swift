@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LandingPageVC.swift
 //  expo-livres-iOS
 //
 //  Created by Jeffrey Fulton on 2015-08-08.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LandingPageVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
