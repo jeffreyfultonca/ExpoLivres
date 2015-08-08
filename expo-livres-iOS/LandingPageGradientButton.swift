@@ -8,11 +8,13 @@
 
 import UIKit
 
+
 class LandingPageGradientButton: UIButton {
     
     let gradientLayer = CAGradientLayer()
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         
         self.layer.cornerRadius = 2.0
         self.layer.borderColor = UIColor(white: 0.8, alpha: 1.0).CGColor
@@ -24,19 +26,14 @@ class LandingPageGradientButton: UIButton {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         
         let color1 = UIColor(white: 1.0, alpha: 1.0).CGColor
-        let color2 = UIColor(red: 90.6, green: 89.4, blue: 93.3, alpha: 1.0).CGColor
+        let color2 = UIColor(white: 0.9, alpha: 1.0).CGColor
         gradientLayer.colors = [color1, color2]
         
+        self.layer.insertSublayer(gradientLayer, atIndex: 0)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         gradientLayer.frame = self.layer.bounds
-        self.layer.addSublayer(gradientLayer)
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

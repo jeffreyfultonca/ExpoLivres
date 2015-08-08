@@ -43,7 +43,8 @@
                                     <constraint firstAttribute="height" constant="54" id="51a-kt-e7n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Button">
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Allons-y">
                                     <color key="titleColor" red="0.34509803921568627" green="0.28235294117647058" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 </state>
@@ -52,7 +53,8 @@
                                 <rect key="frame" x="310" y="526" width="274" height="54"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Button">
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Get Started">
                                     <color key="titleColor" red="0.34509803921568627" green="0.28235294117647058" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 </state>
