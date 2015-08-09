@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0012859E1B76F081000FB89B /* TextEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012859D1B76F081000FB89B /* TextEntryCell.swift */; };
+		00476C501B77D296000474A0 /* ListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C4F1B77D296000474A0 /* ListTVC.swift */; };
 		008D24E51B76F2DA00174A25 /* TextEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012859D1B76F081000FB89B /* TextEntryCell.swift */; };
 		008D24E71B76F98B00174A25 /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E61B76F98B00174A25 /* UserInfoTVC.swift */; };
 		008D24E91B77015900174A25 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E81B77015900174A25 /* Globals.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0012859D1B76F081000FB89B /* TextEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryCell.swift; sourceTree = "<group>"; };
+		00476C4F1B77D296000474A0 /* ListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTVC.swift; sourceTree = "<group>"; };
 		008D24E61B76F98B00174A25 /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
 		008D24E81B77015900174A25 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		00F7C3311B76447500D15954 /* expo-livres-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "expo-livres-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 				00F7C3361B76447500D15954 /* AppDelegate.swift */,
 				00F7C33B1B76447500D15954 /* LandingPageVC.swift */,
 				008D24E61B76F98B00174A25 /* UserInfoTVC.swift */,
+				00476C4F1B77D296000474A0 /* ListTVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00476C501B77D296000474A0 /* ListTVC.swift in Sources */,
 				0012859E1B76F081000FB89B /* TextEntryCell.swift in Sources */,
 				00F7C35D1B7647BA00D15954 /* Book.swift in Sources */,
 				00F7C33C1B76447500D15954 /* LandingPageVC.swift in Sources */,
