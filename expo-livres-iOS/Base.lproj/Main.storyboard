@@ -121,7 +121,7 @@
             </objects>
             <point key="canvasLocation" x="834" y="443"/>
         </scene>
-        <!--User InfoVC-->
+        <!--Enter your information-->
         <scene sceneID="fAp-m9-caz">
             <objects>
                 <viewController id="YAi-o7-dUi" customClass="UserInfoVC" customModule="expo_livres_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,9 +132,33 @@
                     <view key="view" contentMode="scaleToFill" id="ohj-E0-hx2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K6f-mI-2jB">
+                                <rect key="frame" x="16" y="72" width="568" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="ZPF-P6-V3l"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Français"/>
+                                    <segment title="English"/>
+                                </segments>
+                                <color key="tintColor" red="0.31372549019607843" green="0.24313725490196078" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="K6f-mI-2jB" firstAttribute="top" secondItem="hNh-O7-Yxd" secondAttribute="bottom" constant="8" id="48T-Fx-7xc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="K6f-mI-2jB" secondAttribute="trailing" id="Bnb-qM-gxk"/>
+                            <constraint firstAttribute="centerY" secondItem="K6f-mI-2jB" secondAttribute="centerY" constant="214" id="Wlk-t7-7uN"/>
+                            <constraint firstItem="K6f-mI-2jB" firstAttribute="leading" secondItem="ohj-E0-hx2" secondAttribute="leadingMargin" id="fb2-RT-iW4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Wlk-t7-7uN"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="pOH-pU-ETo">
+                    <navigationItem key="navigationItem" title="Enter your information" id="pOH-pU-ETo">
                         <barButtonItem key="rightBarButtonItem" title="OK" id="5Jp-pI-USy">
                             <connections>
                                 <action selector="okPressed:" destination="YAi-o7-dUi" id="qBH-2N-av4"/>
