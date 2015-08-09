@@ -487,7 +487,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="mMj-lr-p0W">
-                        <barButtonItem key="leftBarButtonItem" image="person" id="wU0-mF-lOq"/>
+                        <barButtonItem key="leftBarButtonItem" image="person" id="wU0-mF-lOq">
+                            <connections>
+                                <action selector="userInfoPressed:" destination="g3k-dt-S03" id="9xi-Xb-YpN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Fid-QP-Hyz" id="cIk-K5-azG"/>

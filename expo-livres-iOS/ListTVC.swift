@@ -73,6 +73,11 @@ class ListTVC: UIViewController,
     }
     */
 
+
+    // MARK: - Actions
     
+    @IBAction func userInfoPressed(sender: AnyObject) {
+        performSegueWithIdentifier("showUserInfo", sender: sender)
+    }
     
 }
