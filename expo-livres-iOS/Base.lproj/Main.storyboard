@@ -445,6 +445,9 @@
                                             <color key="tintColor" red="0.31372549020000001" green="0.24313725489999999" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="18"/>
                                             <state key="normal" image="barcode"/>
+                                            <connections>
+                                                <segue destination="hi0-4P-6jP" kind="presentation" identifier="showScanner" id="pUa-Ge-fdF"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5S-QD-Rcg" userLabel="Scan Label">
                                             <rect key="frame" x="278" y="31" width="29" height="15"/>
@@ -501,6 +504,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWv-cd-4Aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1300" y="836"/>
+        </scene>
+        <!--ScannerVC-->
+        <scene sceneID="WhH-OQ-PRM">
+            <objects>
+                <viewController id="hi0-4P-6jP" customClass="ScannerVC" customModule="expo_livres_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9u2-XK-vkA"/>
+                        <viewControllerLayoutGuide type="bottom" id="9i7-U0-mU6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="604-Ux-D6J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jb3-ce-PeN">
+                                <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y3S-Bb-yQA">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BvR-7G-U5i"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jb3-ce-PeN" secondAttribute="trailing" id="Td8-u7-Z3h"/>
+                            <constraint firstItem="9i7-U0-mU6" firstAttribute="top" secondItem="Jb3-ce-PeN" secondAttribute="bottom" id="bSC-4a-tge"/>
+                            <constraint firstItem="Jb3-ce-PeN" firstAttribute="leading" secondItem="604-Ux-D6J" secondAttribute="leading" id="qf2-Hp-VA1"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DW1-eb-nTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1802" y="836"/>
         </scene>
     </scenes>
     <resources>
