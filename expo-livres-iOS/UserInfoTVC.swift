@@ -11,6 +11,7 @@ import UIKit
 class UserInfoTVC: UITableViewController {
 
     @IBOutlet weak var okButton: UIBarButtonItem!
+    @IBOutlet weak var languageSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var organizationTextField: UITextField!
     @IBOutlet weak var poTextField: UITextField!
@@ -22,8 +23,9 @@ class UserInfoTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.contentInset.top = -1
-     
+        let font = UIFont.systemFontOfSize(17)
+        languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.allZeros)
+
         organizationTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Organization)
         poTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.PO)
         nameTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Name)
@@ -59,11 +61,11 @@ class UserInfoTVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 1
-        } else {
-            return 10
-        }
+        return 15
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.min
     }
     
     // MARK: - Action
