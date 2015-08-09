@@ -65,7 +65,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             x: 50,
             y: self.view.bounds.height/2,
             width: self.view.bounds.width - 100,
-            height: 2
+            height: 1
         )
         
         // Add it to our controller's view as a subview.
@@ -102,15 +102,19 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     
                     detectionString = (metadata as! AVMetadataMachineReadableCodeObject).stringValue
                     
-                    println(detectionString)
-                    
                     self.session.stopRunning()
                     
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.performSegueWithIdentifier("unwindToListTVC", sender: self)
                     
                     break
                 }
             }
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func cancelPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

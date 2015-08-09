@@ -80,4 +80,21 @@ class ListTVC: UIViewController,
         performSegueWithIdentifier("showUserInfo", sender: sender)
     }
     
+    // MARK: - Navigation
+    
+    @IBAction func unwindToListViewController (sender: UIStoryboardSegue){
+        let scannerVC = sender.sourceViewController as! ScannerVC
+        
+        if let sku = scannerVC.detectionString {
+            println("sku: \(sku)")
+            
+//            let fetchRequest = NSFetchRequest(entityName: "Book")
+//            
+//            if let results = moc!.executeFetchRequest(fetchRequest, error: nil) as? [Book] {
+//                self.scannedBooks.append(results.first!)
+//            }
+        }
+        
+//        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
