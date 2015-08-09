@@ -353,7 +353,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yi-RB-OlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="156"/>
+            <point key="canvasLocation" x="1289" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pEj-sR-9ux">
@@ -372,7 +372,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szF-ho-iTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1278" y="123"/>
+            <point key="canvasLocation" x="1268" y="126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8RE-1v-xSD">
@@ -391,7 +391,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWR-t3-Sc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1278" y="750"/>
+            <point key="canvasLocation" x="1279" y="800"/>
         </scene>
         <!--List-->
         <scene sceneID="iSa-63-VT6">
@@ -491,11 +491,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Fid-QP-Hyz" id="cIk-K5-azG"/>
+                        <segue destination="Za1-FU-Fm1" kind="presentation" identifier="showUserInfo" modalPresentationStyle="formSheet" id="B7M-T4-Fgl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWv-cd-4Aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="750"/>
+            <point key="canvasLocation" x="1300" y="836"/>
         </scene>
     </scenes>
     <resources>

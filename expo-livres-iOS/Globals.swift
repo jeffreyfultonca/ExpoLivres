@@ -24,11 +24,9 @@ extension String {
     var count: Int {
         return Swift.count(self)
     }
-}
-
-extension UITextField {
+    
     var isNotEmpty: Bool {
-        return !self.text.isEmpty
+        return !self.isEmpty
     }
     
     var isEmail: Bool {
@@ -36,6 +34,16 @@ extension UITextField {
             options: NSRegularExpressionOptions.CaseInsensitive,
             error: nil)
         
-        return regex!.numberOfMatchesInString(self.text, options: nil, range: NSMakeRange(0, self.text.count)) > 0
+        return regex!.numberOfMatchesInString(self, options: nil, range: NSMakeRange(0, self.count)) > 0
+    }
+}
+
+extension UITextField {
+    var isNotEmpty: Bool {
+        return self.text.isNotEmpty
+    }
+    
+    var isEmail: Bool {
+        return self.text.isEmail
     }
 }

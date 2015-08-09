@@ -8,6 +8,29 @@
 
 import UIKit
 
+class UserInfo {
+    
+    class var isValid: Bool {
+    
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let
+            organization = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Organization),
+            name = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Name),
+            email = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Email)
+        {
+            return organization.isNotEmpty && name.isNotEmpty && email.isNotEmpty && email.isEmail
+            
+        } else {
+            return false
+        }
+    }
+    
+    class var isNotValid: Bool {
+        return !self.isValid
+    }
+}
+
 class UserInfoTVC: UITableViewController {
 
     @IBOutlet weak var okButton: UIBarButtonItem!
