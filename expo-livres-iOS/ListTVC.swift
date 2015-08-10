@@ -8,14 +8,26 @@
 
 import UIKit
 
+struct ListItem {
+    var title: String
+    var isbn: String
+}
+
 class ListTVC: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
+    
+    var listItems = [ListItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Sample items
+        listItems.append(ListItem(title: "Sample Items Title", isbn: "123-456-789A") )
+        listItems.append(ListItem(title: "Sample Items Title", isbn: "123-456-789A") )
+        listItems.append(ListItem(title: "Sample Items Title", isbn: "123-456-789A") )
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -27,19 +39,43 @@ class ListTVC: UIViewController,
     // MARK: - Table view data source
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if listItems.isEmpty {
+            return 1 // No items message
+            
+        } else {
+            return listItems.count
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("emptyListCell", forIndexPath: indexPath) as! EmptyListCell
-
-        // Configure the cell...
-
-        return cell
+        
+        if listItems.isEmpty { // No items message
+            let cell = tableView.dequeueReusableCellWithIdentifier("emptyListCell", forIndexPath: indexPath) as! EmptyListCell
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! ItemCell
+            
+            let item = listItems[indexPath.row]
+            
+            cell.titleLabel.text = item.title
+            cell.isbnLabel.text = "isbn: \(item.isbn)"
+            
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.bounds.height - tableView.contentInset.top
+        
+        if listItems.isEmpty {
+            return tableView.bounds.height - tableView.contentInset.top
+        } else {
+            if indexPath.row == listItems.count { // Swipe to remove instruction
+                return 100
+            } else { // itemCell
+                return 56
+            }
+        }
     }
     
     /*

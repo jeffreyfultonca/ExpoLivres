@@ -408,6 +408,46 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="56" id="mcf-7x-g4x" customClass="ItemCell" customModule="expo_livres_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mcf-7x-g4x" id="zAB-cq-hhf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QOL-9p-Opi">
+                                                    <rect key="frame" x="8" y="8" width="304" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isbn:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V79-zg-QJb">
+                                                    <rect key="frame" x="8" y="30" width="304" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QOL-9p-Opi" secondAttribute="trailing" id="9bk-Ed-ewa"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="V79-zg-QJb" secondAttribute="bottom" id="N3f-aV-H55"/>
+                                                <constraint firstItem="V79-zg-QJb" firstAttribute="leading" secondItem="zAB-cq-hhf" secondAttribute="leadingMargin" id="NnZ-Sk-aIA"/>
+                                                <constraint firstItem="V79-zg-QJb" firstAttribute="top" secondItem="QOL-9p-Opi" secondAttribute="bottom" constant="2" id="ORZ-hl-wUw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="V79-zg-QJb" secondAttribute="trailing" id="RVb-a3-iSU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="V79-zg-QJb" secondAttribute="bottom" id="hIL-Ps-rT7"/>
+                                                <constraint firstItem="QOL-9p-Opi" firstAttribute="top" secondItem="zAB-cq-hhf" secondAttribute="topMargin" id="sb7-Hd-tcG"/>
+                                                <constraint firstItem="QOL-9p-Opi" firstAttribute="leading" secondItem="zAB-cq-hhf" secondAttribute="leadingMargin" id="ukU-sJ-RIU"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="hIL-Ps-rT7"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="isbnLabel" destination="V79-zg-QJb" id="Gzh-GS-hBI"/>
+                                            <outlet property="titleLabel" destination="QOL-9p-Opi" id="AL8-dA-Rfl"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="emptyListCell" rowHeight="224" id="zp1-TA-gWr" customClass="EmptyListCell" customModule="expo_livres_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
