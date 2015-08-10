@@ -145,6 +145,9 @@
                                                         <segment title="English"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.28580150970000001" green="0.22194167980000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="languageSegmentControlValueChanged:" destination="MeU-sx-jV7" eventType="valueChanged" id="GWf-sx-oQ4"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -180,23 +183,22 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="required" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7Zw-NR-iMF">
-                                                    <rect key="frame" x="112" y="8" width="200" height="27"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="required" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7Zw-NR-iMF">
+                                                    <rect key="frame" x="112" y="12" width="200" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="next"/>
                                                     <connections>
                                                         <action selector="textFieldEditingChanged:" destination="MeU-sx-jV7" eventType="editingChanged" id="AkE-SI-3L4"/>
                                                         <action selector="textFieldEditingChanged:" destination="MeU-sx-jV7" eventType="valueChanged" id="lfI-vY-bEi"/>
+                                                        <outlet property="delegate" destination="MeU-sx-jV7" id="Bx3-Hf-AAE"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="8uD-YJ-TT5" secondAttribute="bottom" constant="3" id="DJQ-0R-YD6"/>
                                                 <constraint firstItem="7Zw-NR-iMF" firstAttribute="trailing" secondItem="hsp-ES-Rze" secondAttribute="trailingMargin" id="MHO-sM-wiq"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7Zw-NR-iMF" secondAttribute="bottom" id="cAu-dU-xbx"/>
                                                 <constraint firstItem="8uD-YJ-TT5" firstAttribute="leading" secondItem="hsp-ES-Rze" secondAttribute="leadingMargin" id="cVQ-B5-15q"/>
                                                 <constraint firstItem="7Zw-NR-iMF" firstAttribute="leading" secondItem="8uD-YJ-TT5" secondAttribute="trailing" constant="12" id="fAX-jG-tGj"/>
-                                                <constraint firstItem="7Zw-NR-iMF" firstAttribute="top" secondItem="hsp-ES-Rze" secondAttribute="topMargin" id="pDj-Lp-Ghf"/>
                                                 <constraint firstItem="7Zw-NR-iMF" firstAttribute="baseline" secondItem="8uD-YJ-TT5" secondAttribute="baseline" id="pHA-wq-9RU"/>
                                                 <constraint firstItem="8uD-YJ-TT5" firstAttribute="top" secondItem="hsp-ES-Rze" secondAttribute="topMargin" constant="3" id="xKf-49-OG2"/>
                                             </constraints>
@@ -222,23 +224,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="optional" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7U3-Tx-9SX">
-                                                    <rect key="frame" x="112" y="8" width="200" height="27"/>
+                                                    <rect key="frame" x="112" y="12" width="200" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                                     <connections>
                                                         <action selector="textFieldEditingChanged:" destination="MeU-sx-jV7" eventType="valueChanged" id="piQ-c1-BGb"/>
                                                         <action selector="textFieldEditingChanged:" destination="MeU-sx-jV7" eventType="editingChanged" id="rVi-fb-LRh"/>
+                                                        <outlet property="delegate" destination="MeU-sx-jV7" id="MYh-Wa-aEZ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="0KU-Jo-JXz" secondAttribute="bottom" constant="3" id="3Wn-0e-wsm"/>
                                                 <constraint firstItem="7U3-Tx-9SX" firstAttribute="trailing" secondItem="7ru-O0-TN1" secondAttribute="trailingMargin" id="6aV-sh-pIy"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7U3-Tx-9SX" secondAttribute="bottom" id="NXS-SN-Iau"/>
                                                 <constraint firstItem="7U3-Tx-9SX" firstAttribute="baseline" secondItem="0KU-Jo-JXz" secondAttribute="baseline" id="RRF-V8-Q2f"/>
                                                 <constraint firstItem="0KU-Jo-JXz" firstAttribute="leading" secondItem="7ru-O0-TN1" secondAttribute="leadingMargin" id="ZUx-v4-5HD"/>
                                                 <constraint firstItem="0KU-Jo-JXz" firstAttribute="top" secondItem="7ru-O0-TN1" secondAttribute="topMargin" constant="3" id="m3l-Gu-9gW"/>
-                                                <constraint firstItem="7U3-Tx-9SX" firstAttribute="top" secondItem="7ru-O0-TN1" secondAttribute="topMargin" id="orM-gO-VeK"/>
                                                 <constraint firstItem="7U3-Tx-9SX" firstAttribute="leading" secondItem="0KU-Jo-JXz" secondAttribute="trailing" constant="12" id="y93-XF-dl8"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -263,23 +264,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="required" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HW1-2b-rij">
-                                                    <rect key="frame" x="112" y="8" width="200" height="27"/>
+                                                    <rect key="frame" x="112" y="12" width="200" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
                                                     <connections>
                                                         <action selector="textFieldEditingChanged:" destination="MeU-sx-jV7" eventType="editingChanged" id="Ccl-vy-8js"/>
+                                                        <outlet property="delegate" destination="MeU-sx-jV7" id="wMR-oP-sde"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="HW1-2b-rij" firstAttribute="baseline" secondItem="Jg6-XW-yZl" secondAttribute="baseline" id="0jX-Yv-Xfn"/>
                                                 <constraint firstItem="HW1-2b-rij" firstAttribute="leading" secondItem="Jg6-XW-yZl" secondAttribute="trailing" constant="12" id="9TL-wu-Mw0"/>
-                                                <constraint firstItem="HW1-2b-rij" firstAttribute="top" secondItem="D0I-Ww-MpB" secondAttribute="topMargin" id="Afb-l9-pRB"/>
                                                 <constraint firstItem="HW1-2b-rij" firstAttribute="trailing" secondItem="D0I-Ww-MpB" secondAttribute="trailingMargin" id="Klf-aF-WxP"/>
                                                 <constraint firstItem="Jg6-XW-yZl" firstAttribute="leading" secondItem="D0I-Ww-MpB" secondAttribute="leadingMargin" id="Vpc-mV-Efm"/>
                                                 <constraint firstItem="Jg6-XW-yZl" firstAttribute="top" secondItem="D0I-Ww-MpB" secondAttribute="topMargin" constant="3" id="bT4-SO-dhw"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Jg6-XW-yZl" secondAttribute="bottom" constant="3" id="mrN-pL-jwh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="HW1-2b-rij" secondAttribute="bottom" id="tUQ-4l-Qtp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -302,24 +302,23 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="required" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Al0-QU-zRT">
-                                                    <rect key="frame" x="112" y="8" width="200" height="27"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="required" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Al0-QU-zRT">
+                                                    <rect key="frame" x="112" y="12" width="200" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                     <connections>
                                                         <action selector="textFieldEditingChanged:" destination="MeU-sx-jV7" eventType="editingChanged" id="ero-hG-R5D"/>
+                                                        <outlet property="delegate" destination="MeU-sx-jV7" id="LpS-YT-p7m"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Al0-QU-zRT" secondAttribute="bottom" id="8J6-KH-Ug4"/>
                                                 <constraint firstItem="gcL-Jy-fMI" firstAttribute="top" secondItem="fW2-ga-HwF" secondAttribute="topMargin" constant="3" id="BkK-FV-mHj"/>
                                                 <constraint firstItem="gcL-Jy-fMI" firstAttribute="leading" secondItem="fW2-ga-HwF" secondAttribute="leadingMargin" id="CFe-NP-3ti"/>
                                                 <constraint firstItem="Al0-QU-zRT" firstAttribute="leading" secondItem="gcL-Jy-fMI" secondAttribute="trailing" constant="12" id="MbY-jY-Wx7"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="gcL-Jy-fMI" secondAttribute="bottom" constant="3" id="Q27-72-T9T"/>
                                                 <constraint firstItem="Al0-QU-zRT" firstAttribute="trailing" secondItem="fW2-ga-HwF" secondAttribute="trailingMargin" id="lUA-59-bZx"/>
                                                 <constraint firstItem="Al0-QU-zRT" firstAttribute="baseline" secondItem="gcL-Jy-fMI" secondAttribute="baseline" id="mBC-3r-tZ9"/>
-                                                <constraint firstItem="Al0-QU-zRT" firstAttribute="top" secondItem="fW2-ga-HwF" secondAttribute="topMargin" id="z9T-kq-kEc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

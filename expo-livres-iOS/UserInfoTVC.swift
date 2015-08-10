@@ -31,7 +31,7 @@ class UserInfo {
     }
 }
 
-class UserInfoTVC: UITableViewController {
+class UserInfoTVC: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var okButton: UIBarButtonItem!
     @IBOutlet weak var languageSegmentedControl: UISegmentedControl!
@@ -94,9 +94,20 @@ class UserInfoTVC: UITableViewController {
     // MARK: - Action
     
     @IBAction func okPressed(sender: AnyObject) {
-        self.tableView.endEditing(true)
+        self.tableView.endEditing(false)
         self.saveUserInfo()
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func languageSegmentControlValueChanged(sender: AnyObject) {
+        tableView.endEditing(false)
+        
+        if languageSegmentedControl.selectedSegmentIndex == 0 {
+            println("Set language to French.")
+            
+        } else {
+            println("Set language to English.")
+        }
     }
     
     @IBAction func textFieldEditingChanged(sender: UITextField) {
@@ -107,6 +118,28 @@ class UserInfoTVC: UITableViewController {
     
     func textEntryCellDidChangeText(text: String, forIndexPath indexPath: NSIndexPath) {
         println("TextEntryCellDidChangeText: \(text) for indexPath: \(indexPath)")
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        switch textField {
+        case self.organizationTextField:
+            self.poTextField.becomeFirstResponder()
+            
+        case self.poTextField:
+            self.nameTextField.becomeFirstResponder()
+            
+        case self.nameTextField:
+            self.emailTextField.becomeFirstResponder()
+            
+        case emailTextField:
+            self.organizationTextField.becomeFirstResponder()
+            
+        default:
+            break
+        }
+        
+        return true
     }
 
     /*
