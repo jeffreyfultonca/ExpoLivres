@@ -45,7 +45,7 @@ class ListTVC: UIViewController,
             return 1 // No items message
             
         } else {
-            return listItems.count
+            return listItems.count + 1 // Add for SwipeMessage Cell
         }
     }
 
@@ -55,7 +55,11 @@ class ListTVC: UIViewController,
             let cell = tableView.dequeueReusableCellWithIdentifier("emptyListCell", forIndexPath: indexPath) as! EmptyListCell
             return cell
             
-        } else {
+        } else if indexPath.row == listItems.count { // Swipe left message
+            let cell = tableView.dequeueReusableCellWithIdentifier("swipeMessageCell", forIndexPath: indexPath) as! SwipeMessageCell
+            return cell
+            
+        } else { // Item
             let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! ItemCell
             
             let item = listItems[indexPath.row]
@@ -72,11 +76,7 @@ class ListTVC: UIViewController,
         if listItems.isEmpty {
             return tableView.bounds.height - tableView.contentInset.top
         } else {
-            if indexPath.row == listItems.count { // Swipe to remove instruction
-                return 100
-            } else { // itemCell
-                return UITableViewAutomaticDimension
-            }
+            return UITableViewAutomaticDimension
         }
     }
     
