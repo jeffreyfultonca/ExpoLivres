@@ -24,6 +24,8 @@ class ListTVC: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 74.5
+        
         // Sample items
         listItems.append(ListItem(title: "Sample Items Title", isbn: "123-456-789A") )
         listItems.append(ListItem(title: "Sample Items Title", isbn: "123-456-789A") )
@@ -73,9 +75,13 @@ class ListTVC: UIViewController,
             if indexPath.row == listItems.count { // Swipe to remove instruction
                 return 100
             } else { // itemCell
-                return 56
+                return UITableViewAutomaticDimension
             }
         }
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        println("cell.height: \(cell.bounds.height)")
     }
     
     /*
