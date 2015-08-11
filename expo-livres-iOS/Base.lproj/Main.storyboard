@@ -405,7 +405,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="224" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fid-QP-Hyz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="74" id="mcf-7x-g4x" customClass="ItemCell" customModule="expo_livres_iOS" customModuleProvider="target">
@@ -442,7 +442,7 @@
                                             <outlet property="titleLabel" destination="QOL-9p-Opi" id="AL8-dA-Rfl"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="swipeMessageCell" rowHeight="100" id="5YJ-3y-SzL" userLabel="Swipe Left Message" customClass="SwipeMessageCell" customModule="expo_livres_iOS" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="swipeMessageCell" rowHeight="140" id="5YJ-3y-SzL" userLabel="Swipe Left Message" customClass="SwipeMessageCell" customModule="expo_livres_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5YJ-3y-SzL" id="hMH-Hd-KkD">
@@ -457,7 +457,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pCt-ra-x1s" secondAttribute="trailing" id="BEc-bT-1Gx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="pCt-ra-x1s" secondAttribute="bottom" id="OX0-UJ-mYI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pCt-ra-x1s" secondAttribute="bottom" constant="40" id="OX0-UJ-mYI"/>
                                                 <constraint firstItem="pCt-ra-x1s" firstAttribute="leading" secondItem="hMH-Hd-KkD" secondAttribute="leadingMargin" id="gaN-jd-Vng"/>
                                                 <constraint firstItem="pCt-ra-x1s" firstAttribute="top" secondItem="hMH-Hd-KkD" secondAttribute="topMargin" constant="40" id="sF8-mP-TpZ"/>
                                             </constraints>
@@ -588,6 +588,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="sSw-HD-CyD" firstAttribute="top" secondItem="Fid-QP-Hyz" secondAttribute="bottom" id="6KV-t1-Ffi"/>
                             <constraint firstItem="9Il-0S-TDa" firstAttribute="top" secondItem="sSw-HD-CyD" secondAttribute="bottom" id="88e-7R-gC1"/>
                             <constraint firstItem="sSw-HD-CyD" firstAttribute="leading" secondItem="Om6-Wz-RrL" secondAttribute="leading" id="TT1-LT-pFV"/>
                             <constraint firstItem="9Il-0S-TDa" firstAttribute="top" secondItem="Fid-QP-Hyz" secondAttribute="bottom" id="bHL-li-VGE"/>
@@ -596,6 +597,11 @@
                             <constraint firstItem="Fid-QP-Hyz" firstAttribute="leading" secondItem="Om6-Wz-RrL" secondAttribute="leading" id="j8c-md-GEb"/>
                             <constraint firstItem="Fid-QP-Hyz" firstAttribute="top" secondItem="8UT-8m-EgJ" secondAttribute="bottom" constant="-64" id="jfc-jh-52K"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bHL-li-VGE"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="mMj-lr-p0W">
                         <barButtonItem key="leftBarButtonItem" image="person" id="wU0-mF-lOq">

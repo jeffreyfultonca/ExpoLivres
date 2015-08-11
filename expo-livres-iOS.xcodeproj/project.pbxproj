@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0012859E1B76F081000FB89B /* TextEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012859D1B76F081000FB89B /* TextEntryCell.swift */; };
 		004466601B7A1309008936EC /* SwipeMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044665F1B7A1309008936EC /* SwipeMessageCell.swift */; };
+		004466621B7A1DD6008936EC /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 004466611B7A1DD6008936EC /* books.json */; };
 		00476C501B77D296000474A0 /* ListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C4F1B77D296000474A0 /* ListTVC.swift */; };
 		00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C551B77FD97000474A0 /* ScannerVC.swift */; };
 		008D24E51B76F2DA00174A25 /* TextEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012859D1B76F081000FB89B /* TextEntryCell.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		0012859D1B76F081000FB89B /* TextEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryCell.swift; sourceTree = "<group>"; };
 		0044665F1B7A1309008936EC /* SwipeMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMessageCell.swift; sourceTree = "<group>"; };
+		004466611B7A1DD6008936EC /* books.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		00476C4F1B77D296000474A0 /* ListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTVC.swift; sourceTree = "<group>"; };
 		00476C551B77FD97000474A0 /* ScannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
 		008D24E61B76F98B00174A25 /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		00F7C3341B76447500D15954 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				004466611B7A1DD6008936EC /* books.json */,
 				00F7C3351B76447500D15954 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -260,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004466621B7A1DD6008936EC /* books.json in Resources */,
 				00F7C33F1B76447500D15954 /* Main.storyboard in Resources */,
 				00F7C3441B76447500D15954 /* LaunchScreen.xib in Resources */,
 				00F7C3411B76447500D15954 /* Images.xcassets in Resources */,

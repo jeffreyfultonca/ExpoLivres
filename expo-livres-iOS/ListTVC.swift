@@ -80,45 +80,28 @@ class ListTVC: UIViewController,
         }
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        println("cell.height: \(cell.bounds.height)")
-    }
-    
-    /*
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row != listItems.count
     }
-    */
 
-    /*
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            listItems.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            // Reload first row to display No items message
+            if listItems.isEmpty {
+                let noItemsIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+                tableView.reloadRowsAtIndexPaths([noItemsIndexPath] , withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 
     // MARK: - Actions
     
@@ -134,13 +117,23 @@ class ListTVC: UIViewController,
         if let sku = scannerVC.detectionString {
             println("sku: \(sku)")
             
+            let listItem = ListItem(title: "Placeholder item from scanner", isbn: sku)
+            listItems.append(listItem)
+            
+            let newItemIndexPath = NSIndexPath(forRow: listItems.count - 1, inSection: 0)
+            tableView.insertRowsAtIndexPaths([newItemIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            
+            let lastIndexPath = NSIndexPath(forRow: listItems.count, inSection: 0)
+            if listItems.count == 1 {
+                tableView.reloadRowsAtIndexPaths([lastIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+            
 //            let fetchRequest = NSFetchRequest(entityName: "Book")
 //            
 //            if let results = moc!.executeFetchRequest(fetchRequest, error: nil) as? [Book] {
 //                self.scannedBooks.append(results.first!)
 //            }
         }
-        
-//        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
