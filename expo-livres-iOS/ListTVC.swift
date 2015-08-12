@@ -10,7 +10,8 @@ import UIKit
 
 class ListTVC: UIViewController,
     UITableViewDelegate,
-    UITableViewDataSource
+    UITableViewDataSource,
+    ScannerVCDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     
@@ -99,31 +100,44 @@ class ListTVC: UIViewController,
         performSegueWithIdentifier("showUserInfo", sender: sender)
     }
     
-    // MARK: - Navigation
+    // MARK: - Scanner Delegate
     
-    @IBAction func unwindToListViewController (sender: UIStoryboardSegue){
-        let scannerVC = sender.sourceViewController as! ScannerVC
+    func scannerSuccessfullyScannedSku(sku: String) {
         
-        if let sku = scannerVC.detectionString {
-            println("sku: \(sku)")
-            
+        self.dismissViewControllerAnimated(true) {
             if let scannedBook = LibraryService.bookWithSku(sku) {
-                // Add book to scannedBooks
-                scannedBooks.append(scannedBook)
+                self.scannedBooks.append(scannedBook)
                 
-                let newItemIndexPath = NSIndexPath(forRow: scannedBooks.count - 1, inSection: 0)
-                tableView.insertRowsAtIndexPaths([newItemIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                let newItemIndexPath = NSIndexPath(forRow: self.scannedBooks.count - 1, inSection: 0)
+                self.tableView.insertRowsAtIndexPaths([newItemIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                 
-                let lastIndexPath = NSIndexPath(forRow: scannedBooks.count, inSection: 0)
-                if scannedBooks.count == 1 {
-                    tableView.reloadRowsAtIndexPaths([lastIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                let lastIndexPath = NSIndexPath(forRow: self.scannedBooks.count, inSection: 0)
+                if self.scannedBooks.count == 1 {
+                    self.tableView.reloadRowsAtIndexPaths([lastIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                 }
-                tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+                self.tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
                 
             } else {
-                // Show sku not found alert
-                println("Present 'sku not found alert'")
+                let alertController = UIAlertController(
+                    title: "Oops!",
+                    message: "We're sorry, isbn: \(sku) not found. Please try again or bring book to front desk.",
+                    preferredStyle: UIAlertControllerStyle.Alert
+                )
+                
+                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(okAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showScanner" {
+            let scannerVC = segue.destinationViewController as! ScannerVC
+            scannerVC.delegate = self
         }
     }
 }

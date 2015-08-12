@@ -9,7 +9,13 @@
 import UIKit
 import AVFoundation
 
+protocol ScannerVCDelegate: class {
+    func scannerSuccessfullyScannedSku(sku: String)
+}
+
 class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    weak var delegate: ScannerVCDelegate?
     
     let session         : AVCaptureSession = AVCaptureSession()
     var previewLayer    : AVCaptureVideoPreviewLayer!
@@ -104,7 +110,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     
                     self.session.stopRunning()
                     
-                    self.performSegueWithIdentifier("unwindToListTVC", sender: self)
+                    self.delegate?.scannerSuccessfullyScannedSku(detectionString)
                     
                     break
                 }
