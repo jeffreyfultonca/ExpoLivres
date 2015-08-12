@@ -14,55 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        println(self.applicationDocumentsDirectory)
         
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "Navbar")!.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .Stretch), forBarMetrics: .Default)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        // Load books.json
-        // TODO: Move this to Service.
-        let filePath = NSBundle.mainBundle().pathForResource("books", ofType: "json")!
-        let data = NSData(contentsOfFile: filePath)!
-        var jsonError: NSError?
-        let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &jsonError)
-        
-        if let error = jsonError {
-            println("Error parsing JSON: \(error)")
-            
-        } else if let
-            jsonDictionary = json as? Dictionary<String, AnyObject>,
-            bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>]
-        {
-//            var listItems = [ListItem]()
-//            for bookDictionary in bookDictionaries {
-//                if let
-//                    title = bookDictionary["title"] as String?,
-//                    sku = bookDictionary["sku"] as String?
-//                {
-//                    let listItem = ListItem(title: title, isbn: sku)
-//                    listItems.append(listItem)
-//                }
-//            }
-//            
-//            println("listItems.count: \(listItems.count)")
-            
-            let listItems2 = bookDictionaries.map { bookDictionary -> ListItem in
-                let title = bookDictionary["title"] as String!
-                let sku = bookDictionary["sku"] as String!
-                return ListItem(title: title, isbn: sku)
-            }
-            
-            for item in listItems2.sorted({ $0.title < $1.title }) {
-                println("title: \(item.title), isbn: \(item.isbn)")
-            }
-            
-            
-        } else {
-            println("Error could not parse JSON.")
-        }
+        LibraryService.updateLibrary()
         
         return true
     }

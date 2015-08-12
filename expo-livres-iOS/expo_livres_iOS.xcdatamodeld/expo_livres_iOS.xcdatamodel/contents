@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Book" representedClassName="PRODUCT_MODULE_NAME.Book" syncable="YES">
+    <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="sku" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
     </entity>
