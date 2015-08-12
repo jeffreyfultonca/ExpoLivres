@@ -46,6 +46,13 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "updateUIForLanguage",
+            name: GlobalConstants.Notification.LanguageChanged,
+            object: nil
+        )
+        
         let font = UIFont.systemFontOfSize(17)
         languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.allZeros)
 
@@ -55,6 +62,17 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         emailTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Email)
         
         okButton.enabled = userEnteredValidInfo()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let currentLanguageIndex = LanguageService.currentLanguage.rawValue
+        languageSegmentedControl.selectedSegmentIndex = currentLanguageIndex
+        println("Selected Index: \(languageSegmentedControl.selectedSegmentIndex)")
+    }
+    
+    deinit {
+        println("UserInfo.deinit")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Helpers
@@ -73,6 +91,10 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         defaults.setObject(poTextField.text, forKey: GlobalConstants.UserDefaultsKey.PO)
         defaults.setObject(nameTextField.text, forKey: GlobalConstants.UserDefaultsKey.Name)
         defaults.setObject(emailTextField.text, forKey: GlobalConstants.UserDefaultsKey.Email)
+    }
+    
+    func updateUIForLanguage() {
+        self.navigationItem.title = LanguageService.userInfoTitle
     }
     
     // MARK: - TableView
@@ -101,13 +123,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     
     @IBAction func languageSegmentControlValueChanged(sender: AnyObject) {
         tableView.endEditing(false)
-        
-        if languageSegmentedControl.selectedSegmentIndex == 0 {
-            println("Set language to French.")
-            
-        } else {
-            println("Set language to English.")
-        }
+        LanguageService.currentLanguage = (languageSegmentedControl.selectedSegmentIndex == 0) ? .French : .English
     }
     
     @IBAction func textFieldEditingChanged(sender: UITextField) {

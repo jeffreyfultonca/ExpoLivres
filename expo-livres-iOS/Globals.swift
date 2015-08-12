@@ -11,12 +11,16 @@ import UIKit
 struct GlobalConstants {
     struct UserDefaultsKey {
         
-        //Change to enumeration? Perhaps not, they probably have to be String
+        //Change to enumeration?
+        static let Language = "JFCUserLanguagePrefsKey"
         static let Organization = "JFCUserOrganizationPrefsKey"
         static let PO = "JFCUserPurchaseOrderPrefsKey"
         static let Name = "JFCUserNamePrefsKey"
         static let Email = "JFCUserEmailPrefsKey"
-        static let Language = "JFCUserLanguagePrefsKey"
+    }
+    
+    struct Notification {
+        static let LanguageChanged = "JFCLanguageChangedNotification"
     }
 }
 

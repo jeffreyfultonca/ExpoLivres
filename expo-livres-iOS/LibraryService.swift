@@ -21,7 +21,7 @@ class LibraryService {
         let filePath = NSBundle.mainBundle().pathForResource("books", ofType: "json")!
         let data = NSData(contentsOfFile: filePath)!
         var jsonError: NSError?
-        let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &jsonError)
+        let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &jsonError)
         
         if let error = jsonError {
             println("Error parsing JSON: \(error)")
