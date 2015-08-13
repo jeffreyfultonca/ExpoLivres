@@ -27,6 +27,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         self.cancelButton.setTitle(LanguageService.cancel, forState: UIControlState.allZeros)
         
         // For the sake of discussion this is the camera
@@ -108,6 +110,14 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     
                     highlightViewRect = barCodeObject.bounds
                     self.highlightView.frame = highlightViewRect
+                    
+                    // Load
+                    let beepURL = NSBundle.mainBundle().URLForResource("beep", withExtension: "wav")
+                    var beepSound: SystemSoundID = 0
+                    AudioServicesCreateSystemSoundID(beepURL, &beepSound)
+                    
+                    // Play
+                    AudioServicesPlaySystemSound(beepSound)
                     
                     detectionString = (metadata as! AVMetadataMachineReadableCodeObject).stringValue
                     

@@ -33,7 +33,7 @@ class LanguageService {
         case .French:
             return "Entrez vos renseignements"
         case .English:
-            return "Enter you information"
+            return "Enter your information"
         }
     }
     
