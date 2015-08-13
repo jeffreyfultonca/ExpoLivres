@@ -17,6 +17,8 @@ struct GlobalConstants {
         static let PO = "JFCUserPurchaseOrderPrefsKey"
         static let Name = "JFCUserNamePrefsKey"
         static let Email = "JFCUserEmailPrefsKey"
+        
+        static let storedSkuList = "JFCStoredSkuListKey"
     }
     
     struct Notification {

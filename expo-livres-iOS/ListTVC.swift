@@ -33,6 +33,8 @@ class ListTVC: UIViewController,
             name: GlobalConstants.Notification.LanguageChanged,
             object: nil
         )
+        
+        self.loadStoredList()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,6 +57,41 @@ class ListTVC: UIViewController,
         self.scanLabel.text = LanguageService.scan
         
         self.tableView.reloadData()
+    }
+    
+    func loadStoredList() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        let storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
+        
+        for sku in storedSkuList {
+            if let book = LibraryService.bookWithSku(sku) {
+                self.scannedBooks.append(book)
+            }
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    
+    func addToList(book: Book) {
+        self.scannedBooks.append(book)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
+        storedSkuList.append(book.sku)
+        defaults.setObject(storedSkuList, forKey: GlobalConstants.UserDefaultsKey.storedSkuList)
+    }
+    
+    func removeFromListAtIndex(index: Int) {
+        self.scannedBooks.removeAtIndex(index)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
+        storedSkuList.removeAtIndex(index)
+        defaults.setObject(storedSkuList, forKey: GlobalConstants.UserDefaultsKey.storedSkuList)
     }
 
     // MARK: - Table view data source
@@ -116,7 +153,7 @@ class ListTVC: UIViewController,
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            scannedBooks.removeAtIndex(indexPath.row)
+            self.removeFromListAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
             // Reload first row to display No items message
@@ -146,7 +183,7 @@ class ListTVC: UIViewController,
         
         self.dismissViewControllerAnimated(true) {
             if let scannedBook = LibraryService.bookWithSku(sku) {
-                self.scannedBooks.append(scannedBook)
+                self.addToList(scannedBook)
                 
                 let newItemIndexPath = NSIndexPath(forRow: self.scannedBooks.count - 1, inSection: 0)
                 self.tableView.insertRowsAtIndexPaths([newItemIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
