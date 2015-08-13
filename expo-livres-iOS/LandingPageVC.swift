@@ -35,21 +35,9 @@ class LandingPageVC: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         // Set lanuage
         if let senderButton = sender as? LandingPageGradientButton {
-            
-            if senderButton == frenchButton {
-                println("Set language to french")
-            } else {
-                println("Set language to english")
-            }
-        }
-        
-        // Open User info if not already entered and valid?
-        
-        if let listTVC = segue.destinationViewController.topViewController as? ListTVC {
-            
+            LanguageService.currentLanguage = (senderButton == frenchButton) ? .French : .English
         }
     }
 }
