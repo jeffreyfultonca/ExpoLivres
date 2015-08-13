@@ -153,4 +153,103 @@ class LanguageService {
             return "We\'re sorry, isbn: {{ isbn }} not found. Please try again or bring book to front desk."
         }
     }
+    
+    class var emailNotConfiguredTitle: String {
+        switch currentLanguage {
+        case .French:
+            return "Oops!"
+        case .English:
+            return "Oops!"
+        }
+    }
+    
+    class var emailNotConfiguredMessage: String {
+        switch currentLanguage {
+        case .French:
+            return "Une adresse courriel en vigueur sur votre appareil est requise pour soumettre votre commande."
+        case .English:
+            return "Email is required to submit your order. Please setup email on your device."
+        }
+    }
+    
+    class var postSubmissionTitle: String {
+        switch currentLanguage {
+        case .French:
+            return "Merci!"
+        case .English:
+            return "Thank you!"
+        }
+    }
+    
+    class var postSubmissionMessage: String {
+        switch currentLanguage {
+        case .French:
+            return "Votre commande a été soumise. Passez à la caisse pour confirmer votre commande."
+        case .English:
+            return "Your list has been sent. Proceed to the front desk for confirmation."
+        }
+    }
+    
+    class var clearAction: String {
+        switch currentLanguage {
+        case .French:
+            return "Supprimer liste"
+        case .English:
+            return "Clear list"
+        }
+    }
+    
+    class var keepAction: String {
+        switch currentLanguage {
+        case .French:
+            return "Garder liste"
+        case .English:
+            return "Keep list"
+        }
+    }
+    
+    class var save: String {
+        switch currentLanguage {
+        case .French:
+            return "OK"
+        case .English:
+            return "OK"
+        }
+    }
+    
+    class var remove: String {
+        switch currentLanguage {
+        case .French:
+            return "Supprimer"
+        case .English:
+            return "Remove"
+        }
+    }
+
+    class var submit: String {
+        switch currentLanguage {
+        case .French:
+            return "Envoyer"
+        case .English:
+            return "Submit"
+        }
+    }
+    
+    class var scan: String {
+        switch currentLanguage {
+        case .French:
+            return "Scan"
+        case .English:
+            return "Scan"
+        }
+    }
+    
+    class var language: String {
+        switch currentLanguage {
+        case .French:
+            return "Langue"
+        case .English:
+            return "Language"
+        }
+    }
 }
