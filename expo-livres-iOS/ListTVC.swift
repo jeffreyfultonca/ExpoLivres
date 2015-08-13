@@ -15,18 +15,46 @@ class ListTVC: UIViewController,
 {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var submitLabel: UILabel!
+    @IBOutlet weak var scanLabel: UILabel!
+    
     var scannedBooks = [Book]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 74.5
+        
+        self.updateUIForLanguage()
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "updateUIForLanguage",
+            name: GlobalConstants.Notification.LanguageChanged,
+            object: nil
+        )
     }
     
     override func viewDidAppear(animated: Bool) {
         if UserInfo.isNotValid {
             self.performSegueWithIdentifier("showUserInfo", sender: self)
         }
+    }
+    
+    deinit {
+        println("ListTVC.deinit")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - Helpers
+    
+    func updateUIForLanguage() {
+        self.navigationItem.title = LanguageService.listTitle
+        
+        self.submitLabel.text = LanguageService.submit
+        self.scanLabel.text = LanguageService.scan
+        
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -44,10 +72,18 @@ class ListTVC: UIViewController,
         
         if scannedBooks.isEmpty { // No items message
             let cell = tableView.dequeueReusableCellWithIdentifier("emptyListCell", forIndexPath: indexPath) as! EmptyListCell
+            
+            cell.headingLabel.text = LanguageService.listEmptyHeading
+            cell.messageOneLabel.text = LanguageService.listBodyScan
+            cell.messageTwoLabel.text = LanguageService.listBodySubmit
+            
             return cell
             
         } else if indexPath.row == scannedBooks.count { // Swipe left message
             let cell = tableView.dequeueReusableCellWithIdentifier("swipeMessageCell", forIndexPath: indexPath) as! SwipeMessageCell
+            
+            cell.messageLabel.text = LanguageService.listSwipeMessage
+            
             return cell
             
         } else { // Item
@@ -93,6 +129,10 @@ class ListTVC: UIViewController,
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+        return LanguageService.remove
+    }
 
     // MARK: - Actions
     
@@ -119,12 +159,12 @@ class ListTVC: UIViewController,
                 
             } else {
                 let alertController = UIAlertController(
-                    title: "Oops!",
-                    message: "We're sorry, isbn: \(sku) not found. Please try again or bring book to front desk.",
+                    title: LanguageService.scanNotFoundTitle,
+                    message: LanguageService.scanNotFoundMessage(sku),
                     preferredStyle: UIAlertControllerStyle.Alert
                 )
                 
-                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let okAction = UIAlertAction(title: LanguageService.save, style: .Default, handler: nil)
                 alertController.addAction(okAction)
                 
                 self.presentViewController(alertController, animated: true, completion: nil)

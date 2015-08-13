@@ -16,6 +16,7 @@ protocol ScannerVCDelegate: class {
 class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     weak var delegate: ScannerVCDelegate?
+    @IBOutlet weak var cancelButton: UIButton!
     
     let session         : AVCaptureSession = AVCaptureSession()
     var previewLayer    : AVCaptureVideoPreviewLayer!
@@ -25,6 +26,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.cancelButton.setTitle(LanguageService.cancel, forState: UIControlState.allZeros)
         
         // For the sake of discussion this is the camera
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)

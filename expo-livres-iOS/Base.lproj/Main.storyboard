@@ -342,11 +342,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailLabel" destination="gcL-Jy-fMI" id="Ljd-4u-zeL"/>
                         <outlet property="emailTextField" destination="Al0-QU-zRT" id="09D-3g-FuE"/>
                         <outlet property="languageSegmentedControl" destination="K6f-mI-2jB" id="e5W-86-7q0"/>
+                        <outlet property="nameLabel" destination="Jg6-XW-yZl" id="KKC-7u-XE5"/>
                         <outlet property="nameTextField" destination="HW1-2b-rij" id="lU0-8l-b2w"/>
                         <outlet property="okButton" destination="7nY-gK-Hdd" id="cSf-g0-Cnx"/>
+                        <outlet property="organizationLabel" destination="8uD-YJ-TT5" id="VP4-wN-9uM"/>
                         <outlet property="organizationTextField" destination="7Zw-NR-iMF" id="p6F-FY-9TX"/>
+                        <outlet property="poLabel" destination="0KU-Jo-JXz" id="XSP-in-dgB"/>
                         <outlet property="poTextField" destination="7U3-Tx-9SX" id="GgQ-Zx-GAZ"/>
                     </connections>
                 </tableViewController>
@@ -510,6 +514,11 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headingLabel" destination="OPe-qs-lYo" id="RU4-DE-yIX"/>
+                                            <outlet property="messageOneLabel" destination="vMb-1p-EuE" id="Vdi-M4-2gZ"/>
+                                            <outlet property="messageTwoLabel" destination="KAs-7Y-Ygl" id="PQt-Ds-uPL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -611,6 +620,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="scanLabel" destination="S5S-QD-Rcg" id="gh6-oo-RSD"/>
+                        <outlet property="submitLabel" destination="iZC-as-rXJ" id="BDX-ua-M1u"/>
                         <outlet property="tableView" destination="Fid-QP-Hyz" id="cIk-K5-azG"/>
                         <segue destination="Za1-FU-Fm1" kind="presentation" identifier="showUserInfo" modalPresentationStyle="formSheet" id="B7M-T4-Fgl"/>
                     </connections>
@@ -674,6 +685,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="kEH-Bn-3ra" id="vfJ-Nl-uB1"/>
                         <segue destination="4dW-2g-b3P" kind="unwind" identifier="unwindToListTVC" unwindAction="unwindToListViewController:" id="AFg-wq-b9U"/>
                     </connections>
                 </viewController>

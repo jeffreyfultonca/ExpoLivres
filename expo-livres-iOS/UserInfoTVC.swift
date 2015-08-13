@@ -36,6 +36,11 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var okButton: UIBarButtonItem!
     @IBOutlet weak var languageSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var organizationLabel: UILabel!
+    @IBOutlet weak var poLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var organizationTextField: UITextField!
     @IBOutlet weak var poTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
@@ -46,6 +51,8 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.updateUIForLanguage()
+        
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "updateUIForLanguage",
@@ -55,6 +62,8 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         
         let font = UIFont.systemFontOfSize(17)
         languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.allZeros)
+        
+        languageSegmentedControl.selectedSegmentIndex = LanguageService.currentLanguage.rawValue
 
         organizationTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Organization)
         poTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.PO)
@@ -62,12 +71,6 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         emailTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Email)
         
         okButton.enabled = userEnteredValidInfo()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        let currentLanguageIndex = LanguageService.currentLanguage.rawValue
-        languageSegmentedControl.selectedSegmentIndex = currentLanguageIndex
-        println("Selected Index: \(languageSegmentedControl.selectedSegmentIndex)")
     }
     
     deinit {
@@ -95,6 +98,16 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     
     func updateUIForLanguage() {
         self.navigationItem.title = LanguageService.userInfoTitle
+        
+        self.organizationLabel.text = LanguageService.userInfoOrganization
+        self.poLabel.text = LanguageService.userInfoPo
+        self.nameLabel.text = LanguageService.userInfoName
+        self.emailLabel.text = LanguageService.userInfoEmail
+        
+        self.organizationTextField.placeholder = LanguageService.required
+        self.poTextField.placeholder = LanguageService.optional
+        self.nameTextField.placeholder = LanguageService.required
+        self.emailTextField.placeholder = LanguageService.required
     }
     
     // MARK: - TableView

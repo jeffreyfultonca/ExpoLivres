@@ -145,12 +145,12 @@ class LanguageService {
         }
     }
     
-    class var scanNotFoundMessage: String {
+    class func scanNotFoundMessage(isbn: String) -> String {
         switch currentLanguage {
         case .French:
-            return "Désolés, l\'isbn {{ isbn }} n\'est pas dans notre système. Veuillez apporter votre livre à la caisse."
+            return "Désolés, l\'isbn \(isbn) n\'est pas dans notre système. Veuillez apporter votre livre à la caisse."
         case .English:
-            return "We\'re sorry, isbn: {{ isbn }} not found. Please try again or bring book to front desk."
+            return "We\'re sorry, isbn: \(isbn) not found. Please try again or bring book to front desk."
         }
     }
     
@@ -250,6 +250,15 @@ class LanguageService {
             return "Langue"
         case .English:
             return "Language"
+        }
+    }
+    
+    class var cancel: String {
+        switch currentLanguage {
+        case .French:
+            return "Annuler"
+        case .English:
+            return "Cancel"
         }
     }
 }
