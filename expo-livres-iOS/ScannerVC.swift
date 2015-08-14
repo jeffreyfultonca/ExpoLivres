@@ -20,14 +20,12 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     let session         : AVCaptureSession = AVCaptureSession()
     var previewLayer    : AVCaptureVideoPreviewLayer!
-    var highlightView   : UIView = UIView()
+//    var highlightView   : UIView = UIView()
     
     var detectionString : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         self.cancelButton.setTitle(LanguageService.cancel, forState: UIControlState.allZeros)
         
@@ -55,7 +53,6 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         session.addOutput(output)
         output.metadataObjectTypes = output.availableMetadataObjectTypes
         
-        
         previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
         previewLayer.frame = self.view.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
@@ -63,25 +60,28 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
         
         // Allow the view to resize freely
-        self.highlightView.autoresizingMask =   UIViewAutoresizing.FlexibleTopMargin |
-            UIViewAutoresizing.FlexibleBottomMargin |
-            UIViewAutoresizing.FlexibleLeftMargin |
-            UIViewAutoresizing.FlexibleRightMargin
-        
-        // Select the color you want for the completed scan reticle
-        self.highlightView.layer.borderColor = UIColor.greenColor().CGColor
-        self.highlightView.layer.borderWidth = 3
-        
-        self.highlightView.frame = CGRect(
-            x: 50,
-            y: self.view.bounds.height/2,
-            width: self.view.bounds.width - 100,
-            height: 1
-        )
+//        self.highlightView.autoresizingMask =   UIViewAutoresizing.FlexibleTopMargin |
+//            UIViewAutoresizing.FlexibleBottomMargin |
+//            UIViewAutoresizing.FlexibleLeftMargin |
+//            UIViewAutoresizing.FlexibleRightMargin
+//        
+//        // Select the color you want for the completed scan reticle
+//        self.highlightView.layer.borderColor = UIColor.greenColor().CGColor
+//        self.highlightView.layer.borderWidth = 3
+//        
+//        let highlightWidth: CGFloat = 260
+//        let highlightHeight: CGFloat = 180
+//        
+//        self.highlightView.frame = CGRect(
+//            x: (self.view.bounds.width/2) - (highlightWidth/2),
+//            y: (self.view.bounds.height - 50 - highlightHeight)/2,
+//            width: highlightWidth,
+//            height: highlightHeight
+//        )
         
         // Add it to our controller's view as a subview.
-        self.view.addSubview(self.highlightView)
-        self.view.bringSubviewToFront(self.highlightView)
+//        self.view.addSubview(self.highlightView)
+//        self.view.bringSubviewToFront(self.highlightView)
         
         // Start the scanner. You'll have to end it yourself later.
         session.startRunning()
@@ -108,8 +108,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 if metadata.type == barcodeType {
                     barCodeObject = self.previewLayer.transformedMetadataObjectForMetadataObject(metadata as! AVMetadataMachineReadableCodeObject)
                     
-                    highlightViewRect = barCodeObject.bounds
-                    self.highlightView.frame = highlightViewRect
+//                    highlightViewRect = barCodeObject.bounds
+//                    self.highlightView.frame = highlightViewRect
                     
                     // Load
                     let beepURL = NSBundle.mainBundle().URLForResource("beep", withExtension: "wav")

@@ -675,12 +675,33 @@
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYS-9y-8mC" userLabel="Guide View" customClass="borderedView" customModule="expo_livres_iOS" customModuleProvider="target">
+                                <rect key="frame" x="20" y="125" width="280" height="180"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="cGs-6Q-LjU"/>
+                                    <constraint firstAttribute="width" constant="280" id="vrd-Ed-LD2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.89011205808080807" green="0.89011205808080807" blue="0.89011205808080807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="NYS-9y-8mC" secondAttribute="centerX" id="FqS-rN-R5K"/>
                             <constraint firstAttribute="trailing" secondItem="Jb3-ce-PeN" secondAttribute="trailing" id="Td8-u7-Z3h"/>
                             <constraint firstItem="9i7-U0-mU6" firstAttribute="top" secondItem="Jb3-ce-PeN" secondAttribute="bottom" id="bSC-4a-tge"/>
                             <constraint firstItem="Jb3-ce-PeN" firstAttribute="leading" secondItem="604-Ux-D6J" secondAttribute="leading" id="qf2-Hp-VA1"/>
+                            <constraint firstAttribute="centerY" secondItem="NYS-9y-8mC" secondAttribute="centerY" constant="25" id="uQt-th-jrT"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
