@@ -117,6 +117,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     AudioServicesCreateSystemSoundID(beepURL, &beepSound)
                     
                     // Play
+                    AudioServicesPlaySystemSound( SystemSoundID(kSystemSoundID_Vibrate) )
                     AudioServicesPlaySystemSound(beepSound)
                     
                     detectionString = (metadata as! AVMetadataMachineReadableCodeObject).stringValue
