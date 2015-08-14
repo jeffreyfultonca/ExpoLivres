@@ -199,6 +199,26 @@ class ListTVC: UIViewController,
     @IBAction func submitPressed(sender: AnyObject) {
         println("submitPressed")
         
+        // Create Sku text file
+        
+        var isbnString = "ISBN\n"
+        
+        for book in self.scannedBooks {
+            isbnString += "\(book.sku)\n"
+        }
+        
+        let file = "isbnList.txt"
+        
+        if let dirs: [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
+            let dir = dirs[0]
+            let path = dir.stringByAppendingPathComponent(file)
+            
+            // Write
+            isbnString.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+        }
+        
+        // Create MailComposeVC and attach file
+        
         let mailComposeVC = MFMailComposeViewController()
         mailComposeVC.mailComposeDelegate = self
         mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
