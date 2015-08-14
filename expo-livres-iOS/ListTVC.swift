@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MessageUI
 
 class ListTVC: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
-    ScannerVCDelegate
+    ScannerVCDelegate,
+    MFMailComposeViewControllerDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     
@@ -192,6 +194,42 @@ class ListTVC: UIViewController,
     
     @IBAction func userInfoPressed(sender: AnyObject) {
         performSegueWithIdentifier("showUserInfo", sender: sender)
+    }
+    
+    @IBAction func submitPressed(sender: AnyObject) {
+        println("submitPressed")
+        
+        let mailComposeVC = MFMailComposeViewController()
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
+        
+        mailComposeVC.setToRecipients(["jeffrey.fulton@me.com"])
+        mailComposeVC.setSubject("Sending from EXPO-LIVRES")
+        mailComposeVC.setMessageBody("Here's a body", isHTML: false)
+        
+        self.navigationController!.presentViewController(mailComposeVC, animated: true, completion: {
+            UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        })
+    }
+    
+    // MARK: - MFMailCompose Delegate
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        
+        switch result.value {
+        case MFMailComposeResultCancelled.value:
+            println("Cancelled")
+        case MFMailComposeResultFailed.value:
+            println("Failed")
+        case MFMailComposeResultSaved.value:
+            println("Saved")
+        case MFMailComposeResultSent.value:
+            println("Sent")
+        default:
+            println("Unknown result")
+        }
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Scanner Delegate

@@ -547,6 +547,9 @@
                                             <color key="tintColor" red="0.28580150970000001" green="0.22194167980000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="4" minY="2" maxX="5" maxY="18"/>
                                             <state key="normal" image="submit"/>
+                                            <connections>
+                                                <action selector="submitPressed:" destination="g3k-dt-S03" eventType="touchUpInside" id="NVK-lD-9c5"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZC-as-rXJ" userLabel="Submit Label">
                                             <rect key="frame" x="8" y="31" width="40" height="15"/>
