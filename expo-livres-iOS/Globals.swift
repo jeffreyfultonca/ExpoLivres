@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 struct GlobalConstants {
     struct UserDefaultsKey {
@@ -51,5 +52,22 @@ extension UITextField {
     
     var isEmail: Bool {
         return self.text.isEmail
+    }
+}
+
+extension AVCaptureVideoOrientation {
+    static var currentDeviceOrientation: AVCaptureVideoOrientation {
+        switch UIDevice.currentDevice().orientation {
+        case .LandscapeRight:
+            return .LandscapeLeft
+        case .LandscapeLeft:
+            return .LandscapeRight
+        case .Portrait:
+            return .Portrait
+        case .PortraitUpsideDown:
+            return .PortraitUpsideDown
+        default:
+            return .Portrait
+        }
     }
 }

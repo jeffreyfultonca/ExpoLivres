@@ -56,37 +56,17 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
         previewLayer.frame = self.view.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
+        
         self.view.layer.insertSublayer(previewLayer, atIndex: 0)
-
-        
-        // Allow the view to resize freely
-//        self.highlightView.autoresizingMask =   UIViewAutoresizing.FlexibleTopMargin |
-//            UIViewAutoresizing.FlexibleBottomMargin |
-//            UIViewAutoresizing.FlexibleLeftMargin |
-//            UIViewAutoresizing.FlexibleRightMargin
-//        
-//        // Select the color you want for the completed scan reticle
-//        self.highlightView.layer.borderColor = UIColor.greenColor().CGColor
-//        self.highlightView.layer.borderWidth = 3
-//        
-//        let highlightWidth: CGFloat = 260
-//        let highlightHeight: CGFloat = 180
-//        
-//        self.highlightView.frame = CGRect(
-//            x: (self.view.bounds.width/2) - (highlightWidth/2),
-//            y: (self.view.bounds.height - 50 - highlightHeight)/2,
-//            width: highlightWidth,
-//            height: highlightHeight
-//        )
-        
-        // Add it to our controller's view as a subview.
-//        self.view.addSubview(self.highlightView)
-//        self.view.bringSubviewToFront(self.highlightView)
         
         // Start the scanner. You'll have to end it yourself later.
         session.startRunning()
         
     }
+    
+    
     
     // This is called when we find a known barcode type with the camera.
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
