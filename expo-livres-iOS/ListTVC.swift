@@ -15,7 +15,9 @@ class ListTVC: UIViewController,
 {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var submitLabel: UILabel!
+    
     @IBOutlet weak var scanLabel: UILabel!
     
     var scannedBooks = [Book]()
@@ -35,6 +37,7 @@ class ListTVC: UIViewController,
         )
         
         self.loadStoredList()
+        self.updateSubmitButtonState()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -82,6 +85,8 @@ class ListTVC: UIViewController,
         var storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
         storedSkuList.append(book.sku)
         defaults.setObject(storedSkuList, forKey: GlobalConstants.UserDefaultsKey.storedSkuList)
+        
+        self.updateSubmitButtonState()
     }
     
     func removeFromListAtIndex(index: Int) {
@@ -92,6 +97,18 @@ class ListTVC: UIViewController,
         var storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
         storedSkuList.removeAtIndex(index)
         defaults.setObject(storedSkuList, forKey: GlobalConstants.UserDefaultsKey.storedSkuList)
+        
+        self.updateSubmitButtonState()
+    }
+    
+    func updateSubmitButtonState() {
+        if scannedBooks.isEmpty {
+            self.submitButton.enabled = false
+            self.submitLabel.alpha = 0.3
+        } else {
+            self.submitButton.enabled = true
+            self.submitLabel.alpha = 1.0
+        }
     }
 
     // MARK: - Table view data source

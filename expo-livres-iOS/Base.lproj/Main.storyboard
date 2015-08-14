@@ -621,6 +621,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scanLabel" destination="S5S-QD-Rcg" id="gh6-oo-RSD"/>
+                        <outlet property="submitButton" destination="KXS-97-XDP" id="Nkq-1b-aYq"/>
                         <outlet property="submitLabel" destination="iZC-as-rXJ" id="BDX-ua-M1u"/>
                         <outlet property="tableView" destination="Fid-QP-Hyz" id="cIk-K5-azG"/>
                         <segue destination="Za1-FU-Fm1" kind="presentation" identifier="showUserInfo" modalPresentationStyle="formSheet" id="B7M-T4-Fgl"/>

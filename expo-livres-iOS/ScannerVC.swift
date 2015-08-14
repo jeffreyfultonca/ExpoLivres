@@ -20,7 +20,6 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     let session         : AVCaptureSession = AVCaptureSession()
     var previewLayer    : AVCaptureVideoPreviewLayer!
-//    var highlightView   : UIView = UIView()
     
     var detectionString : String!
     
