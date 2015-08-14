@@ -81,24 +81,14 @@ class ListTVC: UIViewController,
     
     func addToList(book: Book) {
         self.scannedBooks.append(book)
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        var storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
-        storedSkuList.append(book.sku)
-        defaults.setObject(storedSkuList, forKey: GlobalConstants.UserDefaultsKey.storedSkuList)
+        LocalStorageService.addToList(book)
         
         self.updateSubmitButtonState()
     }
     
     func removeFromListAtIndex(index: Int) {
         self.scannedBooks.removeAtIndex(index)
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        var storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
-        storedSkuList.removeAtIndex(index)
-        defaults.setObject(storedSkuList, forKey: GlobalConstants.UserDefaultsKey.storedSkuList)
+        LocalStorageService.removeFromListAtIndex(index)
         
         self.updateSubmitButtonState()
     }
@@ -199,37 +189,60 @@ class ListTVC: UIViewController,
     @IBAction func submitPressed(sender: AnyObject) {
         println("submitPressed")
         
-        // Create Sku text file
-        
-        var isbnString = "ISBN\n"
-        
-        for book in self.scannedBooks {
-            isbnString += "\(book.sku)\n"
-        }
-        
-        let file = "isbnList.txt"
-        
-        if let dirs: [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
-            let dir = dirs[0]
-            let path = dir.stringByAppendingPathComponent(file)
+        if MFMailComposeViewController.canSendMail() {
             
-            // Write
-            isbnString.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+            // Create Sku text file
+            var isbnString = "ISBN\n"
+            
+            for book in self.scannedBooks {
+                isbnString += "\(book.sku)\n"
+            }
+            
+            let file = "isbnList.txt"
+            
+            if let dirs: [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
+                let dir = dirs[0]
+                let path = dir.stringByAppendingPathComponent(file)
+                
+                // Write
+                isbnString.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+                
+                // Create MailComposeVC and attach file
+                
+                if let isbnStringAsData = isbnString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true) {
+                    
+                    let mailComposeVC = MFMailComposeViewController()
+                    mailComposeVC.mailComposeDelegate = self
+                    mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
+                    
+                    mailComposeVC.setToRecipients([ GlobalConstants.email.toRecipient ])
+                    
+                    if let email = LocalStorageService.email {
+                        mailComposeVC.setCcRecipients([ email ])
+                    }
+                    
+                    mailComposeVC.setSubject( GlobalConstants.email.subject )
+                    mailComposeVC.setMessageBody(GlobalConstants.email.body, isHTML: false)
+                    mailComposeVC.addAttachmentData(isbnStringAsData, mimeType: "text/plain", fileName: GlobalConstants.email.attachedFileName)
+                    
+                    self.navigationController!.presentViewController(mailComposeVC, animated: true, completion: {
+                        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+                    })
+                }
+            }
+            
+        } else {
+            let alertController = UIAlertController(
+                title: LanguageService.emailNotConfiguredTitle,
+                message: LanguageService.emailNotConfiguredMessage,
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            
+            let okAction = UIAlertAction(title: LanguageService.save, style: .Default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
-        
-        // Create MailComposeVC and attach file
-        
-        let mailComposeVC = MFMailComposeViewController()
-        mailComposeVC.mailComposeDelegate = self
-        mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
-        
-        mailComposeVC.setToRecipients(["jeffrey.fulton@me.com"])
-        mailComposeVC.setSubject("Sending from EXPO-LIVRES")
-        mailComposeVC.setMessageBody("Here's a body", isHTML: false)
-        
-        self.navigationController!.presentViewController(mailComposeVC, animated: true, completion: {
-            UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        })
     }
     
     // MARK: - MFMailCompose Delegate

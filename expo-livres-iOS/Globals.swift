@@ -10,6 +10,65 @@ import UIKit
 import AVFoundation
 
 struct GlobalConstants {
+    static let AppName = "EXPO-LIVRES 2015"
+    
+    struct email {
+        static let toRecipient = "jeffrey.fulton@me.com"
+        static var subject: String {
+            // Example: EXPO-LIVRES 2015 - Organization - PO# - Name
+            var subject = "\(GlobalConstants.AppName)"
+            
+            if let organization = LocalStorageService.organization { subject += " - \(organization)" }
+            if let po = LocalStorageService.po { subject += " - \(po)" }
+            if let name = LocalStorageService.name { subject += " - \(name)" }
+            
+            return subject
+        }
+        static var body: String {
+            // Thank you message
+            var body = "\(LanguageService.emailThankYou):\n\n"
+            
+            // User info
+            if let organization = LocalStorageService.organization {
+                body += "\(LanguageService.userInfoOrganization): \(organization)\n"
+            }
+            if let po = LocalStorageService.po {
+                body += "\(LanguageService.userInfoPo): \(po)\n"
+            }
+            if let name = LocalStorageService.name {
+                body += "\(LanguageService.userInfoName): \(name)\n"
+            }
+            if let email = LocalStorageService.email {
+                body += "\(LanguageService.userInfoEmail): \(email)\n\n"
+            }
+            
+            // Plain text booklist
+            for sku in LocalStorageService.storedSkuList {
+                
+                if let book = LibraryService.bookWithSku(sku) {
+                    body += "\(book.title) - isbn: \(book.sku)\n"
+                }
+            }
+            
+            return body
+        }
+        static var attachedFileName: String {
+            // Example: Organization - PO# - Name - 2015-08-14T16:06:59
+            var fileName = ""
+            
+            if let organization = LocalStorageService.organization { fileName += "\(organization)" }
+            if let po = LocalStorageService.po { fileName += " - \(po)" }
+            if let name = LocalStorageService.name { fileName += " - \(name)" }
+            
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            fileName += " - \( dateFormatter.stringFromDate(NSDate()) )"
+            
+            return fileName
+        }
+    }
+    
     struct UserDefaultsKey {
         
         //Change to enumeration?

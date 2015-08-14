@@ -8,25 +8,22 @@
 
 import Foundation
 
+enum Language: Int {
+    case French = 0
+    case English = 1
+}
+
 class LanguageService {
     
-    enum Language: Int {
-        case French = 0
-        case English = 1
-    }
-    
     static var currentLanguage: Language {
-        get {
-        // Defaults to Language with rawValue of 0 because integerForKey returns 0 instead of nil if no value was found.
-        return Language(rawValue: NSUserDefaults.standardUserDefaults().integerForKey(GlobalConstants.UserDefaultsKey.Language))!
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setInteger(newValue.rawValue, forKey: GlobalConstants.UserDefaultsKey.Language)
-            NSNotificationCenter.defaultCenter().postNotificationName(GlobalConstants.Notification.LanguageChanged, object: nil)
-        }
+        get { return LocalStorageService.currentLanguage }
+        set { LocalStorageService.currentLanguage = newValue }
     }
     
     // Translations
+    
+    
+    // MARK: - UserInfo
     
     class var userInfoTitle: String {
         switch currentLanguage {
@@ -91,6 +88,8 @@ class LanguageService {
         }
     }
     
+    // MARK: - ListView
+    
     class var listTitle: String {
         switch currentLanguage {
         case .French:
@@ -136,6 +135,8 @@ class LanguageService {
         }
     }
     
+    // MARK: - Scan
+    
     class var scanNotFoundTitle: String {
         switch currentLanguage {
         case .French:
@@ -154,6 +155,8 @@ class LanguageService {
         }
     }
     
+    // MARK: - Email
+    
     class var emailNotConfiguredTitle: String {
         switch currentLanguage {
         case .French:
@@ -171,6 +174,17 @@ class LanguageService {
             return "Email is required to submit your order. Please setup email on your device."
         }
     }
+    
+    class var emailThankYou: String {
+        switch currentLanguage {
+        case .French:
+            return "Merci pour votre commande"
+        case .English:
+            return "Thank you for your order"
+        }
+    }
+    
+    // MARK: - Submission
     
     class var postSubmissionTitle: String {
         switch currentLanguage {
