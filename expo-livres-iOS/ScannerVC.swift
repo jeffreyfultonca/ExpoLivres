@@ -55,9 +55,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
         previewLayer.frame = self.view.bounds
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        
         previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         
         self.view.layer.insertSublayer(previewLayer, atIndex: 0)
         
@@ -66,7 +65,15 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
     }
     
-    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition({ context in
+            self.previewLayer.frame = self.view.bounds
+            self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
+            
+        }, completion: nil)
+        
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    }
     
     // This is called when we find a known barcode type with the camera.
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
@@ -87,10 +94,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 
                 if metadata.type == barcodeType {
                     barCodeObject = self.previewLayer.transformedMetadataObjectForMetadataObject(metadata as! AVMetadataMachineReadableCodeObject)
-                    
-//                    highlightViewRect = barCodeObject.bounds
-//                    self.highlightView.frame = highlightViewRect
-                    
+
                     // Load
                     let beepURL = NSBundle.mainBundle().URLForResource("beep", withExtension: "wav")
                     var beepSound: SystemSoundID = 0

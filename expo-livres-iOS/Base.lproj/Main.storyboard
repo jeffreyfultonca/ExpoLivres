@@ -695,7 +695,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.89011205808080807" green="0.89011205808080807" blue="0.89011205808080807" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="NYS-9y-8mC" secondAttribute="centerX" id="FqS-rN-R5K"/>
                             <constraint firstAttribute="trailing" secondItem="Jb3-ce-PeN" secondAttribute="trailing" id="Td8-u7-Z3h"/>
