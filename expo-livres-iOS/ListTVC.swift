@@ -93,6 +93,12 @@ class ListTVC: UIViewController,
         self.updateSubmitButtonState()
     }
     
+    func clearList() {
+        self.scannedBooks.removeAll(keepCapacity: false)
+        LocalStorageService.clearList()
+        self.tableView.reloadData()
+    }
+    
     func updateSubmitButtonState() {
         if scannedBooks.isEmpty {
             self.submitButton.enabled = false
@@ -249,20 +255,38 @@ class ListTVC: UIViewController,
     
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         
-        switch result.value {
-        case MFMailComposeResultCancelled.value:
-            println("Cancelled")
-        case MFMailComposeResultFailed.value:
-            println("Failed")
-        case MFMailComposeResultSaved.value:
-            println("Saved")
-        case MFMailComposeResultSent.value:
-            println("Sent")
-        default:
-            println("Unknown result")
-        }
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {
+            switch result.value {
+            case MFMailComposeResultCancelled.value:
+                println("Cancelled")
+            case MFMailComposeResultFailed.value:
+                println("Failed")
+            case MFMailComposeResultSaved.value:
+                println("Saved")
+            case MFMailComposeResultSent.value:
+                println("Sent")
+                
+                // Ask to clear list
+                let alertController = UIAlertController(
+                    title: LanguageService.postSubmissionTitle,
+                    message: LanguageService.postSubmissionMessage,
+                    preferredStyle: UIAlertControllerStyle.Alert
+                )
+                
+                let keepListAction = UIAlertAction(title: LanguageService.keepAction, style: .Default, handler: nil)
+                let clearListAction = UIAlertAction(title: LanguageService.clearAction, style: .Default, handler: { alertAction in
+                    self.clearList()
+                })
+                
+                alertController.addAction(keepListAction)
+                alertController.addAction(clearListAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            default:
+                println("Unknown result")
+            }
+        })
     }
     
     // MARK: - Scanner Delegate

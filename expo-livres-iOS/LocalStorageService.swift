@@ -61,6 +61,10 @@ class LocalStorageService {
         self.storedSkuList = tempSkuList
     }
     
+    static func clearList() {
+        self.storedSkuList = [String]()
+    }
+    
     static var storedSkuList: [String] {
         get { return defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]() }
         set { defaults.setObject(newValue, forKey: GlobalConstants.UserDefaultsKey.storedSkuList) }
