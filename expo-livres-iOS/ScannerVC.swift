@@ -54,8 +54,11 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
         previewLayer.frame = self.view.bounds
-        previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        if previewLayer.connection != nil {
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
+            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        }
+        
         
         self.view.layer.insertSublayer(previewLayer, atIndex: 0)
         

@@ -127,7 +127,7 @@
             <objects>
                 <tableViewController id="MeU-sx-jV7" customClass="UserInfoTVC" customModule="expo_livres_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="15" sectionFooterHeight="1" id="i6N-Qr-ra7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -364,7 +364,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Za1-FU-Fm1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qTD-La-1r4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qTD-La-1r4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -383,7 +383,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3GO-Ig-9cc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3An-ud-jCH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3An-ud-jCH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -405,11 +405,11 @@
                         <viewControllerLayoutGuide type="bottom" id="9Il-0S-TDa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Om6-Wz-RrL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="224" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fid-QP-Hyz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="74" id="mcf-7x-g4x" customClass="ItemCell" customModule="expo_livres_iOS" customModuleProvider="target">
@@ -527,7 +527,7 @@
                                 </connections>
                             </tableView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSw-HD-CyD">
-                                <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="366" width="320" height="50"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RmO-l5-9fQ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -607,7 +607,7 @@
                             <constraint firstAttribute="trailing" secondItem="sSw-HD-CyD" secondAttribute="trailing" id="gTf-ff-fFc"/>
                             <constraint firstAttribute="trailing" secondItem="Fid-QP-Hyz" secondAttribute="trailing" id="hfz-no-Yrr"/>
                             <constraint firstItem="Fid-QP-Hyz" firstAttribute="leading" secondItem="Om6-Wz-RrL" secondAttribute="leading" id="j8c-md-GEb"/>
-                            <constraint firstItem="Fid-QP-Hyz" firstAttribute="top" secondItem="8UT-8m-EgJ" secondAttribute="bottom" constant="-64" id="jfc-jh-52K"/>
+                            <constraint firstItem="Fid-QP-Hyz" firstAttribute="top" secondItem="8UT-8m-EgJ" secondAttribute="bottom" id="jfc-jh-52K"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -721,7 +721,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LandingPageBackground" width="2048" height="2048"/>
+        <image name="LandingPageBackground" width="128" height="128"/>
         <image name="Logo" width="600" height="272"/>
         <image name="barcode" width="30" height="30"/>
         <image name="person" width="30" height="30"/>

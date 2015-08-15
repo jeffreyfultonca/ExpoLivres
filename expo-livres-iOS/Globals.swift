@@ -11,6 +11,25 @@ import AVFoundation
 
 struct GlobalConstants {
     static let AppName = "EXPO-LIVRES 2015"
+    static var updateLibraryURL: String {
+        return "http://boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(LocalStorageService.checksum)"
+    }
+    
+    struct UserDefaultsKey {
+        static let Language = "JFCUserLanguagePrefsKey"
+        
+        static let Organization = "JFCUserOrganizationPrefsKey"
+        static let PO = "JFCUserPurchaseOrderPrefsKey"
+        static let Name = "JFCUserNamePrefsKey"
+        static let Email = "JFCUserEmailPrefsKey"
+        
+        static let storedSkuList = "JFCStoredSkuListKey"
+        static let checksum = "JFCChecksumKey"
+    }
+    
+    struct Notification {
+        static let LanguageChanged = "JFCLanguageChangedNotification"
+    }
     
     struct email {
         static let toRecipient = "jeffrey.fulton@me.com"
@@ -67,22 +86,6 @@ struct GlobalConstants {
             
             return fileName
         }
-    }
-    
-    struct UserDefaultsKey {
-        
-        //Change to enumeration?
-        static let Language = "JFCUserLanguagePrefsKey"
-        static let Organization = "JFCUserOrganizationPrefsKey"
-        static let PO = "JFCUserPurchaseOrderPrefsKey"
-        static let Name = "JFCUserNamePrefsKey"
-        static let Email = "JFCUserEmailPrefsKey"
-        
-        static let storedSkuList = "JFCStoredSkuListKey"
-    }
-    
-    struct Notification {
-        static let LanguageChanged = "JFCLanguageChangedNotification"
     }
 }
 

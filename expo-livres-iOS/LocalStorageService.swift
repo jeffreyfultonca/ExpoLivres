@@ -49,6 +49,11 @@ class LocalStorageService {
     
     // MARK: - Book List
     
+    static var checksum: String {
+        get { return defaults.stringForKey(GlobalConstants.UserDefaultsKey.checksum) ?? "" }
+        set { defaults.setObject(newValue, forKey: GlobalConstants.UserDefaultsKey.checksum) }
+    }
+    
     static func addToList(book: Book) {
         var tempSkuList = self.storedSkuList
         tempSkuList.append(book.sku)

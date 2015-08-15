@@ -17,47 +17,63 @@ class LibraryService {
     }()
     
     class func updateLibrary() {
-        // TODO: Move this to Service.
-        let filePath = NSBundle.mainBundle().pathForResource("books", ofType: "json")!
-        let data = NSData(contentsOfFile: filePath)!
-        var jsonError: NSError?
-        let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &jsonError)
         
-        if let error = jsonError {
-            println("Error parsing JSON: \(error)")
-            
-        } else if let
-            jsonDictionary = json as? Dictionary<String, AnyObject>,
-            bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>]
-        {
-            // Clear database
-            let fetchRequest = NSFetchRequest(entityName: "Book")
-            fetchRequest.includesPropertyValues = false
-            
-            let localBooks = moc.executeFetchRequest(fetchRequest, error: nil) as! [Book]
-            
-            for localBook in localBooks {
-                moc.deleteObject(localBook)
-            }
-            
-            // Insert all new books
-            for bookDictionary in bookDictionaries {
-                let localBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: moc) as! Book
-                localBook.title = bookDictionary["title"] as String!
-                localBook.sku = bookDictionary["sku"] as String!
-            }
-            
-            // Save
-            var error: NSError?
-            moc.save(&error)
+        let url = NSURL(string: GlobalConstants.updateLibraryURL)!
+        var request = NSMutableURLRequest(URL: url)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, urlResponse, error  in
             
             if let error = error {
-                println("Error saving: \(error)")
+                println("Error: \(error)")
+                return
             }
             
-        } else {
-            println("Error could not parse JSON.")
+            var jsonError: NSError?
+            let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &jsonError)
+            
+            if let error = jsonError {
+                println("Error parsing JSON: \(error)")
+                
+            } else if let
+                jsonDictionary = json as? Dictionary<String, AnyObject>,
+                checksum = jsonDictionary["md5_checksum"] as? String,
+                bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>]
+            {
+                LocalStorageService.checksum = checksum
+                
+                // Clear database
+                let fetchRequest = NSFetchRequest(entityName: "Book")
+                fetchRequest.includesPropertyValues = false
+                
+                let localBooks = self.moc.executeFetchRequest(fetchRequest, error: nil) as! [Book]
+                
+                for localBook in localBooks {
+                    self.moc.deleteObject(localBook)
+                }
+                
+                println("Books.count: \(bookDictionaries.count)")
+                
+                // Insert all new books
+                for bookDictionary in bookDictionaries {
+                    let localBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.moc) as! Book
+                    localBook.title = bookDictionary["title"] as String!
+                    localBook.sku = bookDictionary["sku"] as String!
+                }
+                
+                // Save
+                var error: NSError?
+                self.moc.save(&error)
+                
+                if let error = error {
+                    println("Error saving: \(error)")
+                }
+                
+            } else {
+                println("Error could not parse JSON. Possibly because there are no books to update.")
+            }
         }
+        
+        task.resume()
     }
     
     class func bookWithSku(sku: String) -> Book? {
