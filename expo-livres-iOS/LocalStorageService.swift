@@ -51,7 +51,7 @@ class LocalStorageService {
     
     static func addToList(book: Book) {
         var tempSkuList = self.storedSkuList
-        storedSkuList.append(book.sku)
+        tempSkuList.append(book.sku)
         self.storedSkuList = tempSkuList
     }
     
