@@ -13,7 +13,6 @@
 		004466601B7A1309008936EC /* SwipeMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044665F1B7A1309008936EC /* SwipeMessageCell.swift */; };
 		00476C501B77D296000474A0 /* ListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C4F1B77D296000474A0 /* ListTVC.swift */; };
 		00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C551B77FD97000474A0 /* ScannerVC.swift */; };
-		008D24E51B76F2DA00174A25 /* TextEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012859D1B76F081000FB89B /* TextEntryCell.swift */; };
 		008D24E71B76F98B00174A25 /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E61B76F98B00174A25 /* UserInfoTVC.swift */; };
 		008D24E91B77015900174A25 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E81B77015900174A25 /* Globals.swift */; };
 		009009FB1B7B6F6500CFFB74 /* LanguageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageService.swift */; };
@@ -27,22 +26,9 @@
 		00F7C33F1B76447500D15954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00F7C33D1B76447500D15954 /* Main.storyboard */; };
 		00F7C3411B76447500D15954 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F7C3401B76447500D15954 /* Images.xcassets */; };
 		00F7C3441B76447500D15954 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00F7C3421B76447500D15954 /* LaunchScreen.xib */; };
-		00F7C3501B76447500D15954 /* expo_livres_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */; };
 		00F7C35D1B7647BA00D15954 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C35C1B7647BA00D15954 /* Book.swift */; };
-		00F7C35E1B7647BA00D15954 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C35C1B7647BA00D15954 /* Book.swift */; };
 		00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */; };
-		00F7C3621B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		00F7C34A1B76447500D15954 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00F7C3291B76447500D15954 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00F7C3301B76447500D15954;
-			remoteInfo = "expo-livres-iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0012859D1B76F081000FB89B /* TextEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryCell.swift; sourceTree = "<group>"; };
@@ -58,7 +44,7 @@
 		00D183291B78BF0000F8930A /* EmptyListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyListCell.swift; sourceTree = "<group>"; };
 		00D1832B1B78CD7D00F8930A /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		00D21AAF1B7AB99F00F836C4 /* LibraryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
-		00F7C3311B76447500D15954 /* expo-livres-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "expo-livres-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F7C3311B76447500D15954 /* expo-livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "expo-livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F7C3351B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F7C3361B76447500D15954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F7C3391B76447500D15954 /* expo_livres_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = expo_livres_iOS.xcdatamodel; sourceTree = "<group>"; };
@@ -66,7 +52,6 @@
 		00F7C33E1B76447500D15954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00F7C3401B76447500D15954 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		00F7C3431B76447500D15954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		00F7C3491B76447500D15954 /* expo-livres-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "expo-livres-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F7C34E1B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expo_livres_iOSTests.swift; sourceTree = "<group>"; };
 		00F7C35C1B7647BA00D15954 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -75,13 +60,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		00F7C32E1B76447500D15954 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00F7C3461B76447500D15954 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -104,7 +82,7 @@
 		00F7C3281B76447500D15954 = {
 			isa = PBXGroup;
 			children = (
-				00F7C3331B76447500D15954 /* expo-livres-iOS */,
+				00F7C3331B76447500D15954 /* expo-livres */,
 				00F7C34C1B76447500D15954 /* expo-livres-iOSTests */,
 				00F7C3321B76447500D15954 /* Products */,
 			);
@@ -113,13 +91,12 @@
 		00F7C3321B76447500D15954 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00F7C3311B76447500D15954 /* expo-livres-iOS.app */,
-				00F7C3491B76447500D15954 /* expo-livres-iOSTests.xctest */,
+				00F7C3311B76447500D15954 /* expo-livres.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00F7C3331B76447500D15954 /* expo-livres-iOS */ = {
+		00F7C3331B76447500D15954 /* expo-livres */ = {
 			isa = PBXGroup;
 			children = (
 				00F7C3361B76447500D15954 /* AppDelegate.swift */,
@@ -131,7 +108,7 @@
 				009009FC1B7B6F6C00CFFB74 /* Service */,
 				00F7C3341B76447500D15954 /* Supporting Files */,
 			);
-			path = "expo-livres-iOS";
+			path = "expo-livres";
 			sourceTree = "<group>";
 		};
 		00F7C3341B76447500D15954 /* Supporting Files */ = {
@@ -206,9 +183,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00F7C3301B76447500D15954 /* expo-livres-iOS */ = {
+		00F7C3301B76447500D15954 /* expo-livres */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres-iOS" */;
+			buildConfigurationList = 00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres" */;
 			buildPhases = (
 				00F7C32D1B76447500D15954 /* Sources */,
 				00F7C32E1B76447500D15954 /* Frameworks */,
@@ -218,28 +195,10 @@
 			);
 			dependencies = (
 			);
-			name = "expo-livres-iOS";
+			name = "expo-livres";
 			productName = "expo-livres-iOS";
-			productReference = 00F7C3311B76447500D15954 /* expo-livres-iOS.app */;
+			productReference = 00F7C3311B76447500D15954 /* expo-livres.app */;
 			productType = "com.apple.product-type.application";
-		};
-		00F7C3481B76447500D15954 /* expo-livres-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00F7C3561B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres-iOSTests" */;
-			buildPhases = (
-				00F7C3451B76447500D15954 /* Sources */,
-				00F7C3461B76447500D15954 /* Frameworks */,
-				00F7C3471B76447500D15954 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00F7C34B1B76447500D15954 /* PBXTargetDependency */,
-			);
-			name = "expo-livres-iOSTests";
-			productName = "expo-livres-iOSTests";
-			productReference = 00F7C3491B76447500D15954 /* expo-livres-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -252,14 +211,11 @@
 				TargetAttributes = {
 					00F7C3301B76447500D15954 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					00F7C3481B76447500D15954 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 00F7C3301B76447500D15954;
+						DevelopmentTeam = 4DN5KQR8W8;
 					};
 				};
 			};
-			buildConfigurationList = 00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres-iOS" */;
+			buildConfigurationList = 00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -272,8 +228,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00F7C3301B76447500D15954 /* expo-livres-iOS */,
-				00F7C3481B76447500D15954 /* expo-livres-iOSTests */,
+				00F7C3301B76447500D15954 /* expo-livres */,
 			);
 		};
 /* End PBXProject section */
@@ -287,13 +242,6 @@
 				00F7C33F1B76447500D15954 /* Main.storyboard in Resources */,
 				00F7C3441B76447500D15954 /* LaunchScreen.xib in Resources */,
 				00F7C3411B76447500D15954 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00F7C3471B76447500D15954 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,26 +272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00F7C3451B76447500D15954 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00F7C35E1B7647BA00D15954 /* Book.swift in Sources */,
-				008D24E51B76F2DA00174A25 /* TextEntryCell.swift in Sources */,
-				00F7C3501B76447500D15954 /* expo_livres_iOSTests.swift in Sources */,
-				00F7C3621B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00F7C34B1B76447500D15954 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00F7C3301B76447500D15954 /* expo-livres-iOS */;
-			targetProxy = 00F7C34A1B76447500D15954 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		00F7C33D1B76447500D15954 /* Main.storyboard */ = {
@@ -452,9 +381,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "expo-livres-iOS/Info.plist";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "expo-livres/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "expo-livres";
 			};
 			name = Debug;
 		};
@@ -462,50 +392,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "expo-livres-iOS/Info.plist";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "expo-livres/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		00F7C3571B76447500D15954 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "expo-livres-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/expo-livres-iOS.app/expo-livres-iOS";
-			};
-			name = Debug;
-		};
-		00F7C3581B76447500D15954 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "expo-livres-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/expo-livres-iOS.app/expo-livres-iOS";
+				PRODUCT_NAME = "expo-livres";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres-iOS" */ = {
+		00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00F7C3511B76447500D15954 /* Debug */,
@@ -514,20 +411,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres-iOS" */ = {
+		00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00F7C3541B76447500D15954 /* Debug */,
 				00F7C3551B76447500D15954 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00F7C3561B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00F7C3571B76447500D15954 /* Debug */,
-				00F7C3581B76447500D15954 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
