@@ -32,7 +32,7 @@ struct GlobalConstants {
     }
     
     struct email {
-        static let toRecipient = "jeffrey.fulton@me.com"
+        static let toRecipient = "orders@boutiquedulivre.ca"
         static var subject: String {
             // Example: EXPO-LIVRES 2015 - Organization - PO# - Name
             var subject = "\(GlobalConstants.AppName)"

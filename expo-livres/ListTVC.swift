@@ -97,6 +97,7 @@ class ListTVC: UIViewController,
         self.scannedBooks.removeAll(keepCapacity: false)
         LocalStorageService.clearList()
         self.tableView.reloadData()
+        self.updateSubmitButtonState()
     }
     
     func updateSubmitButtonState() {
