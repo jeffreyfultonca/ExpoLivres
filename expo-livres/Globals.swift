@@ -79,7 +79,7 @@ struct GlobalConstants {
             if let po = LocalStorageService.po { fileName += " - \(po)" }
             if let name = LocalStorageService.name { fileName += " - \(name)" }
             
-            var dateFormatter = NSDateFormatter()
+            let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
             fileName += " - \( dateFormatter.stringFromDate(NSDate()) )"
@@ -91,7 +91,7 @@ struct GlobalConstants {
 
 extension String {
     var count: Int {
-        return Swift.count(self)
+        return self.characters.count
     }
     
     var isNotEmpty: Bool {
@@ -99,21 +99,20 @@ extension String {
     }
     
     var isEmail: Bool {
-        let regex = NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",
-            options: NSRegularExpressionOptions.CaseInsensitive,
-            error: nil)
+        let regex = try! NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",
+            options: NSRegularExpressionOptions.CaseInsensitive)
         
-        return regex!.numberOfMatchesInString(self, options: nil, range: NSMakeRange(0, self.count)) > 0
+        return regex.numberOfMatchesInString(self, options: [], range: NSMakeRange(0, self.count)) > 0
     }
 }
 
 extension UITextField {
     var isNotEmpty: Bool {
-        return self.text.isNotEmpty
+        return self.text!.isNotEmpty
     }
     
     var isEmail: Bool {
-        return self.text.isEmail
+        return self.text!.isEmail
     }
 }
 

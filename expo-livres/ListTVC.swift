@@ -49,7 +49,7 @@ class ListTVC: UIViewController,
     }
     
     deinit {
-        println("ListTVC.deinit")
+        print("ListTVC.deinit")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -183,7 +183,7 @@ class ListTVC: UIViewController,
         }    
     }
     
-    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
         return LanguageService.remove
     }
 
@@ -194,7 +194,7 @@ class ListTVC: UIViewController,
     }
     
     @IBAction func submitPressed(sender: AnyObject) {
-        println("submitPressed")
+        print("submitPressed")
         
         if MFMailComposeViewController.canSendMail() {
             
@@ -205,39 +205,30 @@ class ListTVC: UIViewController,
                 isbnString += "\(book.sku)\n"
             }
             
-            let file = "isbnList.txt"
+            // Create MailComposeVC and attach file
             
-            if let dirs: [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
-                let dir = dirs[0]
-                let path = dir.stringByAppendingPathComponent(file)
+            if let isbnStringAsData = isbnString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true) {
                 
-                // Write
-                isbnString.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil)
+                let mailComposeVC = MFMailComposeViewController()
+                mailComposeVC.mailComposeDelegate = self
+                mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
                 
-                // Create MailComposeVC and attach file
+                mailComposeVC.setToRecipients([ GlobalConstants.email.toRecipient ])
                 
-                if let isbnStringAsData = isbnString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true) {
-                    
-                    let mailComposeVC = MFMailComposeViewController()
-                    mailComposeVC.mailComposeDelegate = self
-                    mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
-                    
-                    mailComposeVC.setToRecipients([ GlobalConstants.email.toRecipient ])
-                    
-                    if let email = LocalStorageService.email {
-                        mailComposeVC.setCcRecipients([ email ])
-                    }
-                    
-                    mailComposeVC.setSubject( GlobalConstants.email.subject )
-                    mailComposeVC.setMessageBody(GlobalConstants.email.body, isHTML: false)
-                    mailComposeVC.addAttachmentData(isbnStringAsData, mimeType: "text/plain", fileName: GlobalConstants.email.attachedFileName)
-                    
-                    self.navigationController!.presentViewController(mailComposeVC, animated: true, completion: {
-                        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-                    })
+                if let email = LocalStorageService.email {
+                    mailComposeVC.setCcRecipients([ email ])
                 }
+                
+                mailComposeVC.setSubject( GlobalConstants.email.subject )
+                mailComposeVC.setMessageBody(GlobalConstants.email.body, isHTML: false)
+                mailComposeVC.addAttachmentData(isbnStringAsData, mimeType: "text/plain", fileName: GlobalConstants.email.attachedFileName)
+                
+                self.navigationController!.presentViewController(mailComposeVC, animated: true, completion: {
+                    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+                })
+            } else {
+                print("Could not encode booklist as data for email attachment.")
             }
-            
         } else {
             let alertController = UIAlertController(
                 title: LanguageService.emailNotConfiguredTitle,
@@ -254,18 +245,18 @@ class ListTVC: UIViewController,
     
     // MARK: - MFMailCompose Delegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         self.dismissViewControllerAnimated(true, completion: {
-            switch result.value {
-            case MFMailComposeResultCancelled.value:
-                println("Cancelled")
-            case MFMailComposeResultFailed.value:
-                println("Failed")
-            case MFMailComposeResultSaved.value:
-                println("Saved")
-            case MFMailComposeResultSent.value:
-                println("Sent")
+            switch result.rawValue {
+            case MFMailComposeResultCancelled.rawValue:
+                print("Cancelled")
+            case MFMailComposeResultFailed.rawValue:
+                print("Failed")
+            case MFMailComposeResultSaved.rawValue:
+                print("Saved")
+            case MFMailComposeResultSent.rawValue:
+                print("Sent")
                 
                 // Ask to clear list
                 let alertController = UIAlertController(
@@ -285,7 +276,7 @@ class ListTVC: UIViewController,
                 self.presentViewController(alertController, animated: true, completion: nil)
                 
             default:
-                println("Unknown result")
+                print("Unknown result")
             }
         })
     }

@@ -61,7 +61,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         )
         
         let font = UIFont.systemFontOfSize(17)
-        languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.allZeros)
+        languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState())
         
         languageSegmentedControl.selectedSegmentIndex = LanguageService.currentLanguage.rawValue
 
@@ -74,7 +74,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     }
     
     deinit {
-        println("UserInfo.deinit")
+        print("UserInfo.deinit")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -146,7 +146,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     // MARK: - Custom Delegate
     
     func textEntryCellDidChangeText(text: String, forIndexPath indexPath: NSIndexPath) {
-        println("TextEntryCellDidChangeText: \(text) for indexPath: \(indexPath)")
+        print("TextEntryCellDidChangeText: \(text) for indexPath: \(indexPath)")
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -27,7 +27,7 @@ class LandingPageVC: UIViewController {
     }
     
     deinit {
-        println("LandingPageVC.deinit")
+        print("LandingPageVC.deinit")
     }
     
     @IBAction func enterApplicationPressed(sender: AnyObject?) {

@@ -26,45 +26,37 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.cancelButton.setTitle(LanguageService.cancel, forState: UIControlState.allZeros)
+        self.cancelButton.setTitle(LanguageService.cancel, forState: UIControlState())
         
         // For the sake of discussion this is the camera
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
-        // Create a nilable NSError to hand off to the next method.
-        // Make sure to use the "var" keyword and not "let"
-        var error : NSError? = nil
-        
-        
-        let input : AVCaptureDeviceInput? = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error) as? AVCaptureDeviceInput
-        
-        // If our input is not nil then add it to the session, otherwise we're kind of done!
-        if input != nil {
+        do {
+            
+            let input = try AVCaptureDeviceInput(device: device)
             session.addInput(input)
+            
+            let output = AVCaptureMetadataOutput()
+            output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            session.addOutput(output)
+            output.metadataObjectTypes = output.availableMetadataObjectTypes
+            
+            previewLayer = AVCaptureVideoPreviewLayer(session: session)
+            previewLayer.frame = self.view.bounds
+            if previewLayer.connection != nil {
+                previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
+                previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            }
+            
+            
+            self.view.layer.insertSublayer(previewLayer, atIndex: 0)
+            
+            // Start the scanner. You'll have to end it yourself later.
+            session.startRunning()
+            
+        } catch {
+            print("Error creating input device (camera): \(error)")
         }
-        else {
-            // This is fine for a demo, do something real with this in your app. :)
-            println(error)
-        }
-        
-        let output = AVCaptureMetadataOutput()
-        output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        session.addOutput(output)
-        output.metadataObjectTypes = output.availableMetadataObjectTypes
-        
-        previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
-        previewLayer.frame = self.view.bounds
-        if previewLayer.connection != nil {
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
-            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        }
-        
-        
-        self.view.layer.insertSublayer(previewLayer, atIndex: 0)
-        
-        // Start the scanner. You'll have to end it yourself later.
-        session.startRunning()
-        
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -80,10 +72,6 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     // This is called when we find a known barcode type with the camera.
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
-        var highlightViewRect = CGRectZero
-        
-        var barCodeObject : AVMetadataObject!
-        
         let barCodeTypes = [
             AVMetadataObjectTypeEAN13Code,
             AVMetadataObjectTypeCode128Code
@@ -93,12 +81,9 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         for metadata in metadataObjects {
             
             for barcodeType in barCodeTypes {
-                
                 if metadata.type == barcodeType {
-                    barCodeObject = self.previewLayer.transformedMetadataObjectForMetadataObject(metadata as! AVMetadataMachineReadableCodeObject)
-
                     // Load
-                    let beepURL = NSBundle.mainBundle().URLForResource("beep", withExtension: "wav")
+                    let beepURL = NSBundle.mainBundle().URLForResource("beep", withExtension: "wav")!
                     var beepSound: SystemSoundID = 0
                     AudioServicesCreateSystemSoundID(beepURL, &beepSound)
                     

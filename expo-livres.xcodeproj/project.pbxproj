@@ -13,6 +13,7 @@
 		004466601B7A1309008936EC /* SwipeMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044665F1B7A1309008936EC /* SwipeMessageCell.swift */; };
 		00476C501B77D296000474A0 /* ListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C4F1B77D296000474A0 /* ListTVC.swift */; };
 		00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C551B77FD97000474A0 /* ScannerVC.swift */; };
+		006A81581BB5713600B2AA00 /* expo_livresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A81571BB5713600B2AA00 /* expo_livresTests.swift */; };
 		008D24E71B76F98B00174A25 /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E61B76F98B00174A25 /* UserInfoTVC.swift */; };
 		008D24E91B77015900174A25 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E81B77015900174A25 /* Globals.swift */; };
 		009009FB1B7B6F6500CFFB74 /* LanguageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageService.swift */; };
@@ -30,6 +31,16 @@
 		00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		006A815A1BB5713600B2AA00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00F7C3291B76447500D15954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00F7C3301B76447500D15954;
+			remoteInfo = "expo-livres";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0012859D1B76F081000FB89B /* TextEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryCell.swift; sourceTree = "<group>"; };
 		0037913B1B7D5386002F97B1 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
@@ -37,6 +48,9 @@
 		0044665F1B7A1309008936EC /* SwipeMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMessageCell.swift; sourceTree = "<group>"; };
 		00476C4F1B77D296000474A0 /* ListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTVC.swift; sourceTree = "<group>"; };
 		00476C551B77FD97000474A0 /* ScannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
+		006A81551BB5713600B2AA00 /* expo-livresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "expo-livresTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		006A81571BB5713600B2AA00 /* expo_livresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expo_livresTests.swift; sourceTree = "<group>"; };
+		006A81591BB5713600B2AA00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		008D24E61B76F98B00174A25 /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
 		008D24E81B77015900174A25 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		009009FA1B7B6F6500CFFB74 /* LanguageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageService.swift; sourceTree = "<group>"; };
@@ -52,13 +66,18 @@
 		00F7C33E1B76447500D15954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00F7C3401B76447500D15954 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		00F7C3431B76447500D15954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		00F7C34E1B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expo_livres_iOSTests.swift; sourceTree = "<group>"; };
 		00F7C35C1B7647BA00D15954 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		00F7C3601B7654ED00D15954 /* LandingPageGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageGradientButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		006A81521BB5713600B2AA00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		00F7C32E1B76447500D15954 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -69,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		006A81561BB5713600B2AA00 /* expo-livresTests */ = {
+			isa = PBXGroup;
+			children = (
+				006A81571BB5713600B2AA00 /* expo_livresTests.swift */,
+				006A81591BB5713600B2AA00 /* Info.plist */,
+			);
+			path = "expo-livresTests";
+			sourceTree = "<group>";
+		};
 		009009FC1B7B6F6C00CFFB74 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				00F7C3331B76447500D15954 /* expo-livres */,
-				00F7C34C1B76447500D15954 /* expo-livres-iOSTests */,
+				006A81561BB5713600B2AA00 /* expo-livresTests */,
 				00F7C3321B76447500D15954 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				00F7C3311B76447500D15954 /* expo-livres.app */,
+				006A81551BB5713600B2AA00 /* expo-livresTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,23 +145,6 @@
 			children = (
 				0037913B1B7D5386002F97B1 /* beep.wav */,
 				00F7C3351B76447500D15954 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		00F7C34C1B76447500D15954 /* expo-livres-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				00F7C34F1B76447500D15954 /* expo_livres_iOSTests.swift */,
-				00F7C34D1B76447500D15954 /* Supporting Files */,
-			);
-			path = "expo-livres-iOSTests";
-			sourceTree = "<group>";
-		};
-		00F7C34D1B76447500D15954 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00F7C34E1B76447500D15954 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -183,6 +195,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		006A81541BB5713600B2AA00 /* expo-livresTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 006A815C1BB5713600B2AA00 /* Build configuration list for PBXNativeTarget "expo-livresTests" */;
+			buildPhases = (
+				006A81511BB5713600B2AA00 /* Sources */,
+				006A81521BB5713600B2AA00 /* Frameworks */,
+				006A81531BB5713600B2AA00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				006A815B1BB5713600B2AA00 /* PBXTargetDependency */,
+			);
+			name = "expo-livresTests";
+			productName = "expo-livresTests";
+			productReference = 006A81551BB5713600B2AA00 /* expo-livresTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		00F7C3301B76447500D15954 /* expo-livres */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres" */;
@@ -206,9 +236,15 @@
 		00F7C3291B76447500D15954 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jeffrey Fulton";
 				TargetAttributes = {
+					006A81541BB5713600B2AA00 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 00F7C3301B76447500D15954;
+					};
 					00F7C3301B76447500D15954 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4DN5KQR8W8;
@@ -229,11 +265,19 @@
 			projectRoot = "";
 			targets = (
 				00F7C3301B76447500D15954 /* expo-livres */,
+				006A81541BB5713600B2AA00 /* expo-livresTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		006A81531BB5713600B2AA00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		00F7C32F1B76447500D15954 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,6 +292,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		006A81511BB5713600B2AA00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006A81581BB5713600B2AA00 /* expo_livresTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		00F7C32D1B76447500D15954 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +326,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		006A815B1BB5713600B2AA00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00F7C3301B76447500D15954 /* expo-livres */;
+			targetProxy = 006A815A1BB5713600B2AA00 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		00F7C33D1B76447500D15954 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -294,6 +354,33 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		006A815D1BB5713600B2AA00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "expo-livresTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livresTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/expo-livres.app/expo-livres";
+			};
+			name = Debug;
+		};
+		006A815E1BB5713600B2AA00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "expo-livresTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livresTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/expo-livres.app/expo-livres";
+			};
+			name = Release;
+		};
 		00F7C3511B76447500D15954 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -315,6 +402,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -384,6 +472,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "expo-livres/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "expo-livres";
 			};
 			name = Debug;
@@ -395,6 +484,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "expo-livres/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "expo-livres";
 			};
 			name = Release;
@@ -402,6 +492,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		006A815C1BB5713600B2AA00 /* Build configuration list for PBXNativeTarget "expo-livresTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				006A815D1BB5713600B2AA00 /* Debug */,
+				006A815E1BB5713600B2AA00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
