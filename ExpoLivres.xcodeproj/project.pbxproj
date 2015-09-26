@@ -50,7 +50,7 @@
 		0044665F1B7A1309008936EC /* SwipeMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMessageCell.swift; sourceTree = "<group>"; };
 		00476C4F1B77D296000474A0 /* ListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTVC.swift; sourceTree = "<group>"; };
 		00476C551B77FD97000474A0 /* ScannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
-		006A81551BB5713600B2AA00 /* expo-livresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "expo-livresTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		006A81551BB5713600B2AA00 /* ExpoLivresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpoLivresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006A81571BB5713600B2AA00 /* expo_livresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expo_livresTests.swift; sourceTree = "<group>"; };
 		006A81591BB5713600B2AA00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		008D24E61B76F98B00174A25 /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		00D183291B78BF0000F8930A /* EmptyListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyListCell.swift; sourceTree = "<group>"; };
 		00D1832B1B78CD7D00F8930A /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		00D21AAF1B7AB99F00F836C4 /* LibraryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
-		00F7C3311B76447500D15954 /* expo-livres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "expo-livres.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F7C3311B76447500D15954 /* ExpoLivres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpoLivres.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F7C3351B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F7C3361B76447500D15954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F7C3391B76447500D15954 /* expo_livres_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = expo_livres_iOS.xcdatamodel; sourceTree = "<group>"; };
@@ -92,14 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		006A81561BB5713600B2AA00 /* expo-livresTests */ = {
+		006A81561BB5713600B2AA00 /* ExpoLivresTests */ = {
 			isa = PBXGroup;
 			children = (
 				009E706B1BB639DC00467469 /* CoreDataTestHelper.swift */,
 				006A81571BB5713600B2AA00 /* expo_livresTests.swift */,
 				006A81591BB5713600B2AA00 /* Info.plist */,
 			);
-			path = "expo-livresTests";
+			path = ExpoLivresTests;
 			sourceTree = "<group>";
 		};
 		009009FC1B7B6F6C00CFFB74 /* Service */ = {
@@ -115,8 +115,8 @@
 		00F7C3281B76447500D15954 = {
 			isa = PBXGroup;
 			children = (
-				00F7C3331B76447500D15954 /* expo-livres */,
-				006A81561BB5713600B2AA00 /* expo-livresTests */,
+				00F7C3331B76447500D15954 /* ExpoLivres */,
+				006A81561BB5713600B2AA00 /* ExpoLivresTests */,
 				00F7C3321B76447500D15954 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,13 +124,13 @@
 		00F7C3321B76447500D15954 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00F7C3311B76447500D15954 /* expo-livres.app */,
-				006A81551BB5713600B2AA00 /* expo-livresTests.xctest */,
+				00F7C3311B76447500D15954 /* ExpoLivres.app */,
+				006A81551BB5713600B2AA00 /* ExpoLivresTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00F7C3331B76447500D15954 /* expo-livres */ = {
+		00F7C3331B76447500D15954 /* ExpoLivres */ = {
 			isa = PBXGroup;
 			children = (
 				00F7C3361B76447500D15954 /* AppDelegate.swift */,
@@ -142,7 +142,7 @@
 				009009FC1B7B6F6C00CFFB74 /* Service */,
 				00F7C3341B76447500D15954 /* Supporting Files */,
 			);
-			path = "expo-livres";
+			path = ExpoLivres;
 			sourceTree = "<group>";
 		};
 		00F7C3341B76447500D15954 /* Supporting Files */ = {
@@ -201,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		006A81541BB5713600B2AA00 /* expo-livresTests */ = {
+		006A81541BB5713600B2AA00 /* ExpoLivresTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 006A815C1BB5713600B2AA00 /* Build configuration list for PBXNativeTarget "expo-livresTests" */;
+			buildConfigurationList = 006A815C1BB5713600B2AA00 /* Build configuration list for PBXNativeTarget "ExpoLivresTests" */;
 			buildPhases = (
 				006A81511BB5713600B2AA00 /* Sources */,
 				006A81521BB5713600B2AA00 /* Frameworks */,
@@ -214,14 +214,14 @@
 			dependencies = (
 				006A815B1BB5713600B2AA00 /* PBXTargetDependency */,
 			);
-			name = "expo-livresTests";
+			name = ExpoLivresTests;
 			productName = "expo-livresTests";
-			productReference = 006A81551BB5713600B2AA00 /* expo-livresTests.xctest */;
+			productReference = 006A81551BB5713600B2AA00 /* ExpoLivresTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		00F7C3301B76447500D15954 /* expo-livres */ = {
+		00F7C3301B76447500D15954 /* ExpoLivres */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres" */;
+			buildConfigurationList = 00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "ExpoLivres" */;
 			buildPhases = (
 				00F7C32D1B76447500D15954 /* Sources */,
 				00F7C32E1B76447500D15954 /* Frameworks */,
@@ -231,9 +231,9 @@
 			);
 			dependencies = (
 			);
-			name = "expo-livres";
+			name = ExpoLivres;
 			productName = "expo-livres-iOS";
-			productReference = 00F7C3311B76447500D15954 /* expo-livres.app */;
+			productReference = 00F7C3311B76447500D15954 /* ExpoLivres.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -257,7 +257,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres" */;
+			buildConfigurationList = 00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "ExpoLivres" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -270,8 +270,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00F7C3301B76447500D15954 /* expo-livres */,
-				006A81541BB5713600B2AA00 /* expo-livresTests */,
+				00F7C3301B76447500D15954 /* ExpoLivres */,
+				006A81541BB5713600B2AA00 /* ExpoLivresTests */,
 			);
 		};
 /* End PBXProject section */
@@ -337,7 +337,7 @@
 /* Begin PBXTargetDependency section */
 		006A815B1BB5713600B2AA00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00F7C3301B76447500D15954 /* expo-livres */;
+			target = 00F7C3301B76447500D15954 /* ExpoLivres */;
 			targetProxy = 006A815A1BB5713600B2AA00 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -367,12 +367,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "expo-livresTests/Info.plist";
+				INFOPLIST_FILE = ExpoLivresTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livresTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/expo-livres.app/expo-livres";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpoLivres.app/ExpoLivres";
 			};
 			name = Debug;
 		};
@@ -380,12 +380,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "expo-livresTests/Info.plist";
+				INFOPLIST_FILE = ExpoLivresTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livresTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/expo-livres.app/expo-livres";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpoLivres.app/ExpoLivres";
 			};
 			name = Release;
 		};
@@ -409,6 +409,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -455,6 +456,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -478,10 +480,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "expo-livres/Info.plist";
+				INFOPLIST_FILE = ExpoLivres/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "expo-livres";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livres";
+				PRODUCT_NAME = ExpoLivres;
 			};
 			name = Debug;
 		};
@@ -490,17 +492,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "expo-livres/Info.plist";
+				INFOPLIST_FILE = ExpoLivres/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "expo-livres";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livres";
+				PRODUCT_NAME = ExpoLivres;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		006A815C1BB5713600B2AA00 /* Build configuration list for PBXNativeTarget "expo-livresTests" */ = {
+		006A815C1BB5713600B2AA00 /* Build configuration list for PBXNativeTarget "ExpoLivresTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				006A815D1BB5713600B2AA00 /* Debug */,
@@ -509,7 +511,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "expo-livres" */ = {
+		00F7C32C1B76447500D15954 /* Build configuration list for PBXProject "ExpoLivres" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00F7C3511B76447500D15954 /* Debug */,
@@ -518,7 +520,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "expo-livres" */ = {
+		00F7C3531B76447500D15954 /* Build configuration list for PBXNativeTarget "ExpoLivres" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00F7C3541B76447500D15954 /* Debug */,
