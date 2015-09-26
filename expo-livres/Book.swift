@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 class Book: NSManagedObject {
@@ -14,12 +13,29 @@ class Book: NSManagedObject {
     @NSManaged var title: String
     @NSManaged var sku: String
     
-    class func createInMoc(moc: NSManagedObjectContext, title: String, sku: String) -> Book {
-        let newBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: moc) as! Book
+    static let entityName = "Book"
+    
+    class func createWith(title title: String, sku: String, inContext context: NSManagedObjectContext) -> Book {
+        let newBook = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context) as! Book
         
         newBook.title = title
         newBook.sku = sku
         
         return newBook
+    }
+    
+    class func withSku(sku: String, inContext context: NSManagedObjectContext) -> Book? {
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "sku == %@", sku)
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let results = try context.executeFetchRequest(fetchRequest) as! [Book]
+            return results.first
+            
+        } catch {
+            print("Error fetching books: \(error)")
+            return nil
+        }
     }
 }

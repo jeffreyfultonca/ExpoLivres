@@ -11,11 +11,6 @@ import CoreData
 
 class LibraryService {
     
-    static var moc: NSManagedObjectContext = {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.managedObjectContext
-    }()
-    
     class func updateLibrary() {
         
         let url = NSURL(string: GlobalConstants.updateLibraryURL)!
@@ -31,6 +26,7 @@ class LibraryService {
             }
             
             do {
+                let context = PersistenceController.mainContext
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
                 
                 if let
@@ -44,27 +40,23 @@ class LibraryService {
                     let fetchRequest = NSFetchRequest(entityName: "Book")
                     fetchRequest.includesPropertyValues = false
                     
-                    let localBooks = (try! self.moc.executeFetchRequest(fetchRequest)) as! [Book]
+                    let localBooks = (try! context.executeFetchRequest(fetchRequest)) as! [Book]
                     
                     for localBook in localBooks {
-                        self.moc.deleteObject(localBook)
+                        context.deleteObject(localBook)
                     }
                     
                     print("Books.count: \(bookDictionaries.count)")
                     
                     // Insert all new books
                     for bookDictionary in bookDictionaries {
-                        let localBook = NSEntityDescription.insertNewObjectForEntityForName("Book", inManagedObjectContext: self.moc) as! Book
-                        localBook.title = bookDictionary["title"] as String!
-                        localBook.sku = bookDictionary["sku"] as String!
+                        guard let title = bookDictionary["title"] else { throw Error.ParsingJSONAttribute(attribute: "title", forEntity: "Book") }
+                        guard let sku = bookDictionary["sku"] else { throw Error.ParsingJSONAttribute(attribute: "sku", forEntity: "Book") }
+                        Book.createWith(title: title, sku: sku, inContext: context)
                     }
                     
-                    // Save
-                    do {
-                        try self.moc.save()
-                    } catch {
-                        print("Error saving: \(error)")
-                    }
+                    PersistenceController.saveContext(context)
+                    
                 } else {
                     print("Error could not parse JSON. Possibly because there are no books to update.")
                 }
@@ -74,14 +66,5 @@ class LibraryService {
         }
         
         task.resume()
-    }
-    
-    class func bookWithSku(sku: String) -> Book? {
-        let fetchRequest = NSFetchRequest(entityName: "Book")
-        fetchRequest.predicate = NSPredicate(format: "sku == %@", sku)
-        fetchRequest.fetchLimit = 1
-        let results = (try! moc.executeFetchRequest(fetchRequest)) as! [Book]
-        
-        return results.first
     }
 }

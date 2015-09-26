@@ -9,6 +9,10 @@
 import UIKit
 import AVFoundation
 
+enum Error: ErrorType {
+    case ParsingJSONAttribute(attribute: String, forEntity: String)
+}
+
 struct GlobalConstants {
     static let AppName = "EXPO-LIVRES 2015"
     static var updateLibraryURL: String {
@@ -62,9 +66,9 @@ struct GlobalConstants {
             }
             
             // Plain text booklist
+            let context = PersistenceController.mainContext
             for sku in LocalStorageService.storedSkuList {
-                
-                if let book = LibraryService.bookWithSku(sku) {
+                if let book = Book.withSku(sku, inContext: context) {
                     body += "\(book.title) - isbn: \(book.sku)\n"
                 }
             }

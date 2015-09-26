@@ -68,9 +68,9 @@ class ListTVC: UIViewController,
         let defaults = NSUserDefaults.standardUserDefaults()
         
         let storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
-        
+        let context = PersistenceController.mainContext
         for sku in storedSkuList {
-            if let book = LibraryService.bookWithSku(sku) {
+            if let book = Book.withSku(sku, inContext: context) {
                 self.scannedBooks.append(book)
             }
         }
@@ -286,7 +286,8 @@ class ListTVC: UIViewController,
     func scannerSuccessfullyScannedSku(sku: String) {
         
         self.dismissViewControllerAnimated(true) {
-            if let scannedBook = LibraryService.bookWithSku(sku) {
+            let context = PersistenceController.mainContext
+            if let scannedBook = Book.withSku(sku, inContext: context) {
                 self.addToList(scannedBook)
                 
                 let newItemIndexPath = NSIndexPath(forRow: self.scannedBooks.count - 1, inSection: 0)
