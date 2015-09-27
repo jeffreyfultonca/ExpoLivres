@@ -11,6 +11,9 @@ import AVFoundation
 
 enum Error: ErrorType {
     case ParsingJSONAttribute(attribute: String, forEntity: String)
+    case ParsingJSONRootDictionary
+    case ParsingJSONMd5Checksum
+    case ParsingJSONBooks
 }
 
 struct GlobalConstants {

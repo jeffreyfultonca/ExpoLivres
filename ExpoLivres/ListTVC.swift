@@ -43,7 +43,7 @@ class ListTVC: UIViewController,
     }
     
     override func viewDidAppear(animated: Bool) {
-        if UserInfo.isNotValid {
+        if UserInfoService.isNotValid {
             self.performSegueWithIdentifier("showUserInfo", sender: self)
         }
     }
