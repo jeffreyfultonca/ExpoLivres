@@ -23,7 +23,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    var persistenceService = PersistenceService.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +42,15 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         
         languageSegmentedControl.selectedSegmentIndex = LanguageService.currentLanguage.rawValue
 
-        organizationTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Organization)
-        poTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.PO)
-        nameTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Name)
-        emailTextField.text = defaults.stringForKey(GlobalConstants.UserDefaultsKey.Email)
+        organizationTextField.text = persistenceService.userOrganization
+        poTextField.text = persistenceService.userPo
+        nameTextField.text = persistenceService.userName
+        emailTextField.text = persistenceService.userEmail
         
         okButton.enabled = userEnteredValidInfo()
     }
     
     deinit {
-        print("UserInfo.deinit")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -67,10 +66,10 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     }
     
     func saveUserInfo() {
-        defaults.setObject(organizationTextField.text, forKey: GlobalConstants.UserDefaultsKey.Organization)
-        defaults.setObject(poTextField.text, forKey: GlobalConstants.UserDefaultsKey.PO)
-        defaults.setObject(nameTextField.text, forKey: GlobalConstants.UserDefaultsKey.Name)
-        defaults.setObject(emailTextField.text, forKey: GlobalConstants.UserDefaultsKey.Email)
+        persistenceService.userOrganization = organizationTextField.text
+        persistenceService.userPo = poTextField.text
+        persistenceService.userName = nameTextField.text
+        persistenceService.userEmail = emailTextField.text
     }
     
     func updateUIForLanguage() {

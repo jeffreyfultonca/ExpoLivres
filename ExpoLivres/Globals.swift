@@ -19,20 +19,10 @@ enum Error: ErrorType {
 struct GlobalConstants {
     static let AppName = "EXPO-LIVRES 2015"
     static var updateLibraryURL: String {
-        return "http://boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(LocalStorageService.checksum)"
+        return "http://boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(PersistenceService.sharedInstance.checksum)"
     }
     
-    struct UserDefaultsKey {
-        static let Language = "JFCUserLanguagePrefsKey"
-        
-        static let Organization = "JFCUserOrganizationPrefsKey"
-        static let PO = "JFCUserPurchaseOrderPrefsKey"
-        static let Name = "JFCUserNamePrefsKey"
-        static let Email = "JFCUserEmailPrefsKey"
-        
-        static let storedSkuList = "JFCStoredSkuListKey"
-        static let checksum = "JFCChecksumKey"
-    }
+    
     
     struct Notification {
         static let LanguageChanged = "JFCLanguageChangedNotification"
@@ -44,9 +34,9 @@ struct GlobalConstants {
             // Example: EXPO-LIVRES 2015 - Organization - PO# - Name
             var subject = "\(GlobalConstants.AppName)"
             
-            if let organization = LocalStorageService.organization { subject += " - \(organization)" }
-            if let po = LocalStorageService.po { subject += " - \(po)" }
-            if let name = LocalStorageService.name { subject += " - \(name)" }
+            if let organization = PersistenceService.sharedInstance.userOrganization { subject += " - \(organization)" }
+            if let po = PersistenceService.sharedInstance.userPo { subject += " - \(po)" }
+            if let name = PersistenceService.sharedInstance.userName { subject += " - \(name)" }
             
             return subject
         }
@@ -55,22 +45,22 @@ struct GlobalConstants {
             var body = "\(LanguageService.emailThankYou):\n\n"
             
             // User info
-            if let organization = LocalStorageService.organization {
+            if let organization = PersistenceService.sharedInstance.userOrganization {
                 body += "\(LanguageService.userInfoOrganization): \(organization)\n"
             }
-            if let po = LocalStorageService.po {
+            if let po = PersistenceService.sharedInstance.userPo {
                 body += "\(LanguageService.userInfoPo): \(po)\n"
             }
-            if let name = LocalStorageService.name {
+            if let name = PersistenceService.sharedInstance.userName {
                 body += "\(LanguageService.userInfoName): \(name)\n"
             }
-            if let email = LocalStorageService.email {
+            if let email = PersistenceService.sharedInstance.userEmail {
                 body += "\(LanguageService.userInfoEmail): \(email)\n\n"
             }
             
             // Plain text booklist
             let context = PersistenceService.sharedInstance.mainContext
-            for sku in LocalStorageService.storedSkuList {
+            for sku in PersistenceService.sharedInstance.storedSkuList {
                 if let book = Book.withSku(sku, inContext: context) {
                     body += "\(book.title) - isbn: \(book.sku)\n"
                 }
@@ -82,9 +72,9 @@ struct GlobalConstants {
             // Example: Organization - PO# - Name - 2015-08-14T16:06:59
             var fileName = ""
             
-            if let organization = LocalStorageService.organization { fileName += "\(organization)" }
-            if let po = LocalStorageService.po { fileName += " - \(po)" }
-            if let name = LocalStorageService.name { fileName += " - \(name)" }
+            if let organization = PersistenceService.sharedInstance.userOrganization { fileName += "\(organization)" }
+            if let po = PersistenceService.sharedInstance.userPo { fileName += " - \(po)" }
+            if let name = PersistenceService.sharedInstance.userName { fileName += " - \(name)" }
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

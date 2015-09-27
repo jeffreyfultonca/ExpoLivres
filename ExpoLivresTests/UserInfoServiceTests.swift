@@ -79,12 +79,4 @@ class UserInfoServiceTests: XCTestCase {
     }
 }
 
-class MockPersistenceService: PersistenceService {
-    var mockUserOrganization: String?
-    var mockUserName: String?
-    var mockUserEmail: String?
-    
-    override var userOrganization: String? { return self.mockUserOrganization }
-    override var userName: String? { return self.mockUserName }
-    override var userEmail: String? { return self.mockUserEmail }
-}
+

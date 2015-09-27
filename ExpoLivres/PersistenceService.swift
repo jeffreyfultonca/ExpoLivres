@@ -15,22 +15,94 @@ class PersistenceService {
     
     var defaults = NSUserDefaults.standardUserDefaults()
     
-    var userOrganization: String? { return defaults.stringForKey(GlobalConstants.UserDefaultsKey.Organization) }
-    var userName: String? { return defaults.stringForKey(GlobalConstants.UserDefaultsKey.Name) }
-    var userEmail: String? { return defaults.stringForKey(GlobalConstants.UserDefaultsKey.Email) }
+    struct UserDefaultsKey {
+        static let Language = "JFCUserLanguagePrefsKey"
+        
+        static let Organization = "JFCUserOrganizationPrefsKey"
+        static let PO = "JFCUserPurchaseOrderPrefsKey"
+        static let Name = "JFCUserNamePrefsKey"
+        static let Email = "JFCUserEmailPrefsKey"
+        
+        static let storedSkuList = "JFCStoredSkuListKey"
+        static let checksum = "JFCChecksumKey"
+    }
+    
+    // MARK: Language
+    
+    var currentLanguage: Language {
+        get {
+            // Defaults to Language with rawValue of 0 because integerForKey returns 0 instead of nil if no value was found.
+            return Language(rawValue: defaults.integerForKey(UserDefaultsKey.Language))!
+        }
+        set {
+            defaults.setInteger(newValue.rawValue, forKey: UserDefaultsKey.Language)
+            NSNotificationCenter.defaultCenter().postNotificationName(GlobalConstants.Notification.LanguageChanged, object: nil)
+        }
+    }
+    
+    // MARK: User Info
+    
+    var userOrganization: String? {
+        get { return defaults.stringForKey(UserDefaultsKey.Organization) }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.Organization) }
+    }
+    
+    var userPo: String? {
+        get { return defaults.stringForKey(UserDefaultsKey.PO) }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.PO) }
+    }
+    
+    var userName: String? {
+        get { return defaults.stringForKey(UserDefaultsKey.Name) }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.Name) }
+    }
+    
+    var userEmail: String? {
+        get { return defaults.stringForKey(UserDefaultsKey.Email) }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.Email) }
+    }
+    
+    // MARK: Book List
+    
+    var checksum: String {
+        get { return defaults.stringForKey(UserDefaultsKey.checksum) ?? "" }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.checksum) }
+    }
+    
+    func addToList(book: Book) {
+        var tempSkuList = self.storedSkuList
+        tempSkuList.append(book.sku)
+        self.storedSkuList = tempSkuList
+    }
+    
+    func removeFromListAtIndex(index: Int) {
+        var tempSkuList = self.storedSkuList
+        tempSkuList.removeAtIndex(index)
+        self.storedSkuList = tempSkuList
+    }
+    
+    func clearList() {
+        self.storedSkuList = [String]()
+    }
+    
+    var storedSkuList: [String] {
+        get { return defaults.objectForKey(UserDefaultsKey.storedSkuList) as? [String] ?? [String]() }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.storedSkuList) }
+    }
+    
     
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls.last!
-        }()
+    }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("expo_livres_iOS", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
-        }()
+    }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
@@ -55,7 +127,7 @@ class PersistenceService {
         }
         
         return coordinator
-        }()
+    }()
     
     lazy var mainContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
@@ -63,7 +135,7 @@ class PersistenceService {
         context.name = "Main Context"
         
         return context
-        }()
+    }()
     
     // MARK: - Core Data Saving support
     

@@ -11,6 +11,8 @@ import CoreData
 
 class LibraryService {
     
+    static var persistenceService = PersistenceService.sharedInstance
+    
     class func updateLibrary() {
         
         let url = NSURL(string: GlobalConstants.updateLibraryURL)!
@@ -55,7 +57,7 @@ class LibraryService {
     
     class func updateChecksumFromJsonDictionary(jsonDictionary: Dictionary<String, AnyObject>) throws {
         guard let checksum = jsonDictionary["md5_checksum"] as? String else { throw Error.ParsingJSONMd5Checksum }
-        LocalStorageService.checksum = checksum
+        persistenceService.checksum = checksum
     }
 
     class func parseBookDictionariesFromJsonDictionary(jsonDictionary: Dictionary<String, AnyObject>) throws -> [Dictionary<String, String>] {

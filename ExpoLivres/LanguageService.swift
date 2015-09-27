@@ -16,8 +16,8 @@ enum Language: Int {
 class LanguageService {
     
     static var currentLanguage: Language {
-        get { return LocalStorageService.currentLanguage }
-        set { LocalStorageService.currentLanguage = newValue }
+        get { return PersistenceService.sharedInstance.currentLanguage }
+        set { PersistenceService.sharedInstance.currentLanguage = newValue }
     }
     
     // Translations

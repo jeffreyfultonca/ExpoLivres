@@ -12,20 +12,14 @@ import CoreData
 
 class LibraryServiceTests: XCTestCase {
     
-    var context: NSManagedObjectContext?
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        context = setUpInMemoryManagedObjectContext()
         MockLibraryService.parseJSONDataInvoked = false
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        context = nil
-        
         super.tearDown()
     }
     
@@ -76,29 +70,59 @@ class LibraryServiceTests: XCTestCase {
         }
     }
     
+    func testUpdateChecksumFromJsonDictionaryThrowsErrorIfJsonMissingChecksum() {
+        let jsonDictionary = ["missingChecksum": "some numbers"]
+        do {
+            try LibraryService.updateChecksumFromJsonDictionary(jsonDictionary)
+            XCTFail("Previous call should have thrown error. This line in text should never execute.")
+        } catch {
+            XCTAssertTrue(true)
+        }
+    }
+    
+    func testUpdateChecksumFromJsonDictionaryThrowsErrorIfChecksumNotCastableToString() {
+        let jsonDictionary = ["md5_checksum": 123]
+        do {
+            try LibraryService.updateChecksumFromJsonDictionary(jsonDictionary)
+            XCTFail("Previous call should have thrown error. This line in text should never execute.")
+        } catch {
+            XCTAssertTrue(true)
+        }
+    }
+    
+    func testUpdateChecksumFromJsonDictionarySetsChecksumWhenJsonIsValid() {
+        let mockPersistenceService = MockPersistenceService()
+        mockPersistenceService.checksumWasSet = false
+        LibraryService.persistenceService = mockPersistenceService
+        
+        let jsonDictionary = ["md5_checksum": "123"]
+        do {
+            try LibraryService.updateChecksumFromJsonDictionary(jsonDictionary)
+            XCTAssertTrue(mockPersistenceService.checksumWasSet)
+        } catch {
+            XCTFail("Error should not have been thrown.")
+        }
+    }
+    
     func testParseBookDictionariesFromJsonDictionarySuccessfullyReturnsWhenValidDictionaryProvided() {
         let validJsonDictionary = ["books": [["name": "Valid name"]]]
-        
         do {
             try LibraryService.parseBookDictionariesFromJsonDictionary(validJsonDictionary)
             XCTAssertTrue(true)
         } catch {
             XCTFail("Previous call should have thrown error. This line in text should never execute.")
         }
-        
     }
 
     
     func testParseBookDictionariesFromJsonDictionaryThrowsErrorIfJsonMissingBooksDictionaryStringString() {
-        let validJsonDictionary = ["books": [["name": 1]]]
-        
+        let jsonDictionary = ["books": [["name": 1]]]
         do {
-            try LibraryService.parseBookDictionariesFromJsonDictionary(validJsonDictionary)
+            try LibraryService.parseBookDictionariesFromJsonDictionary(jsonDictionary)
             XCTFail("Previous call should have thrown error. This line in text should never execute.")
         } catch {
             XCTAssertTrue(true)
         }
-        
     }
 }
 

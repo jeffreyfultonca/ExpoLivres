@@ -66,9 +66,7 @@ class ListTVC: UIViewController,
     }
     
     func loadStoredList() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        let storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
+        let storedSkuList = PersistenceService.sharedInstance.storedSkuList
         let context = persistenceService.mainContext
         for sku in storedSkuList {
             if let book = Book.withSku(sku, inContext: context) {
@@ -82,21 +80,21 @@ class ListTVC: UIViewController,
     
     func addToList(book: Book) {
         self.scannedBooks.append(book)
-        LocalStorageService.addToList(book)
+        PersistenceService.sharedInstance.addToList(book)
         
         self.updateSubmitButtonState()
     }
     
     func removeFromListAtIndex(index: Int) {
         self.scannedBooks.removeAtIndex(index)
-        LocalStorageService.removeFromListAtIndex(index)
+        PersistenceService.sharedInstance.removeFromListAtIndex(index)
         
         self.updateSubmitButtonState()
     }
     
     func clearList() {
         self.scannedBooks.removeAll(keepCapacity: false)
-        LocalStorageService.clearList()
+        PersistenceService.sharedInstance.clearList()
         self.tableView.reloadData()
         self.updateSubmitButtonState()
     }
@@ -216,7 +214,7 @@ class ListTVC: UIViewController,
                 
                 mailComposeVC.setToRecipients([ GlobalConstants.email.toRecipient ])
                 
-                if let email = LocalStorageService.email {
+                if let email = PersistenceService.sharedInstance.userEmail {
                     mailComposeVC.setCcRecipients([ email ])
                 }
                 
