@@ -7,29 +7,151 @@
 //
 
 import XCTest
+@testable import ExpoLivres
 
 class PersistenceServiceTests: XCTestCase {
+    
+    let persistenceService = PersistenceService.sharedInstance
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        clearNSUserDefaults()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        clearNSUserDefaults()
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func clearNSUserDefaults() {
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Checksum)
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Language)
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Organization)
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.PO)
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Name)
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Email)
+        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.StoredSkuList)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    /// Confirm our test setup is properly starting from nil.
+    func testChecksumShouldInitiallyBeNil() {
+        let checksum = defaults.objectForKey(PersistenceService.UserDefaultsKey.Checksum)
+        XCTAssertNil(checksum)
     }
     
+    // MARK: Language
+    
+    func testCurrentLanguageDefaultsToFrenchIfNotSet() {
+        let language = persistenceService.currentLanguage
+        XCTAssertEqual(language, Language.French)
+    }
+    
+    func testCurrentLanguageReturnsSameLanguageSet() {
+        persistenceService.currentLanguage = .English
+        XCTAssertEqual(persistenceService.currentLanguage, Language.English)
+        
+        persistenceService.currentLanguage = .French
+        XCTAssertEqual(persistenceService.currentLanguage, Language.French)
+    }
+    
+    // MARK: UserInfo
+    
+    func testUserOrganizationReturnsNilIfNotSet() {
+        XCTAssertNil(persistenceService.userOrganization)
+    }
+    
+    func testUserOrganizationReturnsSameValueSet() {
+        let organization = "Valid Organization"
+        persistenceService.userOrganization = organization
+        XCTAssertEqual(persistenceService.userOrganization, organization)
+    }
+    
+    func testUserPoReturnsNilIfNotSet() {
+        XCTAssertNil(persistenceService.userPo)
+    }
+    
+    func testUserPoReturnsSameValueSet() {
+        let po = "Valid Po"
+        persistenceService.userPo = po
+        XCTAssertEqual(persistenceService.userPo, po)
+    }
+    
+    func testUserNameReturnsNilIfNotSet() {
+        XCTAssertNil(persistenceService.userName)
+    }
+    
+    func testUserNameReturnsSameValueSet() {
+        let name = "Valid Name"
+        persistenceService.userName = name
+        XCTAssertEqual(persistenceService.userName, name)
+    }
+    
+    func testUserEmailReturnsNilIfNotSet() {
+        XCTAssertNil(persistenceService.userEmail)
+    }
+    
+    func testUserEmailReturnsSameValueSet() {
+        let email = "Valid Email"
+        persistenceService.userEmail = email
+        XCTAssertEqual(persistenceService.userEmail, email)
+    }
+    
+    // MARK: Checksum
+    
+    func testChecksumReturnsEmptyStringIfNotSet() {
+        let checksum = persistenceService.checksum
+        XCTAssertEqual(checksum, "")
+    }
+    
+    func testSettingChecksumToValidStringReturnsSameString() {
+        let checksum = "123"
+        persistenceService.checksum = checksum
+        XCTAssertEqual(persistenceService.checksum, checksum)
+    }
+    
+    // MARK: Book List
+    
+    func testStoredSkuListReturnsEmptyArrayStringIfNotSet() {
+        let storedSkuList = persistenceService.storedSkuList
+        XCTAssertEqual(storedSkuList, [])
+    }
+    
+    func testSettingSkuListToValidValueReturnsSameValue() {
+        let storedSkuList = ["123", "456", "789"]
+        persistenceService.storedSkuList = storedSkuList
+        XCTAssertEqual(persistenceService.storedSkuList, storedSkuList)
+    }
+    
+    func testAddSkuToListResultsInOneSkuInListWithSameValue() {
+        let skuToAdd = "123"
+        persistenceService.addToSkuList(skuToAdd)
+        let storedSkuList = persistenceService.storedSkuList
+        XCTAssertEqual(storedSkuList, [skuToAdd])
+    }
+    
+    func testAddSkuToListTwiceResultsInTwoSkusInListWithSameValues() {
+        let firstSkuToAdd = "123"
+        let secondSkuToAdd = "456"
+        
+        persistenceService.addToSkuList(firstSkuToAdd)
+        persistenceService.addToSkuList(secondSkuToAdd)
+        
+        let storedSkuList = persistenceService.storedSkuList
+        XCTAssertEqual(storedSkuList, [firstSkuToAdd, secondSkuToAdd])
+    }
+    
+    func testRemoveFromListAtIndex() {
+        persistenceService.storedSkuList = ["123", "456", "789"]
+        persistenceService.removeFromListAtIndex(1)
+        XCTAssertEqual(persistenceService.storedSkuList, ["123", "789"])
+    }
+    
+    func testClearList() {
+        persistenceService.storedSkuList = ["123", "456", "789"]
+        persistenceService.clearList()
+        XCTAssertEqual(persistenceService.storedSkuList, [])
+    }
 }

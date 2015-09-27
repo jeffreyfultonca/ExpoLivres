@@ -23,8 +23,8 @@ class PersistenceService {
         static let Name = "JFCUserNamePrefsKey"
         static let Email = "JFCUserEmailPrefsKey"
         
-        static let storedSkuList = "JFCStoredSkuListKey"
-        static let checksum = "JFCChecksumKey"
+        static let StoredSkuList = "JFCStoredSkuListKey"
+        static let Checksum = "JFCChecksumKey"
     }
     
     // MARK: Language
@@ -62,16 +62,23 @@ class PersistenceService {
         set { defaults.setObject(newValue, forKey:UserDefaultsKey.Email) }
     }
     
-    // MARK: Book List
+    // MARK: Checksum
     
     var checksum: String {
-        get { return defaults.stringForKey(UserDefaultsKey.checksum) ?? "" }
-        set { defaults.setObject(newValue, forKey:UserDefaultsKey.checksum) }
+        get { return defaults.stringForKey(UserDefaultsKey.Checksum) ?? "" }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.Checksum) }
     }
     
-    func addToList(book: Book) {
+    // MARK: Book List
+    
+    var storedSkuList: [String] {
+        get { return defaults.objectForKey(UserDefaultsKey.StoredSkuList) as? [String] ?? [String]() }
+        set { defaults.setObject(newValue, forKey:UserDefaultsKey.StoredSkuList) }
+    }
+    
+    func addToSkuList(sku: String) {
         var tempSkuList = self.storedSkuList
-        tempSkuList.append(book.sku)
+        tempSkuList.append(sku)
         self.storedSkuList = tempSkuList
     }
     
@@ -84,12 +91,6 @@ class PersistenceService {
     func clearList() {
         self.storedSkuList = [String]()
     }
-    
-    var storedSkuList: [String] {
-        get { return defaults.objectForKey(UserDefaultsKey.storedSkuList) as? [String] ?? [String]() }
-        set { defaults.setObject(newValue, forKey:UserDefaultsKey.storedSkuList) }
-    }
-    
     
     // MARK: - Core Data stack
     

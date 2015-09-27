@@ -80,7 +80,7 @@ class ListTVC: UIViewController,
     
     func addToList(book: Book) {
         self.scannedBooks.append(book)
-        PersistenceService.sharedInstance.addToList(book)
+        PersistenceService.sharedInstance.addToSkuList(book.sku)
         
         self.updateSubmitButtonState()
     }
