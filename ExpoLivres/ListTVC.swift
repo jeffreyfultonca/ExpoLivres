@@ -22,6 +22,7 @@ class ListTVC: UIViewController,
     
     @IBOutlet weak var scanLabel: UILabel!
     
+    var persistenceService = PersistenceService.sharedInstance
     var scannedBooks = [Book]()
 
     override func viewDidLoad() {
@@ -68,7 +69,7 @@ class ListTVC: UIViewController,
         let defaults = NSUserDefaults.standardUserDefaults()
         
         let storedSkuList = defaults.objectForKey(GlobalConstants.UserDefaultsKey.storedSkuList) as? [String] ?? [String]()
-        let context = PersistenceController.mainContext
+        let context = persistenceService.mainContext
         for sku in storedSkuList {
             if let book = Book.withSku(sku, inContext: context) {
                 self.scannedBooks.append(book)
@@ -286,7 +287,7 @@ class ListTVC: UIViewController,
     func scannerSuccessfullyScannedSku(sku: String) {
         
         self.dismissViewControllerAnimated(true) {
-            let context = PersistenceController.mainContext
+            let context = self.persistenceService.mainContext
             if let scannedBook = Book.withSku(sku, inContext: context) {
                 self.addToList(scannedBook)
                 

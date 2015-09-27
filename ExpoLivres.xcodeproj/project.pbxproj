@@ -20,11 +20,11 @@
 		0096BAA31BB78FBF0071A680 /* UserInfoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096BAA21BB78FBF0071A680 /* UserInfoServiceTests.swift */; settings = {ASSET_TAGS = (); }; };
 		0096BAA51BB7A1BD0071A680 /* LibraryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096BAA41BB7A1BD0071A680 /* LibraryServiceTests.swift */; settings = {ASSET_TAGS = (); }; };
 		009E706C1BB639DC00467469 /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E706B1BB639DC00467469 /* CoreDataTestHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		009E706E1BB63A1C00467469 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E706D1BB63A1C00467469 /* PersistenceController.swift */; settings = {ASSET_TAGS = (); }; };
 		00CC462D1B7E92A300AF1995 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CC462C1B7E92A300AF1995 /* LocalStorageService.swift */; };
 		00D1832A1B78BF0000F8930A /* EmptyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D183291B78BF0000F8930A /* EmptyListCell.swift */; };
 		00D1832C1B78CD7D00F8930A /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1832B1B78CD7D00F8930A /* ItemCell.swift */; };
 		00D21AB01B7AB99F00F836C4 /* LibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D21AAF1B7AB99F00F836C4 /* LibraryService.swift */; };
+		00D676E81BB840A300664EBC /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D676E71BB840A300664EBC /* PersistenceService.swift */; settings = {ASSET_TAGS = (); }; };
 		00F7C3371B76447500D15954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3361B76447500D15954 /* AppDelegate.swift */; };
 		00F7C33A1B76447500D15954 /* expo_livres_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C3381B76447500D15954 /* expo_livres_iOS.xcdatamodeld */; };
 		00F7C33C1B76447500D15954 /* LandingPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C33B1B76447500D15954 /* LandingPageVC.swift */; };
@@ -61,11 +61,11 @@
 		0096BAA21BB78FBF0071A680 /* UserInfoServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoServiceTests.swift; sourceTree = "<group>"; };
 		0096BAA41BB7A1BD0071A680 /* LibraryServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryServiceTests.swift; sourceTree = "<group>"; };
 		009E706B1BB639DC00467469 /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
-		009E706D1BB63A1C00467469 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		00CC462C1B7E92A300AF1995 /* LocalStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		00D183291B78BF0000F8930A /* EmptyListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyListCell.swift; sourceTree = "<group>"; };
 		00D1832B1B78CD7D00F8930A /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		00D21AAF1B7AB99F00F836C4 /* LibraryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
+		00D676E71BB840A300664EBC /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		00F7C3311B76447500D15954 /* ExpoLivres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpoLivres.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F7C3351B76447500D15954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F7C3361B76447500D15954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 				00D21AAF1B7AB99F00F836C4 /* LibraryService.swift */,
 				00CC462C1B7E92A300AF1995 /* LocalStorageService.swift */,
 				0096BAA01BB78C7D0071A680 /* UserInfoService.swift */,
+				00D676E71BB840A300664EBC /* PersistenceService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -191,7 +192,6 @@
 				008D24E61B76F98B00174A25 /* UserInfoTVC.swift */,
 				00476C4F1B77D296000474A0 /* ListTVC.swift */,
 				00476C551B77FD97000474A0 /* ScannerVC.swift */,
-				009E706D1BB63A1C00467469 /* PersistenceController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -323,12 +323,12 @@
 				00F7C35D1B7647BA00D15954 /* Book.swift in Sources */,
 				00F7C33C1B76447500D15954 /* LandingPageVC.swift in Sources */,
 				0096BAA11BB78C7D0071A680 /* UserInfoService.swift in Sources */,
+				00D676E81BB840A300664EBC /* PersistenceService.swift in Sources */,
 				00D1832A1B78BF0000F8930A /* EmptyListCell.swift in Sources */,
 				00D21AB01B7AB99F00F836C4 /* LibraryService.swift in Sources */,
 				00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */,
 				00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */,
 				008D24E71B76F98B00174A25 /* UserInfoTVC.swift in Sources */,
-				009E706E1BB63A1C00467469 /* PersistenceController.swift in Sources */,
 				00D1832C1B78CD7D00F8930A /* ItemCell.swift in Sources */,
 				00F7C33A1B76447500D15954 /* expo_livres_iOS.xcdatamodeld in Sources */,
 				00F7C3371B76447500D15954 /* AppDelegate.swift in Sources */,

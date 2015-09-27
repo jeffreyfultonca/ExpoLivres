@@ -11,9 +11,12 @@ import XCTest
 
 class UserInfoServiceTests: XCTestCase {
     
+    let mockPersistenceService = MockPersistenceService()
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        UserInfoService.persistenceService = mockPersistenceService
     }
     
     override func tearDown() {
@@ -22,50 +25,66 @@ class UserInfoServiceTests: XCTestCase {
     }
     
     func testNoUserInfoResultsInInvalidUser() {
-        let organization: String? = nil
-        let name: String? = nil
-        let email: String? = nil
+        mockPersistenceService.mockUserOrganization = nil
+        mockPersistenceService.mockUserName = nil
+        mockPersistenceService.mockUserEmail = nil
         
-        XCTAssertFalse(UserInfoService.isValid(organization: organization, name: name, email: email))
+        XCTAssertFalse(UserInfoService.isValid)
+        XCTAssertTrue(UserInfoService.isNotValid)
     }
     
-    func testValidUserInfoResultsInvalidUser() {
-        let organization = "Valid Organization"
-        let name = "Valid Name"
-        let email = "valid@email.com"
+    func testValidUserInfoResultsInValidUser() {
+        mockPersistenceService.mockUserOrganization = "Valid Organization"
+        mockPersistenceService.mockUserName = "Valid Name"
+        mockPersistenceService.mockUserEmail = "valid@email.com"
         
-        XCTAssertTrue(UserInfoService.isValid(organization: organization, name: name, email: email))
+        XCTAssertTrue(UserInfoService.isValid)
+        XCTAssertFalse(UserInfoService.isNotValid)
     }
     
     func testNoOrganizationResultsInInvalidUser() {
-        let organization: String? = nil
-        let name = "Valid Name"
-        let email = "valid@email.com"
+        mockPersistenceService.mockUserOrganization = nil
+        mockPersistenceService.mockUserName = "Valid Name"
+        mockPersistenceService.mockUserEmail = "valid@email.com"
         
-        XCTAssertFalse(UserInfoService.isValid(organization: organization, name: name, email: email))
+        XCTAssertFalse(UserInfoService.isValid)
+        XCTAssertTrue(UserInfoService.isNotValid)
     }
     
     func testNoNameResultsInInvalidUser() {
-        let organization = "Valid Organization"
-        let name: String? = nil
-        let email = "valid@email.com"
+        mockPersistenceService.mockUserOrganization = "Valid Organization"
+        mockPersistenceService.mockUserName = nil
+        mockPersistenceService.mockUserEmail = "valid@email.com"
         
-        XCTAssertFalse(UserInfoService.isValid(organization: organization, name: name, email: email))
+        XCTAssertFalse(UserInfoService.isValid)
+        XCTAssertTrue(UserInfoService.isNotValid)
     }
     
     func testNoEmailResultsInInvalidUser() {
-        let organization = "Valid Organization"
-        let name = "Valid Name"
-        let email: String? = nil
+        mockPersistenceService.mockUserOrganization = "Valid Organization"
+        mockPersistenceService.mockUserName = "Valid Name"
+        mockPersistenceService.mockUserEmail = nil
         
-        XCTAssertFalse(UserInfoService.isValid(organization: organization, name: name, email: email))
+        XCTAssertFalse(UserInfoService.isValid)
+        XCTAssertTrue(UserInfoService.isNotValid)
     }
     
     func testInvalidEmailResultsInInvalidUser() {
-        let organization = "Valid Organization"
-        let name = "Valid Name"
-        let email = "Invalid Email"
+        mockPersistenceService.mockUserOrganization = "Valid Organization"
+        mockPersistenceService.mockUserName = "Valid Name"
+        mockPersistenceService.mockUserEmail = "Invalid Email"
         
-        XCTAssertFalse(UserInfoService.isValid(organization: organization, name: name, email: email))
+        XCTAssertFalse(UserInfoService.isValid)
+        XCTAssertTrue(UserInfoService.isNotValid)
     }
+}
+
+class MockPersistenceService: PersistenceService {
+    var mockUserOrganization: String?
+    var mockUserName: String?
+    var mockUserEmail: String?
+    
+    override var userOrganization: String? { return self.mockUserOrganization }
+    override var userName: String? { return self.mockUserName }
+    override var userEmail: String? { return self.mockUserEmail }
 }

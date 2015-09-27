@@ -69,7 +69,7 @@ struct GlobalConstants {
             }
             
             // Plain text booklist
-            let context = PersistenceController.mainContext
+            let context = PersistenceService.sharedInstance.mainContext
             for sku in LocalStorageService.storedSkuList {
                 if let book = Book.withSku(sku, inContext: context) {
                     body += "\(book.title) - isbn: \(book.sku)\n"

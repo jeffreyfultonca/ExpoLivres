@@ -10,7 +10,7 @@ import CoreData
 @testable import ExpoLivres
 
 func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
-    let managedObjectModel = PersistenceController.managedObjectModel
+    let managedObjectModel = PersistenceService.sharedInstance.managedObjectModel
     
     let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
     try! persistentStoreCoordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)

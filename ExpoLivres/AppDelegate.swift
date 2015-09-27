@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        print(PersistenceController.applicationDocumentsDirectory)
+        print(PersistenceService.sharedInstance.applicationDocumentsDirectory)
         
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "Navbar")!.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .Stretch), forBarMetrics: .Default)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()

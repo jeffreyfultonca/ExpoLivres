@@ -35,11 +35,11 @@ class LibraryService {
             try updateChecksumFromJsonDictionary(jsonDictionary)
             let bookDictionaries = try parseBookDictionariesFromJsonDictionary(jsonDictionary)
             
-            let context = PersistenceController.mainContext
+            let context = PersistenceService.sharedInstance.mainContext
             Book.deleteAll(inContext: context)
             try Book.insertFromDictionaries(bookDictionaries, inContext: context)
             
-            PersistenceController.saveContext(context)
+            PersistenceService.sharedInstance.saveContext(context)
             context.reset()
         } catch {
             print("Error parsing JSON: \(error)")
