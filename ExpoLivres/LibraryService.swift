@@ -31,18 +31,13 @@ class LibraryService {
         }
         
         do {
-            let json = try parseJSONData(data, options: [])
-            
-            guard let jsonDictionary = json as? Dictionary<String, AnyObject> else { throw Error.ParsingJSONRootDictionary }
-            guard let checksum = jsonDictionary["md5_checksum"] as? String else { throw Error.ParsingJSONMd5Checksum }
-            guard let bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>] else { throw Error.ParsingJSONBooks }
-            
-            LocalStorageService.checksum = checksum
+            let jsonDictionary = try parseJsonDictionaryFromData(data)
+            try updateChecksumFromJsonDictionary(jsonDictionary)
+            let bookDictionaries = try parseBookDictionariesFromJsonDictionary(jsonDictionary)
             
             let context = PersistenceController.mainContext
-            
-            LibraryService.deleteAllBooks(context)
-            try LibraryService.insertBooks(bookDictionaries, inContext: context)
+            Book.deleteAll(inContext: context)
+            try Book.insertFromDictionaries(bookDictionaries, inContext: context)
             
             PersistenceController.saveContext(context)
             context.reset()
@@ -51,26 +46,20 @@ class LibraryService {
         }
     }
     
-    class func parseJSONData(data: NSData, options: NSJSONReadingOptions) throws -> AnyObject {
-        return try NSJSONSerialization.JSONObjectWithData(data, options: options)
+    class func parseJsonDictionaryFromData(data: NSData) throws -> Dictionary<String, AnyObject> {
+        let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+        guard let jsonDictionary = json as? Dictionary<String, AnyObject> else { throw Error.ParsingJSONRootDictionary }
+        
+        return jsonDictionary
     }
     
-    class func deleteAllBooks(context: NSManagedObjectContext) {
-        let fetchRequest = NSFetchRequest(entityName: "Book")
-        fetchRequest.includesPropertyValues = false
-        
-        let localBooks = try! context.executeFetchRequest(fetchRequest) as! [Book]
-        
-        for localBook in localBooks {
-            context.deleteObject(localBook)
-        }
+    class func updateChecksumFromJsonDictionary(jsonDictionary: Dictionary<String, AnyObject>) throws {
+        guard let checksum = jsonDictionary["md5_checksum"] as? String else { throw Error.ParsingJSONMd5Checksum }
+        LocalStorageService.checksum = checksum
     }
-    
-    class func insertBooks(dictionaries: [Dictionary<String, String>], inContext context: NSManagedObjectContext) throws {
-        for bookDictionary in dictionaries {
-            guard let title = bookDictionary["title"] else { throw Error.ParsingJSONAttribute(attribute: "title", forEntity: "Book") }
-            guard let sku = bookDictionary["sku"] else { throw Error.ParsingJSONAttribute(attribute: "sku", forEntity: "Book") }
-            Book.createWith(title: title, sku: sku, inContext: context)
-        }
+
+    class func parseBookDictionariesFromJsonDictionary(jsonDictionary: Dictionary<String, AnyObject>) throws -> [Dictionary<String, String>] {
+        guard let bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>] else { throw Error.ParsingJSONBooks }
+        return bookDictionaries
     }
 }

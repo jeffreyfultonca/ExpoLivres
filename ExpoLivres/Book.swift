@@ -38,4 +38,26 @@ class Book: NSManagedObject {
             return nil
         }
     }
+    
+    class func deleteAll(inContext context: NSManagedObjectContext) {
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        fetchRequest.includesPropertyValues = false
+        
+        let books = try! context.executeFetchRequest(fetchRequest) as! [Book]
+        
+        for book in books {
+            context.deleteObject(book)
+        }
+
+    }
+    
+    class func insertFromDictionaries(bookDictionaries: [Dictionary<String, String>],
+        inContext context: NSManagedObjectContext) throws
+    {
+        for bookDictionary in bookDictionaries {
+            guard let title = bookDictionary["title"] else { throw Error.ParsingJSONAttribute(attribute: "title", forEntity: "Book") }
+            guard let sku = bookDictionary["sku"] else { throw Error.ParsingJSONAttribute(attribute: "sku", forEntity: "Book") }
+            Book.createWith(title: title, sku: sku, inContext: context)
+        }
+    }
 }
