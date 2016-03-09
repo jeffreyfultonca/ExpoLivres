@@ -22,8 +22,6 @@ struct GlobalConstants {
         return "http://boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(PersistenceService.sharedInstance.checksum)"
     }
     
-    
-    
     struct Notification {
         static let LanguageChanged = "JFCLanguageChangedNotification"
     }
