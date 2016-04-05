@@ -32,7 +32,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "updateUIForLanguage",
+            selector: #selector(updateUIForLanguage),
             name: GlobalConstants.Notification.LanguageChanged,
             object: nil
         )
@@ -48,6 +48,9 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         emailTextField.text = persistenceService.userEmail
         
         okButton.enabled = userEnteredValidInfo()
+        
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     deinit {
@@ -100,6 +103,13 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.min
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 44
+        }
+        return UITableViewAutomaticDimension
     }
     
     // MARK: - Action

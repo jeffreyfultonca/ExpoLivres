@@ -34,7 +34,7 @@ class ListTVC: UIViewController,
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "updateUIForLanguage",
+            selector: #selector(updateUIForLanguage),
             name: GlobalConstants.Notification.LanguageChanged,
             object: nil
         )
