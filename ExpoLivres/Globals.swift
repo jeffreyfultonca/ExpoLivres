@@ -17,7 +17,7 @@ enum Error: ErrorType {
 }
 
 struct GlobalConstants {
-    static let AppName = "EXPO-LIVRES 2015"
+    static let AppName = "EXPO-LIVRES"
     static var updateLibraryURL: String {
         return "http://boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(PersistenceService.sharedInstance.checksum)"
     }
@@ -29,7 +29,7 @@ struct GlobalConstants {
     struct email {
         static let toRecipient = "orders@boutiquedulivre.ca"
         static var subject: String {
-            // Example: EXPO-LIVRES 2015 - Organization - PO# - Name
+            // Example: EXPO-LIVRES - Organization - PO# - Name
             var subject = "\(GlobalConstants.AppName)"
             
             if let organization = PersistenceService.sharedInstance.userOrganization { subject += " - \(organization)" }
