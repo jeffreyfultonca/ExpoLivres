@@ -10,11 +10,9 @@ import UIKit
 import CoreData
 
 class LibraryService {
-    
     static var persistenceService = PersistenceService.sharedInstance
     
     class func updateLibrary() {
-        
         let url = NSURL(string: GlobalConstants.updateLibraryURL)!
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: parseServerData)
@@ -37,12 +35,16 @@ class LibraryService {
             try updateChecksumFromJsonDictionary(jsonDictionary)
             let bookDictionaries = try parseBookDictionariesFromJsonDictionary(jsonDictionary)
             
-            let context = PersistenceService.sharedInstance.mainContext
-            Book.deleteAll(inContext: context)
-            try Book.insertFromDictionaries(bookDictionaries, inContext: context)
+            let context = PersistenceService.sharedInstance.backgroundContext
             
-            PersistenceService.sharedInstance.saveContext(context)
-            context.reset()
+            context.performBlockAndWait {
+                Book.deleteAll(inContext: context)
+                do { try Book.insertFromDictionaries(bookDictionaries, inContext: context) }
+                catch { print("Error inserting bookDictionaries: \(error)") }
+                
+                PersistenceService.sharedInstance.saveContext(context)
+                context.reset()
+            }
         } catch {
             print("Error parsing JSON: \(error)")
         }

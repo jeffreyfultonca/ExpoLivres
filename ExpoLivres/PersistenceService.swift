@@ -138,6 +138,14 @@ class PersistenceService {
         return context
     }()
     
+    lazy var backgroundContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        context.persistentStoreCoordinator = self.persistentStoreCoordinator
+        context.name = "Background Context"
+        
+        return context
+    }()
+    
     // MARK: - Core Data Saving support
     
     func saveContext(context: NSManagedObjectContext) {
