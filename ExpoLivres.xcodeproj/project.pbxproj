@@ -512,6 +512,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livres";
 				PRODUCT_NAME = ExpoLivres;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -524,6 +525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livres";
 				PRODUCT_NAME = ExpoLivres;
+				PROVISIONING_PROFILE = "89d0792d-3cfa-4ccd-b313-bd9ee70de95c";
 			};
 			name = Release;
 		};
