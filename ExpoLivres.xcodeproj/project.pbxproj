@@ -274,11 +274,13 @@
 				TargetAttributes = {
 					006A81541BB5713600B2AA00 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0830;
 						TestTargetID = 00F7C3301B76447500D15954;
 					};
 					00F7C3301B76447500D15954 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4DN5KQR8W8;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -400,6 +402,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livresTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpoLivres.app/ExpoLivres";
 			};
 			name = Debug;
@@ -413,6 +416,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livresTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpoLivres.app/ExpoLivres";
 			};
 			name = Release;
@@ -508,11 +512,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4DN5KQR8W8;
 				INFOPLIST_FILE = ExpoLivres/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livres";
 				PRODUCT_NAME = ExpoLivres;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -521,11 +527,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4DN5KQR8W8;
 				INFOPLIST_FILE = ExpoLivres/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.jeffreyfulton.expo-livres";
 				PRODUCT_NAME = ExpoLivres;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

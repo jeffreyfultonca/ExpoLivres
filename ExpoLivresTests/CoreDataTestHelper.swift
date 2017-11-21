@@ -13,9 +13,9 @@ func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
     let managedObjectModel = PersistenceService.sharedInstance.managedObjectModel
     
     let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-    try! persistentStoreCoordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
+    try! persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
     
-    let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+    let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
     
     return managedObjectContext

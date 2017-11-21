@@ -24,7 +24,7 @@ class LibraryServiceTests: XCTestCase {
     }
     
     func testParseServerDataInvokesParseJSONDataWithDataAndNoError() {
-        let data: NSData? = NSData()
+        let data: Data? = Data()
         let error: NSError? = nil
         
         MockLibraryService.parseServerData(data, response: nil, error: error)
@@ -33,7 +33,7 @@ class LibraryServiceTests: XCTestCase {
     }
     
     func testParseServerDataExitsWithDataAndError() {
-        let data: NSData? = NSData()
+        let data: Data? = Data()
         let error: NSError? = NSError(domain: "Test", code: 0, userInfo: nil)
         
         MockLibraryService.parseServerData(data, response: nil, error: error)
@@ -42,7 +42,7 @@ class LibraryServiceTests: XCTestCase {
     }
     
     func testParseServerDataExitsWithNilData() {
-        let data: NSData? = nil
+        let data: Data? = nil
         let error: NSError? = nil
         
         MockLibraryService.parseServerData(data, response: nil, error: error)
@@ -51,9 +51,9 @@ class LibraryServiceTests: XCTestCase {
     }
     
     func testParseJsonDictionaryFromDataThrowsErrorForBadJSON() {
-        let brokenJSONData = "{".dataUsingEncoding(NSUTF8StringEncoding)!
+        let brokenJSONData = "{".data(using: String.Encoding.utf8)!
         do {
-            try LibraryService.parseJsonDictionaryFromData(brokenJSONData)
+            let _ = try LibraryService.parseJsonDictionaryFromData(brokenJSONData)
             XCTFail("Previous call should have thrown error. This line in text should never execute.")
         } catch {
             XCTAssertTrue(true)
@@ -61,9 +61,9 @@ class LibraryServiceTests: XCTestCase {
     }
     
     func testParseJsonDictionaryFromDataThrowsErrorIfJsonNotCastableToDictionaryStringAnyObject() {
-        let jsonData = "[1,2,3]".dataUsingEncoding(NSUTF8StringEncoding)!
+        let jsonData = "[1,2,3]".data(using: String.Encoding.utf8)!
         do {
-            try LibraryService.parseJsonDictionaryFromData(jsonData)
+            let _ = try LibraryService.parseJsonDictionaryFromData(jsonData)
             XCTFail("Previous call should have thrown error. This line in text should never execute.")
         } catch {
             XCTAssertTrue(true)
@@ -107,7 +107,7 @@ class LibraryServiceTests: XCTestCase {
     func testParseBookDictionariesFromJsonDictionarySuccessfullyReturnsWhenValidDictionaryProvided() {
         let validJsonDictionary = ["books": [["name": "Valid name"]]]
         do {
-            try LibraryService.parseBookDictionariesFromJsonDictionary(validJsonDictionary)
+            let _ = try LibraryService.parseBookDictionariesFromJsonDictionary(validJsonDictionary)
             XCTAssertTrue(true)
         } catch {
             XCTFail("Previous call should have thrown error. This line in text should never execute.")
@@ -118,7 +118,7 @@ class LibraryServiceTests: XCTestCase {
     func testParseBookDictionariesFromJsonDictionaryThrowsErrorIfJsonMissingBooksDictionaryStringString() {
         let jsonDictionary = ["books": [["name": 1]]]
         do {
-            try LibraryService.parseBookDictionariesFromJsonDictionary(jsonDictionary)
+            let _ = try LibraryService.parseBookDictionariesFromJsonDictionary(jsonDictionary)
             XCTFail("Previous call should have thrown error. This line in text should never execute.")
         } catch {
             XCTAssertTrue(true)
@@ -131,8 +131,8 @@ class LibraryServiceTests: XCTestCase {
 class MockLibraryService: LibraryService {
     static var parseJSONDataInvoked = false
     
-    override class func parseJsonDictionaryFromData(data: NSData) throws -> Dictionary<String, AnyObject> {
+    override class func parseJsonDictionaryFromData(_ data: Data) throws -> Dictionary<String, Any> {
         parseJSONDataInvoked = true
-        return Dictionary<String, AnyObject>()
+        return Dictionary<String, Any>()
     }
 }

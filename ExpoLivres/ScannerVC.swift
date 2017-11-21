@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 protocol ScannerVCDelegate: class {
-    func scannerSuccessfullyScannedSku(sku: String)
+    func scannerSuccessfullyScannedSku(_ sku: String)
 }
 
 class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -26,10 +26,10 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.cancelButton.setTitle(LanguageService.cancel, forState: UIControlState())
+        self.cancelButton.setTitle(LanguageService.cancel, for: UIControlState())
         
         // For the sake of discussion this is the camera
-        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do {
             
@@ -37,7 +37,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             session.addInput(input)
             
             let output = AVCaptureMetadataOutput()
-            output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             session.addOutput(output)
             output.metadataObjectTypes = output.availableMetadataObjectTypes
             
@@ -49,7 +49,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             }
             
             
-            self.view.layer.insertSublayer(previewLayer, atIndex: 0)
+            self.view.layer.insertSublayer(previewLayer, at: 0)
             
             // Start the scanner. You'll have to end it yourself later.
             session.startRunning()
@@ -59,18 +59,18 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animateAlongsideTransition({ context in
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
             self.previewLayer.frame = self.view.bounds
             self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.currentDeviceOrientation
             
         }, completion: nil)
         
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        super.viewWillTransition(to: size, with: coordinator)
     }
     
     // This is called when we find a known barcode type with the camera.
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         let barCodeTypes = [
             AVMetadataObjectTypeEAN13Code,
@@ -81,11 +81,11 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         for metadata in metadataObjects {
             
             for barcodeType in barCodeTypes {
-                if metadata.type == barcodeType {
+                if (metadata as AnyObject).type == barcodeType {
                     // Load
-                    let beepURL = NSBundle.mainBundle().URLForResource("beep", withExtension: "wav")!
+                    let beepURL = Bundle.main.url(forResource: "beep", withExtension: "wav")!
                     var beepSound: SystemSoundID = 0
-                    AudioServicesCreateSystemSoundID(beepURL, &beepSound)
+                    AudioServicesCreateSystemSoundID(beepURL as CFURL, &beepSound)
                     
                     // Play
                     AudioServicesPlaySystemSound( SystemSoundID(kSystemSoundID_Vibrate) )
@@ -105,7 +105,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     // MARK: - Actions
     
-    @IBAction func cancelPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

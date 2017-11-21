@@ -30,15 +30,15 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         
         self.updateUIForLanguage()
         
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateUIForLanguage),
-            name: GlobalConstants.Notification.LanguageChanged,
+            name: NSNotification.Name(rawValue: GlobalConstants.Notification.LanguageChanged),
             object: nil
         )
         
-        let font = UIFont.systemFontOfSize(17)
-        languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState())
+        let font = UIFont.systemFont(ofSize: 17)
+        languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState())
         
         languageSegmentedControl.selectedSegmentIndex = LanguageService.currentLanguage.rawValue
 
@@ -47,14 +47,14 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         nameTextField.text = persistenceService.userName
         emailTextField.text = persistenceService.userEmail
         
-        okButton.enabled = userEnteredValidInfo()
+        okButton.isEnabled = userEnteredValidInfo()
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Helpers
@@ -91,21 +91,21 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     
     // MARK: - TableView
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextEntryCell {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? TextEntryCell {
             cell.textField.becomeFirstResponder()
         }
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 15
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.min
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 44
         }
@@ -114,28 +114,28 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Action
     
-    @IBAction func okPressed(sender: AnyObject) {
+    @IBAction func okPressed(_ sender: AnyObject) {
         self.tableView.endEditing(false)
         self.saveUserInfo()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func languageSegmentControlValueChanged(sender: AnyObject) {
+    @IBAction func languageSegmentControlValueChanged(_ sender: AnyObject) {
         tableView.endEditing(false)
-        LanguageService.currentLanguage = (languageSegmentedControl.selectedSegmentIndex == 0) ? .French : .English
+        LanguageService.currentLanguage = (languageSegmentedControl.selectedSegmentIndex == 0) ? .french : .english
     }
     
-    @IBAction func textFieldEditingChanged(sender: UITextField) {
-        okButton.enabled = userEnteredValidInfo()
+    @IBAction func textFieldEditingChanged(_ sender: UITextField) {
+        okButton.isEnabled = userEnteredValidInfo()
     }
     
     // MARK: - Custom Delegate
     
-    func textEntryCellDidChangeText(text: String, forIndexPath indexPath: NSIndexPath) {
+    func textEntryCellDidChangeText(_ text: String, forIndexPath indexPath: IndexPath) {
         print("TextEntryCellDidChangeText: \(text) for indexPath: \(indexPath)")
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {
         case self.organizationTextField:

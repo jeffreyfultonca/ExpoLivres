@@ -13,19 +13,19 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var isbnLabel: UILabel!
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Draw bottom border
         let context = UIGraphicsGetCurrentContext()
         
         // Line characteristics
-        CGContextSetStrokeColorWithColor(context, UIColor.lightGrayColor().CGColor )
-        CGContextSetLineWidth(context, 1.0)
+        context?.setStrokeColor(UIColor.lightGray.cgColor )
+        context?.setLineWidth(1.0)
         
         // Left line
-        CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect))
-        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect))
+        context?.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+        context?.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
         
-        CGContextStrokePath(context)
+        context?.strokePath()
     }
     
 }

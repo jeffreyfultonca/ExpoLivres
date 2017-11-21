@@ -9,11 +9,11 @@
 import UIKit
 import AVFoundation
 
-enum Error: ErrorType {
-    case ParsingJSONAttribute(attribute: String, forEntity: String)
-    case ParsingJSONRootDictionary
-    case ParsingJSONMd5Checksum
-    case ParsingJSONBooks
+enum AppError: Error {
+    case parsingJSONAttribute(attribute: String, forEntity: String)
+    case parsingJSONRootDictionary
+    case parsingJSONMd5Checksum
+    case parsingJSONBooks
 }
 
 struct GlobalConstants {
@@ -74,10 +74,10 @@ struct GlobalConstants {
             if let po = PersistenceService.sharedInstance.userPo { fileName += " - \(po)" }
             if let name = PersistenceService.sharedInstance.userName { fileName += " - \(name)" }
             
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
-            fileName += " - \( dateFormatter.stringFromDate(NSDate()) )"
+            fileName += " - \( dateFormatter.string(from: Date()) )"
             
             return fileName
         }
@@ -95,9 +95,9 @@ extension String {
     
     var isEmail: Bool {
         let regex = try! NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",
-            options: NSRegularExpressionOptions.CaseInsensitive)
+            options: NSRegularExpression.Options.caseInsensitive)
         
-        return regex.numberOfMatchesInString(self, options: [], range: NSMakeRange(0, self.count)) > 0
+        return regex.numberOfMatches(in: self, options: [], range: NSMakeRange(0, self.count)) > 0
     }
 }
 
@@ -113,17 +113,17 @@ extension UITextField {
 
 extension AVCaptureVideoOrientation {
     static var currentDeviceOrientation: AVCaptureVideoOrientation {
-        switch UIDevice.currentDevice().orientation {
-        case .LandscapeRight:
-            return .LandscapeLeft
-        case .LandscapeLeft:
-            return .LandscapeRight
-        case .Portrait:
-            return .Portrait
-        case .PortraitUpsideDown:
-            return .PortraitUpsideDown
+        switch UIDevice.current.orientation {
+        case .landscapeRight:
+            return .landscapeLeft
+        case .landscapeLeft:
+            return .landscapeRight
+        case .portrait:
+            return .portrait
+        case .portraitUpsideDown:
+            return .portraitUpsideDown
         default:
-            return .Portrait
+            return .portrait
         }
     }
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 enum Language: Int {
-    case French = 0
-    case English = 1
+    case french = 0
+    case english = 1
 }
 
 class LanguageService {
@@ -27,63 +27,63 @@ class LanguageService {
     
     class var userInfoTitle: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Entrez vos renseignements"
-        case .English:
+        case .english:
             return "Enter your information"
         }
     }
     
     class var userInfoOrganization: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Organisation"
-        case .English:
+        case .english:
             return "Organization"
         }
     }
     
     class var userInfoPo: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "PO #"
-        case .English:
+        case .english:
             return "PO #"
         }
     }
     
     class var userInfoName: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Nom"
-        case .English:
+        case .english:
             return "Name"
         }
     }
     
     class var userInfoEmail: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Email"
-        case .English:
+        case .english:
             return "Email"
         }
     }
     
     class var required: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "requis"
-        case .English:
+        case .english:
             return "required"
         }
     }
     
     class var optional: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "facultatif"
-        case .English:
+        case .english:
             return "optional"
         }
     }
@@ -92,45 +92,45 @@ class LanguageService {
     
     class var listTitle: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Liste"
-        case .English:
+        case .english:
             return "List"
         }
     }
     
     class var listEmptyHeading: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Aucun livre sur la liste"
-        case .English:
+        case .english:
             return "No items in list"
         }
     }
     
     class var listBodyScan: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Ajouter un titre en appuyant sur le bouton du scanner en bas à droite de l\'écran"
-        case .English:
+        case .english:
             return "Add books to your list by pressing the scan button in the bottom right corner of your screen"
         }
     }
     
     class var listBodySubmit: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Appuyer sur Envoyer lorsque vous avez fini"
-        case .English:
+        case .english:
             return "Press submit when finished"
         }
     }
     
     class var listSwipeMessage: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Glisser vers la gauche pour supprimer"
-        case .English:
+        case .english:
             return "Swipe item left to remove from list"
         }
     }
@@ -139,18 +139,18 @@ class LanguageService {
     
     class var scanNotFoundTitle: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Oops!"
-        case .English:
+        case .english:
             return "Oops!"
         }
     }
     
-    class func scanNotFoundMessage(isbn: String) -> String {
+    class func scanNotFoundMessage(_ isbn: String) -> String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Désolés, l\'isbn \(isbn) n\'est pas dans notre système. Veuillez apporter votre livre à la caisse."
-        case .English:
+        case .english:
             return "We\'re sorry, isbn: \(isbn) not found. Please try again or bring book to front desk."
         }
     }
@@ -159,27 +159,27 @@ class LanguageService {
     
     class var emailNotConfiguredTitle: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Oops!"
-        case .English:
+        case .english:
             return "Oops!"
         }
     }
     
     class var emailNotConfiguredMessage: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Une adresse courriel en vigueur sur votre appareil est requise pour soumettre votre commande."
-        case .English:
+        case .english:
             return "Email is required to submit your order. Please setup email on your device."
         }
     }
     
     class var emailThankYou: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Merci pour votre commande"
-        case .English:
+        case .english:
             return "Thank you for your order"
         }
     }
@@ -188,90 +188,90 @@ class LanguageService {
     
     class var postSubmissionTitle: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Merci!"
-        case .English:
+        case .english:
             return "Thank you!"
         }
     }
     
     class var postSubmissionMessage: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Votre commande a été soumise. Passez à la caisse pour confirmer votre commande."
-        case .English:
+        case .english:
             return "Your list has been sent. Proceed to the front desk for confirmation."
         }
     }
     
     class var clearAction: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Supprimer liste"
-        case .English:
+        case .english:
             return "Clear list"
         }
     }
     
     class var keepAction: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Garder liste"
-        case .English:
+        case .english:
             return "Keep list"
         }
     }
     
     class var save: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "OK"
-        case .English:
+        case .english:
             return "OK"
         }
     }
     
     class var remove: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Supprimer"
-        case .English:
+        case .english:
             return "Remove"
         }
     }
 
     class var submit: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Envoyer"
-        case .English:
+        case .english:
             return "Submit"
         }
     }
     
     class var scan: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Scan"
-        case .English:
+        case .english:
             return "Scan"
         }
     }
     
     class var language: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Langue"
-        case .English:
+        case .english:
             return "Language"
         }
     }
     
     class var cancel: String {
         switch currentLanguage {
-        case .French:
+        case .french:
             return "Annuler"
-        case .English:
+        case .english:
             return "Cancel"
         }
     }

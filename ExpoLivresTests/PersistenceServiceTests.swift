@@ -12,7 +12,7 @@ import XCTest
 class PersistenceServiceTests: XCTestCase {
     
     let persistenceService = PersistenceService.sharedInstance
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     override func setUp() {
         super.setUp()
@@ -27,18 +27,18 @@ class PersistenceServiceTests: XCTestCase {
     }
     
     func clearNSUserDefaults() {
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Checksum)
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Language)
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Organization)
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.PO)
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Name)
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.Email)
-        defaults.setObject(nil, forKey: PersistenceService.UserDefaultsKey.StoredSkuList)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.Checksum)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.Language)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.Organization)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.PO)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.Name)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.Email)
+        defaults.set(nil, forKey: PersistenceService.UserDefaultsKey.StoredSkuList)
     }
     
     /// Confirm our test setup is properly starting from nil.
     func testChecksumShouldInitiallyBeNil() {
-        let checksum = defaults.objectForKey(PersistenceService.UserDefaultsKey.Checksum)
+        let checksum = defaults.object(forKey: PersistenceService.UserDefaultsKey.Checksum)
         XCTAssertNil(checksum)
     }
     
@@ -46,15 +46,15 @@ class PersistenceServiceTests: XCTestCase {
     
     func testCurrentLanguageDefaultsToFrenchIfNotSet() {
         let language = persistenceService.currentLanguage
-        XCTAssertEqual(language, Language.French)
+        XCTAssertEqual(language, Language.french)
     }
     
     func testCurrentLanguageReturnsSameLanguageSet() {
-        persistenceService.currentLanguage = .English
-        XCTAssertEqual(persistenceService.currentLanguage, Language.English)
+        persistenceService.currentLanguage = .english
+        XCTAssertEqual(persistenceService.currentLanguage, Language.english)
         
-        persistenceService.currentLanguage = .French
-        XCTAssertEqual(persistenceService.currentLanguage, Language.French)
+        persistenceService.currentLanguage = .french
+        XCTAssertEqual(persistenceService.currentLanguage, Language.french)
     }
     
     // MARK: UserInfo

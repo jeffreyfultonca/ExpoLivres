@@ -32,10 +32,10 @@ class ListTVC: UIViewController,
         
         self.updateUIForLanguage()
         
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateUIForLanguage),
-            name: GlobalConstants.Notification.LanguageChanged,
+            name: NSNotification.Name(rawValue: GlobalConstants.Notification.LanguageChanged),
             object: nil
         )
         
@@ -43,15 +43,15 @@ class ListTVC: UIViewController,
         self.updateSubmitButtonState()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if UserInfoService.isNotValid {
-            self.performSegueWithIdentifier("showUserInfo", sender: self)
+            self.performSegue(withIdentifier: "showUserInfo", sender: self)
         }
     }
     
     deinit {
         print("ListTVC.deinit")
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Helpers
@@ -78,22 +78,22 @@ class ListTVC: UIViewController,
     }
     
     
-    func addToList(book: Book) {
+    func addToList(_ book: Book) {
         self.scannedBooks.append(book)
         PersistenceService.sharedInstance.addToSkuList(book.sku)
         
         self.updateSubmitButtonState()
     }
     
-    func removeFromListAtIndex(index: Int) {
-        self.scannedBooks.removeAtIndex(index)
+    func removeFromListAtIndex(_ index: Int) {
+        self.scannedBooks.remove(at: index)
         PersistenceService.sharedInstance.removeFromListAtIndex(index)
         
         self.updateSubmitButtonState()
     }
     
     func clearList() {
-        self.scannedBooks.removeAll(keepCapacity: false)
+        self.scannedBooks.removeAll(keepingCapacity: false)
         PersistenceService.sharedInstance.clearList()
         self.tableView.reloadData()
         self.updateSubmitButtonState()
@@ -101,17 +101,17 @@ class ListTVC: UIViewController,
     
     func updateSubmitButtonState() {
         if scannedBooks.isEmpty {
-            self.submitButton.enabled = false
+            self.submitButton.isEnabled = false
             self.submitLabel.alpha = 0.3
         } else {
-            self.submitButton.enabled = true
+            self.submitButton.isEnabled = true
             self.submitLabel.alpha = 1.0
         }
     }
 
     // MARK: - Table view data source
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if scannedBooks.isEmpty {
             return 1 // No items message
             
@@ -120,10 +120,10 @@ class ListTVC: UIViewController,
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if scannedBooks.isEmpty { // No items message
-            let cell = tableView.dequeueReusableCellWithIdentifier("emptyListCell", forIndexPath: indexPath) as! EmptyListCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "emptyListCell", for: indexPath) as! EmptyListCell
             
             cell.headingLabel.text = LanguageService.listEmptyHeading
             cell.messageOneLabel.text = LanguageService.listBodyScan
@@ -132,14 +132,14 @@ class ListTVC: UIViewController,
             return cell
             
         } else if indexPath.row == scannedBooks.count { // Swipe left message
-            let cell = tableView.dequeueReusableCellWithIdentifier("swipeMessageCell", forIndexPath: indexPath) as! SwipeMessageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "swipeMessageCell", for: indexPath) as! SwipeMessageCell
             
             cell.messageLabel.text = LanguageService.listSwipeMessage
             
             return cell
             
         } else { // Item
-            let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! ItemCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemCell
             
             let book = scannedBooks[indexPath.row]
             
@@ -150,7 +150,7 @@ class ListTVC: UIViewController,
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if scannedBooks.isEmpty {
             return tableView.bounds.height - tableView.contentInset.top
@@ -160,39 +160,39 @@ class ListTVC: UIViewController,
     }
     
     // Override to support conditional editing of the table view.
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row != scannedBooks.count
     }
 
     // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
             self.removeFromListAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
             // Reload first row to display No items message
             if scannedBooks.isEmpty {
-                let noItemsIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-                tableView.reloadRowsAtIndexPaths([noItemsIndexPath] , withRowAnimation: UITableViewRowAnimation.Fade)
+                let noItemsIndexPath = IndexPath(row: 0, section: 0)
+                tableView.reloadRows(at: [noItemsIndexPath] , with: UITableViewRowAnimation.fade)
             }
             
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
-    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return LanguageService.remove
     }
 
     // MARK: - Actions
     
-    @IBAction func userInfoPressed(sender: AnyObject) {
-        performSegueWithIdentifier("showUserInfo", sender: sender)
+    @IBAction func userInfoPressed(_ sender: AnyObject) {
+        performSegue(withIdentifier: "showUserInfo", sender: sender)
     }
     
-    @IBAction func submitPressed(sender: AnyObject) {
+    @IBAction func submitPressed(_ sender: AnyObject) {
         print("submitPressed")
         
         if MFMailComposeViewController.canSendMail() {
@@ -206,7 +206,7 @@ class ListTVC: UIViewController,
             
             // Create MailComposeVC and attach file
             
-            if let isbnStringAsData = isbnString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true) {
+            if let isbnStringAsData = isbnString.data(using: String.Encoding.utf8, allowLossyConversion: true) {
                 
                 let mailComposeVC = MFMailComposeViewController()
                 mailComposeVC.mailComposeDelegate = self
@@ -222,8 +222,8 @@ class ListTVC: UIViewController,
                 mailComposeVC.setMessageBody(GlobalConstants.email.body, isHTML: false)
                 mailComposeVC.addAttachmentData(isbnStringAsData, mimeType: "text/plain", fileName: GlobalConstants.email.attachedFileName)
                 
-                self.navigationController!.presentViewController(mailComposeVC, animated: true, completion: {
-                    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+                self.navigationController!.present(mailComposeVC, animated: true, completion: {
+                    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
                 })
             } else {
                 print("Could not encode booklist as data for email attachment.")
@@ -232,47 +232,47 @@ class ListTVC: UIViewController,
             let alertController = UIAlertController(
                 title: LanguageService.emailNotConfiguredTitle,
                 message: LanguageService.emailNotConfiguredMessage,
-                preferredStyle: UIAlertControllerStyle.Alert
+                preferredStyle: UIAlertControllerStyle.alert
             )
             
-            let okAction = UIAlertAction(title: LanguageService.save, style: .Default, handler: nil)
+            let okAction = UIAlertAction(title: LanguageService.save, style: .default, handler: nil)
             alertController.addAction(okAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
     // MARK: - MFMailCompose Delegate
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
             switch result.rawValue {
-            case MFMailComposeResultCancelled.rawValue:
+            case MFMailComposeResult.cancelled.rawValue:
                 print("Cancelled")
-            case MFMailComposeResultFailed.rawValue:
+            case MFMailComposeResult.failed.rawValue:
                 print("Failed")
-            case MFMailComposeResultSaved.rawValue:
+            case MFMailComposeResult.saved.rawValue:
                 print("Saved")
-            case MFMailComposeResultSent.rawValue:
+            case MFMailComposeResult.sent.rawValue:
                 print("Sent")
                 
                 // Ask to clear list
                 let alertController = UIAlertController(
                     title: LanguageService.postSubmissionTitle,
                     message: LanguageService.postSubmissionMessage,
-                    preferredStyle: UIAlertControllerStyle.Alert
+                    preferredStyle: UIAlertControllerStyle.alert
                 )
                 
-                let keepListAction = UIAlertAction(title: LanguageService.keepAction, style: .Default, handler: nil)
-                let clearListAction = UIAlertAction(title: LanguageService.clearAction, style: .Default, handler: { alertAction in
+                let keepListAction = UIAlertAction(title: LanguageService.keepAction, style: .default, handler: nil)
+                let clearListAction = UIAlertAction(title: LanguageService.clearAction, style: .default, handler: { alertAction in
                     self.clearList()
                 })
                 
                 alertController.addAction(keepListAction)
                 alertController.addAction(clearListAction)
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
                 
             default:
                 print("Unknown result")
@@ -282,42 +282,42 @@ class ListTVC: UIViewController,
     
     // MARK: - Scanner Delegate
     
-    func scannerSuccessfullyScannedSku(sku: String) {
+    func scannerSuccessfullyScannedSku(_ sku: String) {
         
-        self.dismissViewControllerAnimated(true) {
+        self.dismiss(animated: true) {
             let context = self.persistenceService.mainContext
             if let scannedBook = Book.withSku(sku, inContext: context) {
                 self.addToList(scannedBook)
                 
-                let newItemIndexPath = NSIndexPath(forRow: self.scannedBooks.count - 1, inSection: 0)
-                self.tableView.insertRowsAtIndexPaths([newItemIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                let newItemIndexPath = IndexPath(row: self.scannedBooks.count - 1, section: 0)
+                self.tableView.insertRows(at: [newItemIndexPath], with: UITableViewRowAnimation.fade)
                 
-                let lastIndexPath = NSIndexPath(forRow: self.scannedBooks.count, inSection: 0)
+                let lastIndexPath = IndexPath(row: self.scannedBooks.count, section: 0)
                 if self.scannedBooks.count == 1 {
-                    self.tableView.reloadRowsAtIndexPaths([lastIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                    self.tableView.reloadRows(at: [lastIndexPath], with: UITableViewRowAnimation.fade)
                 }
-                self.tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+                self.tableView.scrollToRow(at: lastIndexPath, at: UITableViewScrollPosition.bottom, animated: true)
                 
             } else {
                 let alertController = UIAlertController(
                     title: LanguageService.scanNotFoundTitle,
                     message: LanguageService.scanNotFoundMessage(sku),
-                    preferredStyle: UIAlertControllerStyle.Alert
+                    preferredStyle: UIAlertControllerStyle.alert
                 )
                 
-                let okAction = UIAlertAction(title: LanguageService.save, style: .Default, handler: nil)
+                let okAction = UIAlertAction(title: LanguageService.save, style: .default, handler: nil)
                 alertController.addAction(okAction)
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showScanner" {
-            let scannerVC = segue.destinationViewController as! ScannerVC
+            let scannerVC = segue.destination as! ScannerVC
             scannerVC.delegate = self
         }
     }

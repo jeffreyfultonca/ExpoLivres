@@ -13,13 +13,12 @@ class LibraryService {
     static var persistenceService = PersistenceService.sharedInstance
     
     class func updateLibrary() {
-        let url = NSURL(string: GlobalConstants.updateLibraryURL)!
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: parseServerData)
+        let url = URL(string: GlobalConstants.updateLibraryURL)!
+        let task = URLSession.shared.dataTask(with: url, completionHandler: parseServerData)
         task.resume()
     }
     
-    class func parseServerData(data: NSData?, response: NSURLResponse?, error: NSError?) {
+    class func parseServerData(_ data: Data?, response: URLResponse?, error: Error?) {
         if let error = error {
             print("Error: \(error)")
             return
@@ -37,7 +36,7 @@ class LibraryService {
             
             let context = PersistenceService.sharedInstance.backgroundContext
             
-            context.performBlockAndWait {
+            context.performAndWait {
                 Book.deleteAll(inContext: context)
                 do { try Book.insertFromDictionaries(bookDictionaries, inContext: context) }
                 catch { print("Error inserting bookDictionaries: \(error)") }
@@ -50,20 +49,20 @@ class LibraryService {
         }
     }
     
-    class func parseJsonDictionaryFromData(data: NSData) throws -> Dictionary<String, AnyObject> {
-        let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-        guard let jsonDictionary = json as? Dictionary<String, AnyObject> else { throw Error.ParsingJSONRootDictionary }
+    class func parseJsonDictionaryFromData(_ data: Data) throws -> Dictionary<String, Any> {
+        let json = try JSONSerialization.jsonObject(with: data, options: [])
+        guard let jsonDictionary = json as? Dictionary<String, AnyObject> else { throw AppError.parsingJSONRootDictionary }
         
         return jsonDictionary
     }
     
-    class func updateChecksumFromJsonDictionary(jsonDictionary: Dictionary<String, AnyObject>) throws {
-        guard let checksum = jsonDictionary["md5_checksum"] as? String else { throw Error.ParsingJSONMd5Checksum }
+    class func updateChecksumFromJsonDictionary(_ jsonDictionary: Dictionary<String, Any>) throws {
+        guard let checksum = jsonDictionary["md5_checksum"] as? String else { throw AppError.parsingJSONMd5Checksum }
         persistenceService.checksum = checksum
     }
 
-    class func parseBookDictionariesFromJsonDictionary(jsonDictionary: Dictionary<String, AnyObject>) throws -> [Dictionary<String, String>] {
-        guard let bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>] else { throw Error.ParsingJSONBooks }
+    class func parseBookDictionariesFromJsonDictionary(_ jsonDictionary: Dictionary<String, Any>) throws -> [Dictionary<String, String>] {
+        guard let bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>] else { throw AppError.parsingJSONBooks }
         return bookDictionaries
     }
 }
