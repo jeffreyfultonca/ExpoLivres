@@ -1,11 +1,3 @@
-//
-//  LibraryService.swift
-//  expo-livres-iOS
-//
-//  Created by Jeffrey Fulton on 2015-08-11.
-//  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -51,18 +43,25 @@ class LibraryService {
     
     class func parseJsonDictionaryFromData(_ data: Data) throws -> Dictionary<String, Any> {
         let json = try JSONSerialization.jsonObject(with: data, options: [])
-        guard let jsonDictionary = json as? Dictionary<String, AnyObject> else { throw AppError.parsingJSONRootDictionary }
+        guard let jsonDictionary = json as? Dictionary<String, AnyObject>
+            else { throw AppError.parsingJSONRootDictionary }
         
         return jsonDictionary
     }
     
     class func updateChecksumFromJsonDictionary(_ jsonDictionary: Dictionary<String, Any>) throws {
-        guard let checksum = jsonDictionary["md5_checksum"] as? String else { throw AppError.parsingJSONMd5Checksum }
+        guard let checksum = jsonDictionary["md5_checksum"] as? String
+            else { throw AppError.parsingJSONMd5Checksum }
+        
         persistenceService.checksum = checksum
     }
 
-    class func parseBookDictionariesFromJsonDictionary(_ jsonDictionary: Dictionary<String, Any>) throws -> [Dictionary<String, String>] {
-        guard let bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>] else { throw AppError.parsingJSONBooks }
+    class func parseBookDictionariesFromJsonDictionary(
+        _ jsonDictionary: Dictionary<String, Any>) throws -> [Dictionary<String, String>]
+    {
+        guard let bookDictionaries = jsonDictionary["books"] as? [Dictionary<String, String>]
+            else { throw AppError.parsingJSONBooks }
+        
         return bookDictionaries
     }
 }

@@ -38,7 +38,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         )
         
         let font = UIFont.systemFont(ofSize: 17)
-        languageSegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState())
+        languageSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: UIControlState())
         
         languageSegmentedControl.selectedSegmentIndex = LanguageService.currentLanguage.rawValue
 
@@ -75,6 +75,7 @@ class UserInfoTVC: UITableViewController, UITextFieldDelegate {
         persistenceService.userEmail = emailTextField.text
     }
     
+    @objc
     func updateUIForLanguage() {
         self.navigationItem.title = LanguageService.userInfoTitle
         

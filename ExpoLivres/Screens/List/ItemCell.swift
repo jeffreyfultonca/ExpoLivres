@@ -1,11 +1,3 @@
-//
-//  ItemCell.swift
-//  expo-livres-iOS
-//
-//  Created by Jeffrey Fulton on 2015-08-10.
-//  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import UIKit
 
 class ItemCell: UITableViewCell {
@@ -27,5 +19,4 @@ class ItemCell: UITableViewCell {
         
         context?.strokePath()
     }
-    
 }

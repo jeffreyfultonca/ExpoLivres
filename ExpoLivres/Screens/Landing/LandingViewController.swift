@@ -1,14 +1,6 @@
-//
-//  LandingPageVC.swift
-//  expo-livres-iOS
-//
-//  Created by Jeffrey Fulton on 2015-08-08.
-//  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import UIKit
 
-class LandingPageVC: UIViewController {
+class LandingViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var logoImageView: UIImageView!

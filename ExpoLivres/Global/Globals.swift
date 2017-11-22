@@ -1,11 +1,3 @@
-//
-//  Globals.swift
-//  expo-livres-iOS
-//
-//  Created by Jeffrey Fulton on 2015-08-08.
-//  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import UIKit
 import AVFoundation
 
@@ -19,7 +11,7 @@ enum AppError: Error {
 struct GlobalConstants {
     static let AppName = "EXPO-LIVRES"
     static var updateLibraryURL: String {
-        return "http://boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(PersistenceService.sharedInstance.checksum)"
+        return "https://www.boutiquedulivre.ca/?expo-livres-books-list&md5_checksum=\(PersistenceService.sharedInstance.checksum)"
     }
     
     struct Notification {
@@ -85,10 +77,6 @@ struct GlobalConstants {
 }
 
 extension String {
-    var count: Int {
-        return self.characters.count
-    }
-    
     var isNotEmpty: Bool {
         return !self.isEmpty
     }

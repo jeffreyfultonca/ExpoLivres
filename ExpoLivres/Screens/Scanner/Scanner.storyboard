@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hi0-4P-6jP">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ScannerVC-->
+        <scene sceneID="WhH-OQ-PRM">
+            <objects>
+                <viewController id="hi0-4P-6jP" customClass="ScannerVC" customModule="ExpoLivres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="604-Ux-D6J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYS-9y-8mC" userLabel="Guide View" customClass="borderedView" customModule="ExpoLivres" customModuleProvider="target">
+                                <rect key="frame" x="47.666666666666657" y="291" width="280" height="180"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="cGs-6Q-LjU"/>
+                                    <constraint firstAttribute="width" constant="280" id="vrd-Ed-LD2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jb3-ce-PeN">
+                                <rect key="frame" x="0.0" y="718" width="375" height="94"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y3S-Bb-yQA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEH-Bn-3ra">
+                                            <rect key="frame" x="314" y="8" width="53" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="PLN-qw-G2C"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <state key="normal" title="Cancel">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="hi0-4P-6jP" eventType="touchUpInside" id="ybK-D5-AbS"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="kEH-Bn-3ra" secondAttribute="trailing" id="I0i-n7-CsW"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kEH-Bn-3ra" secondAttribute="bottom" id="X2J-Mu-7XK"/>
+                                        <constraint firstItem="kEH-Bn-3ra" firstAttribute="top" secondItem="Y3S-Bb-yQA" secondAttribute="topMargin" id="ZXb-vc-UdD"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jdd-pa-yxo" firstAttribute="centerX" secondItem="NYS-9y-8mC" secondAttribute="centerX" id="FqS-rN-R5K"/>
+                            <constraint firstAttribute="trailing" secondItem="Jb3-ce-PeN" secondAttribute="trailing" id="Td8-u7-Z3h"/>
+                            <constraint firstAttribute="bottom" secondItem="Jb3-ce-PeN" secondAttribute="bottom" id="bSC-4a-tge"/>
+                            <constraint firstItem="Jb3-ce-PeN" firstAttribute="leading" secondItem="604-Ux-D6J" secondAttribute="leading" id="qf2-Hp-VA1"/>
+                            <constraint firstAttribute="centerY" secondItem="NYS-9y-8mC" secondAttribute="centerY" constant="25" id="uQt-th-jrT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jdd-pa-yxo"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="kEH-Bn-3ra" id="vfJ-Nl-uB1"/>
+                        <segue destination="4dW-2g-b3P" kind="unwind" identifier="unwindToListTVC" unwindAction="unwindToListViewController:" id="AFg-wq-b9U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DW1-eb-nTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4dW-2g-b3P" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="829"/>
+        </scene>
+    </scenes>
+</document>

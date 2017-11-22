@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Landing View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LandingViewController" customModule="ExpoLivres" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LandingPageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="fPb-0y-Xrx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Bienvenue à EXPO-LIVRES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hch-ZK-bnk">
+                                <rect key="frame" x="16" y="345.66666666666669" width="343" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="580" id="h9d-oL-CFK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Use this app to create a list of books by scanning barcodes with your device's camera" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzl-za-wbG">
+                                <rect key="frame" x="16" y="402.66666666666669" width="343" height="68.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.7803921568627451" green="0.74901960784313726" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-74-qUf" userLabel="Allons-y" customClass="LandingPageGradientButton" customModule="ExpoLivres" customModuleProvider="target">
+                                <rect key="frame" x="16" y="684" width="165.66666666666666" height="54"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="51a-kt-e7n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Allons-y">
+                                    <color key="titleColor" red="0.28580150970000001" green="0.22194167980000001" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="enterApplicationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S8I-rS-eUu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6co-vJ-3Tw" userLabel="Get Started" customClass="LandingPageGradientButton" customModule="ExpoLivres" customModuleProvider="target">
+                                <rect key="frame" x="193.66666666666663" y="684" width="165.33333333333337" height="54"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Get Started">
+                                    <color key="titleColor" red="0.28580150970000001" green="0.22194167980000001" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="enterApplicationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0iB-OM-FF2"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="6Bv-vL-VoS">
+                                <rect key="frame" x="16" y="43.999999999999986" width="343" height="171.66666666666663"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6Bv-vL-VoS" secondAttribute="height" multiplier="2:1" id="JL4-kE-qon"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="qfE-Xy-tB9"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oQP-ME-82d" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cCd-74-qUf" secondAttribute="bottom" constant="20" id="5Tb-bc-bwC"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="leading" secondItem="cCd-74-qUf" secondAttribute="leading" id="9QT-b9-oTd"/>
+                            <constraint firstAttribute="trailing" secondItem="fPb-0y-Xrx" secondAttribute="trailing" id="AJB-YA-x5I"/>
+                            <constraint firstItem="fPb-0y-Xrx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FJD-89-aKF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Hch-ZK-bnk" secondAttribute="trailing" priority="999" id="HXu-71-IWo"/>
+                            <constraint firstItem="nzl-za-wbG" firstAttribute="trailing" secondItem="Hch-ZK-bnk" secondAttribute="trailing" id="IhG-gh-6Lx"/>
+                            <constraint firstItem="nzl-za-wbG" firstAttribute="top" secondItem="Hch-ZK-bnk" secondAttribute="bottom" constant="8" id="Mqs-2C-EVI"/>
+                            <constraint firstItem="fPb-0y-Xrx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OkA-KU-OG6"/>
+                            <constraint firstItem="oQP-ME-82d" firstAttribute="centerX" secondItem="6Bv-vL-VoS" secondAttribute="centerX" id="QKV-GA-b8S"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="centerX" secondItem="6Bv-vL-VoS" secondAttribute="centerX" id="QaE-60-hLr"/>
+                            <constraint firstItem="6co-vJ-3Tw" firstAttribute="leading" secondItem="cCd-74-qUf" secondAttribute="trailing" constant="12" id="QcX-Q2-IOx"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Bv-vL-VoS" secondAttribute="bottom" constant="8" id="RAX-3G-cgM"/>
+                            <constraint firstItem="6Bv-vL-VoS" firstAttribute="top" secondItem="oQP-ME-82d" secondAttribute="top" id="RG8-22-SKc"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-36" id="ZmR-6z-M1i"/>
+                            <constraint firstItem="cCd-74-qUf" firstAttribute="centerY" secondItem="6co-vJ-3Tw" secondAttribute="centerY" id="a5L-NZ-8CE"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" priority="999" id="aFn-tI-94I"/>
+                            <constraint firstAttribute="bottom" secondItem="fPb-0y-Xrx" secondAttribute="bottom" id="aTD-UO-vbf"/>
+                            <constraint firstItem="oQP-ME-82d" firstAttribute="bottom" secondItem="cCd-74-qUf" secondAttribute="bottom" priority="500" constant="40" id="eBJ-Mb-7Mn"/>
+                            <constraint firstItem="6Bv-vL-VoS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" priority="750" id="ewK-Rh-7m1"/>
+                            <constraint firstItem="Hch-ZK-bnk" firstAttribute="trailing" secondItem="6co-vJ-3Tw" secondAttribute="trailing" id="g6v-Xe-9VA"/>
+                            <constraint firstItem="nzl-za-wbG" firstAttribute="leading" secondItem="Hch-ZK-bnk" secondAttribute="leading" id="hoS-ya-Z1g"/>
+                            <constraint firstItem="cCd-74-qUf" firstAttribute="height" secondItem="6co-vJ-3Tw" secondAttribute="height" id="iia-q1-Aud"/>
+                            <constraint firstItem="cCd-74-qUf" firstAttribute="width" secondItem="6co-vJ-3Tw" secondAttribute="width" id="kj5-oq-BVk"/>
+                            <constraint firstItem="6Bv-vL-VoS" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" priority="750" id="oN4-vj-ixw"/>
+                            <constraint firstItem="cCd-74-qUf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nzl-za-wbG" secondAttribute="bottom" constant="18" id="vMc-vo-ZEI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oQP-ME-82d"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="fPb-0y-Xrx" id="llS-qL-XpH"/>
+                        <outlet property="englishButton" destination="6co-vJ-3Tw" id="WxY-Z8-HJU"/>
+                        <outlet property="frenchButton" destination="cCd-74-qUf" id="Po8-im-d37"/>
+                        <outlet property="logoImageView" destination="6Bv-vL-VoS" id="MQh-i0-esn"/>
+                        <segue destination="hYM-xi-Dea" kind="presentation" identifier="enterApplication" modalTransitionStyle="crossDissolve" id="IVl-fy-XfG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-457" y="417"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="0ZR-3I-MHa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="List" id="hYM-xi-Dea" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ca4-XP-owR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="416"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LandingPageBackground" width="128" height="128"/>
+        <image name="Logo" width="600" height="272"/>
+    </resources>
+</document>

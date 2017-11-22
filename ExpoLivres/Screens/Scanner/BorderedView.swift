@@ -1,14 +1,7 @@
-//
-//  inputContainerView.swift
-//  mySafetyApp
-//
-//  Created by Jeffrey Fulton on 2015-02-13.
-//  Copyright (c) 2015 1 Life Workplace Safety and Health LTD. All rights reserved.
-//
-
 import UIKit
 
-@IBDesignable class borderedView: UIView {
+@IBDesignable
+class borderedView: UIView {
     
     @IBInspectable var borderColor: UIColor = UIColor.clear {
         didSet {

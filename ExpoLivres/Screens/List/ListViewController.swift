@@ -1,15 +1,7 @@
-//
-//  ListTVC.swift
-//  expo-livres-iOS
-//
-//  Created by Jeffrey Fulton on 2015-08-09.
-//  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import UIKit
 import MessageUI
 
-class ListTVC: UIViewController,
+class ListViewController: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
     ScannerVCDelegate,
@@ -50,12 +42,12 @@ class ListTVC: UIViewController,
     }
     
     deinit {
-        print("ListTVC.deinit")
         NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Helpers
     
+    @objc
     func updateUIForLanguage() {
         self.navigationItem.title = LanguageService.listTitle
         
