@@ -63,6 +63,15 @@ class ListViewController: UIViewController,
         for sku in storedSkuList {
             if let book = Book.withSku(sku, inContext: context) {
                 self.scannedBooks.append(book)
+            } else {
+                let book = Book.createWith(
+                    title: LanguageService.unknown,
+                    sku: sku,
+                    inContext: context
+                )
+                persistenceService.saveContext(context)
+
+                self.scannedBooks.append(book)
             }
         }
         
