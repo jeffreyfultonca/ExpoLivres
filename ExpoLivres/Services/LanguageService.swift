@@ -231,6 +231,15 @@ class LanguageService {
         }
     }
     
+    class var addAnyway: String {
+        switch currentLanguage {
+        case .french:
+            return "Ajouter quand même"
+        case .english:
+            return "Add anyway"
+        }
+    }
+    
     class var remove: String {
         switch currentLanguage {
         case .french:
@@ -273,6 +282,15 @@ class LanguageService {
             return "Annuler"
         case .english:
             return "Cancel"
+        }
+    }
+    
+    class var unknown: String {
+        switch currentLanguage {
+        case .french:
+            return "Inconnu"
+        case .english:
+            return "Unknown"
         }
     }
 }

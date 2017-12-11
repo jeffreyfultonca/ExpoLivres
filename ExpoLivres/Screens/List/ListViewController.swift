@@ -297,8 +297,38 @@ class ListViewController: UIViewController,
                     preferredStyle: UIAlertControllerStyle.alert
                 )
                 
-                let okAction = UIAlertAction(title: LanguageService.save, style: .default, handler: nil)
-                alertController.addAction(okAction)
+                let cancelAction = UIAlertAction(
+                    title: LanguageService.cancel,
+                    style: .default,
+                    handler: nil
+                )
+                
+                let addAnyAction = UIAlertAction(
+                    title: LanguageService.addAnyway,
+                    style: .default,
+                    handler: { _ in
+                        let unknownBook = Book.createWith(
+                            title: LanguageService.unknown,
+                            sku: sku,
+                            inContext: context
+                        )
+                        PersistenceService.sharedInstance.saveContext(context)
+                        
+                        self.addToList(unknownBook)
+                        
+                        let newItemIndexPath = IndexPath(row: self.scannedBooks.count - 1, section: 0)
+                        self.tableView.insertRows(at: [newItemIndexPath], with: UITableViewRowAnimation.fade)
+                        
+                        let lastIndexPath = IndexPath(row: self.scannedBooks.count, section: 0)
+                        if self.scannedBooks.count == 1 {
+                            self.tableView.reloadRows(at: [lastIndexPath], with: UITableViewRowAnimation.fade)
+                        }
+                        self.tableView.scrollToRow(at: lastIndexPath, at: UITableViewScrollPosition.bottom, animated: true)
+                    }
+                )
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(addAnyAction)
                 
                 self.present(alertController, animated: true, completion: nil)
             }
