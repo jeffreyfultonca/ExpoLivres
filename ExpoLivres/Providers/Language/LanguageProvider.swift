@@ -1,32 +1,82 @@
-//
-//  LanguageService.swift
-//  expo-livres-iOS
-//
-//  Created by Jeffrey Fulton on 2015-08-12.
-//  Copyright (c) 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import Foundation
 
-enum Language: Int {
-    case french = 0
-    case english = 1
+// MARK: - Language
+
+enum Language: String, Codable {
+    case french
+    case english
 }
 
-class LanguageService {
+// MARK: - Notifications
+
+extension Notification.Name {
+    static let didUpdateSelectedLanguage = "didUpdateSelectedLanguage"
+}
+
+// MARK: - LanguageProvider
+
+protocol LanguageProvider {
+    var selectedLanguage: Language { get }
+    func set(language: Language)
     
-    static var currentLanguage: Language {
-        get { return PersistenceService.sharedInstance.currentLanguage }
-        set { PersistenceService.sharedInstance.currentLanguage = newValue }
+    func performMigrationIfRequired()
+}
+
+// MARK: - ProductionLanguageProvider
+
+class ProductionLanguageProvider: LanguageProvider {
+    
+    // MARK: - Stored Properties
+    
+    private let userDefaults: UserDefaults
+    
+    // MARK: - Lifecycle
+    
+    init(userDefaults: UserDefaults) {
+        self.userDefaults = userDefaults
     }
     
-    // Translations
+    // MARK: - UserDefaultsKey
     
+    struct UserDefaultsKey {
+        static let selectedLanguage = "LanguageProvider.selectedLanguage"
+    }
+    
+    // MARK: - Migration
+    
+    func performMigrationIfRequired() {
+        let hasPerformedMigration = userDefaults.bool(forKey: UserDefaultsKey.hasPerformedMigration)
+        guard hasPerformedMigration == false else { return }
+        
+        userDefaults.set(true, forKey: UserDefaultsKey.hasPerformedMigration)
+        
+        let previousLanguageKey = "JFCUserLanguagePrefsKey"
+        let selectedLanguageRawValue = userDefaults.integer(forKey: previousLanguageKey)
+        self.selectedLanguage = selectedLanguageRawValue == 0 ? .french : .english
+    }
+    
+    // MARK: Language
+    
+    private(set) var selectedLanguage: Language {
+        get {
+            return userDefaults.codableValue(forKey: UserDefaultsKey.selectedLanguage) ?? .french
+        }
+        set {
+            userDefaults.set(codable: newValue, forKey: UserDefaultsKey.selectedLanguage)
+            NotificationCenter.default.post(name: .didUpdateSelectedLanguage, object: self)
+        }
+    }
+    
+    func set(language: Language) {
+        self.set(language: language)
+    }
+    
+    // MARK: - Translations
     
     // MARK: - UserInfo
     
-    class var userInfoTitle: String {
-        switch currentLanguage {
+    var userInfoTitle: String {
+        switch selectedLanguage {
         case .french:
             return "Entrez vos renseignements"
         case .english:
@@ -34,8 +84,8 @@ class LanguageService {
         }
     }
     
-    class var userInfoOrganization: String {
-        switch currentLanguage {
+    var userInfoOrganization: String {
+        switch selectedLanguage {
         case .french:
             return "Organisation"
         case .english:
@@ -43,8 +93,8 @@ class LanguageService {
         }
     }
     
-    class var userInfoPo: String {
-        switch currentLanguage {
+     var userInfoPo: String {
+        switch selectedLanguage {
         case .french:
             return "PO #"
         case .english:
@@ -52,8 +102,8 @@ class LanguageService {
         }
     }
     
-    class var userInfoName: String {
-        switch currentLanguage {
+     var userInfoName: String {
+        switch selectedLanguage {
         case .french:
             return "Nom"
         case .english:
@@ -61,8 +111,8 @@ class LanguageService {
         }
     }
     
-    class var userInfoEmail: String {
-        switch currentLanguage {
+     var userInfoEmail: String {
+        switch selectedLanguage {
         case .french:
             return "Email"
         case .english:
@@ -70,8 +120,8 @@ class LanguageService {
         }
     }
     
-    class var required: String {
-        switch currentLanguage {
+     var required: String {
+        switch selectedLanguage {
         case .french:
             return "requis"
         case .english:
@@ -79,8 +129,8 @@ class LanguageService {
         }
     }
     
-    class var optional: String {
-        switch currentLanguage {
+    var optional: String {
+        switch selectedLanguage {
         case .french:
             return "facultatif"
         case .english:
@@ -90,8 +140,8 @@ class LanguageService {
     
     // MARK: - ListView
     
-    class var listTitle: String {
-        switch currentLanguage {
+    var listTitle: String {
+        switch selectedLanguage {
         case .french:
             return "Liste"
         case .english:
@@ -99,8 +149,8 @@ class LanguageService {
         }
     }
     
-    class var listEmptyHeading: String {
-        switch currentLanguage {
+    var listEmptyHeading: String {
+        switch selectedLanguage {
         case .french:
             return "Aucun livre sur la liste"
         case .english:
@@ -108,8 +158,8 @@ class LanguageService {
         }
     }
     
-    class var listBodyScan: String {
-        switch currentLanguage {
+    var listBodyScan: String {
+        switch selectedLanguage {
         case .french:
             return "Ajouter un titre en appuyant sur le bouton du scanner en bas à droite de l\'écran"
         case .english:
@@ -117,8 +167,8 @@ class LanguageService {
         }
     }
     
-    class var listBodySubmit: String {
-        switch currentLanguage {
+    var listBodySubmit: String {
+        switch selectedLanguage {
         case .french:
             return "Appuyer sur Envoyer lorsque vous avez fini"
         case .english:
@@ -126,8 +176,8 @@ class LanguageService {
         }
     }
     
-    class var listSwipeMessage: String {
-        switch currentLanguage {
+    var listSwipeMessage: String {
+        switch selectedLanguage {
         case .french:
             return "Glisser vers la gauche pour supprimer"
         case .english:
@@ -137,8 +187,8 @@ class LanguageService {
     
     // MARK: - Scan
     
-    class var scanNotFoundTitle: String {
-        switch currentLanguage {
+    var scanNotFoundTitle: String {
+        switch selectedLanguage {
         case .french:
             return "Oops!"
         case .english:
@@ -146,8 +196,8 @@ class LanguageService {
         }
     }
     
-    class func scanNotFoundMessage(_ isbn: String) -> String {
-        switch currentLanguage {
+    func scanNotFoundMessage(_ isbn: String) -> String {
+        switch selectedLanguage {
         case .french:
             return "Désolés, l\'isbn \(isbn) n\'est pas dans notre système. Veuillez apporter votre livre à la caisse."
         case .english:
@@ -157,8 +207,8 @@ class LanguageService {
     
     // MARK: - Email
     
-    class var emailNotConfiguredTitle: String {
-        switch currentLanguage {
+    var emailNotConfiguredTitle: String {
+        switch selectedLanguage {
         case .french:
             return "Oops!"
         case .english:
@@ -166,8 +216,8 @@ class LanguageService {
         }
     }
     
-    class var emailNotConfiguredMessage: String {
-        switch currentLanguage {
+    var emailNotConfiguredMessage: String {
+        switch selectedLanguage {
         case .french:
             return "Une adresse courriel en vigueur sur votre appareil est requise pour soumettre votre commande."
         case .english:
@@ -175,8 +225,8 @@ class LanguageService {
         }
     }
     
-    class var emailThankYou: String {
-        switch currentLanguage {
+    var emailThankYou: String {
+        switch selectedLanguage {
         case .french:
             return "Merci pour votre commande"
         case .english:
@@ -186,8 +236,8 @@ class LanguageService {
     
     // MARK: - Submission
     
-    class var postSubmissionTitle: String {
-        switch currentLanguage {
+    var postSubmissionTitle: String {
+        switch selectedLanguage {
         case .french:
             return "Merci!"
         case .english:
@@ -195,8 +245,8 @@ class LanguageService {
         }
     }
     
-    class var postSubmissionMessage: String {
-        switch currentLanguage {
+    var postSubmissionMessage: String {
+        switch selectedLanguage {
         case .french:
             return "Votre commande a été soumise. Passez à la caisse pour confirmer votre commande."
         case .english:
@@ -204,8 +254,8 @@ class LanguageService {
         }
     }
     
-    class var clearAction: String {
-        switch currentLanguage {
+    var clearAction: String {
+        switch selectedLanguage {
         case .french:
             return "Supprimer liste"
         case .english:
@@ -213,8 +263,8 @@ class LanguageService {
         }
     }
     
-    class var keepAction: String {
-        switch currentLanguage {
+    var keepAction: String {
+        switch selectedLanguage {
         case .french:
             return "Garder liste"
         case .english:
@@ -222,8 +272,8 @@ class LanguageService {
         }
     }
     
-    class var save: String {
-        switch currentLanguage {
+    var save: String {
+        switch selectedLanguage {
         case .french:
             return "OK"
         case .english:
@@ -231,8 +281,8 @@ class LanguageService {
         }
     }
     
-    class var addAnyway: String {
-        switch currentLanguage {
+    var addAnyway: String {
+        switch selectedLanguage {
         case .french:
             return "Ajouter quand même"
         case .english:
@@ -240,8 +290,8 @@ class LanguageService {
         }
     }
     
-    class var remove: String {
-        switch currentLanguage {
+    var remove: String {
+        switch selectedLanguage {
         case .french:
             return "Supprimer"
         case .english:
@@ -249,8 +299,8 @@ class LanguageService {
         }
     }
 
-    class var submit: String {
-        switch currentLanguage {
+    var submit: String {
+        switch selectedLanguage {
         case .french:
             return "Envoyer"
         case .english:
@@ -258,8 +308,8 @@ class LanguageService {
         }
     }
     
-    class var scan: String {
-        switch currentLanguage {
+    var scan: String {
+        switch selectedLanguage {
         case .french:
             return "Scan"
         case .english:
@@ -267,8 +317,8 @@ class LanguageService {
         }
     }
     
-    class var language: String {
-        switch currentLanguage {
+    var language: String {
+        switch selectedLanguage {
         case .french:
             return "Langue"
         case .english:
@@ -276,8 +326,8 @@ class LanguageService {
         }
     }
     
-    class var cancel: String {
-        switch currentLanguage {
+    var cancel: String {
+        switch selectedLanguage {
         case .french:
             return "Annuler"
         case .english:
@@ -285,8 +335,8 @@ class LanguageService {
         }
     }
     
-    class var unknown: String {
-        switch currentLanguage {
+    var unknown: String {
+        switch selectedLanguage {
         case .french:
             return "Inconnu"
         case .english:

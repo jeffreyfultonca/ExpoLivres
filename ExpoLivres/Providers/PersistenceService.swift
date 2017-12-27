@@ -1,11 +1,3 @@
-//
-//  PersistenceService.swift
-//  ExpoLivres
-//
-//  Created by Jeffrey Fulton on 2015-09-27.
-//  Copyright © 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import CoreData
 
 class PersistenceService {

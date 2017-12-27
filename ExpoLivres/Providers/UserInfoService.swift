@@ -1,11 +1,3 @@
-//
-//  UserInfoService.swift
-//  ExpoLivres
-//
-//  Created by Jeffrey Fulton on 2015-09-26.
-//  Copyright © 2015 Jeffrey Fulton. All rights reserved.
-//
-
 import Foundation
 
 class UserInfoService {

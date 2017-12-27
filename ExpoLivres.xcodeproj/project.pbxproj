@@ -20,13 +20,17 @@
 		0069091C1FC50BDD00D60E73 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0069091B1FC50BDD00D60E73 /* Launch.storyboard */; };
 		0069091E1FC50CE100D60E73 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0069091D1FC50CE100D60E73 /* Landing.storyboard */; };
 		006909261FC52BF000D60E73 /* ExpoLivresUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006909251FC52BF000D60E73 /* ExpoLivresUITests.swift */; };
-		0069092E1FC532E900D60E73 /* LanguageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageService.swift */; };
+		0069092E1FC532E900D60E73 /* LanguageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageProvider.swift */; };
 		0069092F1FC532E900D60E73 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D676E71BB840A300664EBC /* PersistenceService.swift */; };
 		006909301FC532F400D60E73 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E81B77015900174A25 /* Globals.swift */; };
 		006909311FC5332B00D60E73 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7C35C1B7647BA00D15954 /* Book.swift */; };
+		007808291FF34D1B00E4199A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007808281FF34D1B00E4199A /* AppCoordinator.swift */; };
+		0078082B1FF34D8100E4199A /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078082A1FF34D8100E4199A /* Providers.swift */; };
+		0078082E1FF352BD00E4199A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078082D1FF352BD00E4199A /* UserDefaults.swift */; };
+		007808341FF35EC900E4199A /* MigrationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007808331FF35EC900E4199A /* MigrationProvider.swift */; };
 		008D24E71B76F98B00174A25 /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E61B76F98B00174A25 /* UserInfoTVC.swift */; };
 		008D24E91B77015900174A25 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E81B77015900174A25 /* Globals.swift */; };
-		009009FB1B7B6F6500CFFB74 /* LanguageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageService.swift */; };
+		009009FB1B7B6F6500CFFB74 /* LanguageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageProvider.swift */; };
 		0096BAA11BB78C7D0071A680 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096BAA01BB78C7D0071A680 /* UserInfoService.swift */; };
 		0096BAA31BB78FBF0071A680 /* UserInfoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096BAA21BB78FBF0071A680 /* UserInfoServiceTests.swift */; };
 		0096BAA51BB7A1BD0071A680 /* LibraryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096BAA41BB7A1BD0071A680 /* LibraryServiceTests.swift */; };
@@ -79,9 +83,13 @@
 		006909271FC52BF000D60E73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		006A81551BB5713600B2AA00 /* ExpoLivresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpoLivresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006A81591BB5713600B2AA00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		007808281FF34D1B00E4199A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		0078082A1FF34D8100E4199A /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
+		0078082D1FF352BD00E4199A /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		007808331FF35EC900E4199A /* MigrationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationProvider.swift; sourceTree = "<group>"; };
 		008D24E61B76F98B00174A25 /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
 		008D24E81B77015900174A25 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
-		009009FA1B7B6F6500CFFB74 /* LanguageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageService.swift; sourceTree = "<group>"; };
+		009009FA1B7B6F6500CFFB74 /* LanguageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageProvider.swift; sourceTree = "<group>"; };
 		0096BAA01BB78C7D0071A680 /* UserInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		0096BAA21BB78FBF0071A680 /* UserInfoServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoServiceTests.swift; sourceTree = "<group>"; };
 		0096BAA41BB7A1BD0071A680 /* LibraryServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryServiceTests.swift; sourceTree = "<group>"; };
@@ -213,17 +221,19 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		006909171FC4FBB100D60E73 /* Services */ = {
+		006909171FC4FBB100D60E73 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				009009FA1B7B6F6500CFFB74 /* LanguageService.swift */,
+				0078082A1FF34D8100E4199A /* Providers.swift */,
+				007808351FF35ED000E4199A /* Migration */,
+				007808321FF35B4500E4199A /* Language */,
 				00D21AAF1B7AB99F00F836C4 /* LibraryService.swift */,
 				0096BAA01BB78C7D0071A680 /* UserInfoService.swift */,
 				00D676E71BB840A300664EBC /* PersistenceService.swift */,
 				00F7C3381B76447500D15954 /* expo_livres_iOS.xcdatamodeld */,
 				00F7C35C1B7647BA00D15954 /* Book.swift */,
 			);
-			path = Services;
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		006909181FC4FD5600D60E73 /* Global */ = {
@@ -238,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				00F7C3361B76447500D15954 /* AppDelegate.swift */,
+				007808281FF34D1B00E4199A /* AppCoordinator.swift */,
 				00F7C3351B76447500D15954 /* Info.plist */,
 			);
 			path = Application;
@@ -265,6 +276,31 @@
 			path = ExpoLivresTests;
 			sourceTree = "<group>";
 		};
+		0078082C1FF3512F00E4199A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0078082D1FF352BD00E4199A /* UserDefaults.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		007808321FF35B4500E4199A /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				009009FA1B7B6F6500CFFB74 /* LanguageProvider.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		007808351FF35ED000E4199A /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				007808331FF35EC900E4199A /* MigrationProvider.swift */,
+			);
+			name = Migration;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		00F7C3281B76447500D15954 = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +326,8 @@
 			children = (
 				006909191FC4FD7F00D60E73 /* Application */,
 				0069090F1FC4FB1C00D60E73 /* Screens */,
-				006909171FC4FBB100D60E73 /* Services */,
+				0078082C1FF3512F00E4199A /* Extensions */,
+				006909171FC4FBB100D60E73 /* Providers */,
 				006909181FC4FD5600D60E73 /* Global */,
 				006909161FC4FB9C00D60E73 /* Assets */,
 			);
@@ -442,7 +479,7 @@
 				006909261FC52BF000D60E73 /* ExpoLivresUITests.swift in Sources */,
 				0069092F1FC532E900D60E73 /* PersistenceService.swift in Sources */,
 				006909311FC5332B00D60E73 /* Book.swift in Sources */,
-				0069092E1FC532E900D60E73 /* LanguageService.swift in Sources */,
+				0069092E1FC532E900D60E73 /* LanguageProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,9 +503,12 @@
 				0012859E1B76F081000FB89B /* TextEntryCell.swift in Sources */,
 				00F7C35D1B7647BA00D15954 /* Book.swift in Sources */,
 				00F7C33C1B76447500D15954 /* LandingViewController.swift in Sources */,
+				0078082B1FF34D8100E4199A /* Providers.swift in Sources */,
+				0078082E1FF352BD00E4199A /* UserDefaults.swift in Sources */,
 				0096BAA11BB78C7D0071A680 /* UserInfoService.swift in Sources */,
 				00D676E81BB840A300664EBC /* PersistenceService.swift in Sources */,
 				00D1832A1B78BF0000F8930A /* EmptyListCell.swift in Sources */,
+				007808341FF35EC900E4199A /* MigrationProvider.swift in Sources */,
 				00D21AB01B7AB99F00F836C4 /* LibraryService.swift in Sources */,
 				00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */,
 				00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */,
@@ -477,7 +517,8 @@
 				00F7C33A1B76447500D15954 /* expo_livres_iOS.xcdatamodeld in Sources */,
 				00F7C3371B76447500D15954 /* AppDelegate.swift in Sources */,
 				004466601B7A1309008936EC /* SwipeMessageCell.swift in Sources */,
-				009009FB1B7B6F6500CFFB74 /* LanguageService.swift in Sources */,
+				007808291FF34D1B00E4199A /* AppCoordinator.swift in Sources */,
+				009009FB1B7B6F6500CFFB74 /* LanguageProvider.swift in Sources */,
 				008D24E91B77015900174A25 /* Globals.swift in Sources */,
 				0037913F1B7DA2EB002F97B1 /* BorderedView.swift in Sources */,
 			);

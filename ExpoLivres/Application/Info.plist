@@ -41,8 +41,6 @@
 	<string>Allow camera usage in order to add books to your list by scanning barcodes with the camera.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Landing</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
