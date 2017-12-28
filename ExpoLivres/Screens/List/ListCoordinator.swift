@@ -112,7 +112,6 @@ class ListCoordinator: NSObject {
             fileName: emailProvider.attachmentFilename
         )
         
-//        listViewController.navigationController?.present(mailComposeVC, animated: true) {
         listViewController.present(mailComposeVC, animated: true) {
             // TODO: Attempt to replace with MFMailComposeViewController subclass with preferredStatusBarStyle overridden.
             UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
@@ -120,7 +119,6 @@ class ListCoordinator: NSObject {
     }
     
     private func dismissComposeEmail(animated: Bool, completion: (() -> Void)? = nil) {
-//        listViewController.navigationController?.dismiss(animated: true, completion: completion)
         listViewController.dismiss(animated: true, completion: completion)
     }
     

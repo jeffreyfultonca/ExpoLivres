@@ -16,6 +16,10 @@ class LandingViewController: UIViewController {
     
     weak var delegate: LandingViewControllerDelegate?
     
+    // MARK: - Lifecycle
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     // MARK: - Actions
     
     @IBAction func enterApplicationInFrenchTapped(_ sender: AnyObject?) {

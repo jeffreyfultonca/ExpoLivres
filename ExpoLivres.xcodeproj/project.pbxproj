@@ -14,7 +14,7 @@
 		0037913F1B7DA2EB002F97B1 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037913E1B7DA2EB002F97B1 /* BorderedView.swift */; };
 		004466601B7A1309008936EC /* SwipeMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044665F1B7A1309008936EC /* SwipeMessageCell.swift */; };
 		00476C501B77D296000474A0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C4F1B77D296000474A0 /* ListViewController.swift */; };
-		00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C551B77FD97000474A0 /* ScannerVC.swift */; };
+		00476C561B77FD97000474A0 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00476C551B77FD97000474A0 /* ScannerViewController.swift */; };
 		0069090B1FC4F2F600D60E73 /* UserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0069090A1FC4F2F600D60E73 /* UserInfo.storyboard */; };
 		0069090D1FC4F31000D60E73 /* Scanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0069090C1FC4F31000D60E73 /* Scanner.storyboard */; };
 		0069091C1FC50BDD00D60E73 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0069091B1FC50BDD00D60E73 /* Launch.storyboard */; };
@@ -26,6 +26,8 @@
 		0078082B1FF34D8100E4199A /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078082A1FF34D8100E4199A /* Providers.swift */; };
 		0078082E1FF352BD00E4199A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078082D1FF352BD00E4199A /* UserDefaults.swift */; };
 		0084E3C21FF54E3400614A67 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084E3C11FF54E3400614A67 /* ListItem.swift */; };
+		0084E3C81FF5742200614A67 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084E3C71FF5742200614A67 /* UINavigationController.swift */; };
+		0084E3CA1FF5745F00614A67 /* ListViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084E3C91FF5745F00614A67 /* ListViewData.swift */; };
 		008D24E71B76F98B00174A25 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D24E61B76F98B00174A25 /* UserInfoViewController.swift */; };
 		009009FB1B7B6F6500CFFB74 /* LanguageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009009FA1B7B6F6500CFFB74 /* LanguageProvider.swift */; };
 		009305E41FF46794000F762A /* AppRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009305E31FF46794000F762A /* AppRootViewController.swift */; };
@@ -79,7 +81,7 @@
 		0037913E1B7DA2EB002F97B1 /* BorderedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
 		0044665F1B7A1309008936EC /* SwipeMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeMessageCell.swift; sourceTree = "<group>"; };
 		00476C4F1B77D296000474A0 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		00476C551B77FD97000474A0 /* ScannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
+		00476C551B77FD97000474A0 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		0069090A1FC4F2F600D60E73 /* UserInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserInfo.storyboard; sourceTree = "<group>"; };
 		0069090C1FC4F31000D60E73 /* Scanner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Scanner.storyboard; sourceTree = "<group>"; };
 		0069091B1FC50BDD00D60E73 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,8 @@
 		0078082A1FF34D8100E4199A /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
 		0078082D1FF352BD00E4199A /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		0084E3C11FF54E3400614A67 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		0084E3C71FF5742200614A67 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		0084E3C91FF5745F00614A67 /* ListViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewData.swift; sourceTree = "<group>"; };
 		008D24E61B76F98B00174A25 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		009009FA1B7B6F6500CFFB74 /* LanguageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageProvider.swift; sourceTree = "<group>"; };
 		009305E31FF46794000F762A /* AppRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRootViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 			children = (
 				009305EA1FF4A54A000F762A /* ListCoordinator.swift */,
 				00C0CC101FC4F06300B832C0 /* List.storyboard */,
+				0084E3C91FF5745F00614A67 /* ListViewData.swift */,
 				00476C4F1B77D296000474A0 /* ListViewController.swift */,
 				00D1832B1B78CD7D00F8930A /* ItemCell.swift */,
 				0044665F1B7A1309008936EC /* SwipeMessageCell.swift */,
@@ -223,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				0069090C1FC4F31000D60E73 /* Scanner.storyboard */,
-				00476C551B77FD97000474A0 /* ScannerVC.swift */,
+				00476C551B77FD97000474A0 /* ScannerViewController.swift */,
 				0037913E1B7DA2EB002F97B1 /* BorderedView.swift */,
 			);
 			path = Scanner;
@@ -292,6 +297,7 @@
 				009305EF1FF4C2AC000F762A /* String.swift */,
 				009305F11FF4C2C5000F762A /* UITextField.swift */,
 				009305F31FF4C2E0000F762A /* AVCaptureVideoOrientation.swift */,
+				0084E3C71FF5742200614A67 /* UINavigationController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -577,7 +583,7 @@
 				00D1832A1B78BF0000F8930A /* EmptyListCell.swift in Sources */,
 				009305F41FF4C2E0000F762A /* AVCaptureVideoOrientation.swift in Sources */,
 				00F7C3611B7654ED00D15954 /* LandingPageGradientButton.swift in Sources */,
-				00476C561B77FD97000474A0 /* ScannerVC.swift in Sources */,
+				00476C561B77FD97000474A0 /* ScannerViewController.swift in Sources */,
 				008D24E71B76F98B00174A25 /* UserInfoViewController.swift in Sources */,
 				009305F01FF4C2AC000F762A /* String.swift in Sources */,
 				00D1832C1B78CD7D00F8930A /* ItemCell.swift in Sources */,
@@ -589,7 +595,9 @@
 				004466601B7A1309008936EC /* SwipeMessageCell.swift in Sources */,
 				009305ED1FF4B60A000F762A /* ListProvider.swift in Sources */,
 				007808291FF34D1B00E4199A /* AppCoordinator.swift in Sources */,
+				0084E3C81FF5742200614A67 /* UINavigationController.swift in Sources */,
 				009009FB1B7B6F6500CFFB74 /* LanguageProvider.swift in Sources */,
+				0084E3CA1FF5745F00614A67 /* ListViewData.swift in Sources */,
 				0037913F1B7DA2EB002F97B1 /* BorderedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

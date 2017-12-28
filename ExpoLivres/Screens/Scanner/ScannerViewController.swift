@@ -40,6 +40,8 @@ class ScannerViewController: UIViewController {
         setupCaptureSession()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { context in
             self.previewLayer.frame = self.view.bounds

@@ -110,6 +110,8 @@ class UserInfoViewController: UITableViewController {
         setupTableView()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     // MARK: - Setup
     
     private func setupLanguageSegmentedControl() {
