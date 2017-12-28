@@ -7,18 +7,54 @@ enum Language: String, Codable {
     case english
 }
 
-// MARK: - Notifications
-
-extension Notification.Name {
-    static let didUpdateSelectedLanguage = "didUpdateSelectedLanguage"
-}
-
 // MARK: - LanguageProvider
 
 protocol LanguageProvider {
     var selectedLanguage: Language { get }
     func set(language: Language)
     
+    // Translations
+    
+    // MARK: UserInfo
+    var userInfoTitle: String { get }
+    var userInfoOrganization: String { get }
+    var userInfoPo: String { get }
+    var userInfoName: String { get }
+    var userInfoEmail: String { get }
+    var required: String { get }
+    var optional: String { get }
+    
+    // MARK: ListView
+    var listTitle: String { get }
+    var listEmptyHeading: String { get }
+    var listBodyScan: String { get }
+    var listBodySubmit: String { get }
+    var listSwipeMessage: String { get }
+    
+    // MARK: Scan
+    var scanNotFoundTitle: String { get }
+    func scanNotFoundMessage(_ isbn: String) -> String
+    
+    // MARK: Email
+    var emailNotConfiguredTitle: String { get }
+    var emailNotConfiguredMessage: String { get }
+    var emailThankYou: String { get }
+    
+    // MARK: Submission
+    var postSubmissionTitle: String { get }
+    var postSubmissionMessage: String { get }
+    var clearAction: String { get }
+    var keepAction: String { get }
+    var save: String { get }
+    var addAnyway: String { get }
+    var remove: String { get }
+    var submit: String { get }
+    var scan: String { get }
+    var language: String { get }
+    var cancel: String { get }
+    var unknown: String { get }
+    
+    // MARK: Migration
     func performMigrationIfRequired()
 }
 
@@ -40,35 +76,30 @@ class ProductionLanguageProvider: LanguageProvider {
     
     struct UserDefaultsKey {
         static let selectedLanguage = "LanguageProvider.selectedLanguage"
-    }
-    
-    // MARK: - Migration
-    
-    func performMigrationIfRequired() {
-        let hasPerformedMigration = userDefaults.bool(forKey: UserDefaultsKey.hasPerformedMigration)
-        guard hasPerformedMigration == false else { return }
-        
-        userDefaults.set(true, forKey: UserDefaultsKey.hasPerformedMigration)
-        
-        let previousLanguageKey = "JFCUserLanguagePrefsKey"
-        let selectedLanguageRawValue = userDefaults.integer(forKey: previousLanguageKey)
-        self.selectedLanguage = selectedLanguageRawValue == 0 ? .french : .english
+        static let hasPerformedMigration = "LanguageProvider.hasPerformedMigration"
     }
     
     // MARK: Language
+    struct LanguageContainer: Codable {
+        let language: Language
+    }
     
     private(set) var selectedLanguage: Language {
         get {
-            return userDefaults.codableValue(forKey: UserDefaultsKey.selectedLanguage) ?? .french
+            guard
+                let rawValue = userDefaults.string(forKey: UserDefaultsKey.selectedLanguage),
+                let selectedLanguage = Language(rawValue: rawValue)
+            else { return .french }
+            
+            return selectedLanguage
         }
         set {
-            userDefaults.set(codable: newValue, forKey: UserDefaultsKey.selectedLanguage)
-            NotificationCenter.default.post(name: .didUpdateSelectedLanguage, object: self)
+            userDefaults.set(newValue.rawValue, forKey: UserDefaultsKey.selectedLanguage)
         }
     }
     
     func set(language: Language) {
-        self.set(language: language)
+        self.selectedLanguage = language
     }
     
     // MARK: - Translations
@@ -342,5 +373,18 @@ class ProductionLanguageProvider: LanguageProvider {
         case .english:
             return "Unknown"
         }
+    }
+    
+    // MARK: - Migration
+    
+    func performMigrationIfRequired() {
+        let hasPerformedMigration = userDefaults.bool(forKey: UserDefaultsKey.hasPerformedMigration)
+        guard hasPerformedMigration == false else { return }
+        
+        userDefaults.set(true, forKey: UserDefaultsKey.hasPerformedMigration)
+        
+        let previousLanguageKey = "JFCUserLanguagePrefsKey"
+        let selectedLanguageRawValue = userDefaults.integer(forKey: previousLanguageKey)
+        self.selectedLanguage = selectedLanguageRawValue == 0 ? .french : .english
     }
 }

@@ -11,7 +11,11 @@ extension UserDefaults {
     }
     
     func set<T: Codable>(codable value: T?, forKey key: String) {
-        guard let encoded = try? PropertyListEncoder().encode(value) else { return }
-        self.set(encoded, forKey: key)
+        do {
+            let encoded = try PropertyListEncoder().encode(value)
+            self.set(encoded, forKey: key)
+        } catch {
+            print("Failed to set Codable value with error: ", error)
+        }
     }
 }

@@ -1,12 +1,78 @@
 import UIKit
-import MessageUI
+import JFCToolKit
 
-class ListViewController: UIViewController,
-    UITableViewDelegate,
-    UITableViewDataSource,
-    ScannerVCDelegate,
-    MFMailComposeViewControllerDelegate
-{
+// MARK: - ListViewControllerDelegate
+
+protocol ListViewControllerDelegate: AnyObject {
+    func didSelectUserInfo(listViewController: ListViewController)
+    
+    func listViewController(
+        _ listViewController: ListViewController,
+        didDeleteListItem listItem: ListItem
+    )
+    
+    func didSelectSubmit(listViewController: ListViewController)
+    func didSelectScan(listViewController: ListViewController)
+}
+
+// MARK: - ListViewData
+
+struct ListViewData {
+    let navigationItemTitle: String
+    
+    let submitLabelText: String
+    let scanLabelText: String
+    
+    let isSubmitButtonEnabled: Bool
+    let submitLabelAlpha: CGFloat
+    
+    let tableRows: [ListViewController.TableRow]
+}
+
+extension ListViewData {
+    init(
+        languageProvider: LanguageProvider,
+        listProvider: ListProvider)
+    {
+        self.navigationItemTitle = languageProvider.listTitle
+        self.submitLabelText = languageProvider.submit
+        self.scanLabelText = languageProvider.scan
+    
+        let listItems = listProvider.items
+        
+        if listItems.isEmpty {
+            self.isSubmitButtonEnabled = false
+            self.submitLabelAlpha = 0.3
+            
+            self.tableRows = [
+                .noItemsMessage(
+                    heading: languageProvider.listEmptyHeading,
+                    bodyScan: languageProvider.listBodyScan,
+                    bodySubmit: languageProvider.listBodySubmit
+                )
+            ]
+        } else {
+            self.isSubmitButtonEnabled = true
+            self.submitLabelAlpha = 1.0
+            
+            var tableRows = listItems.map { listItem in
+                ListViewController.TableRow.item(
+                    listItem: listItem,
+                    deleteConfirmationTitle: languageProvider.remove
+                )
+            }
+            tableRows.append(.swipeLeftMessage(swipeMessage: languageProvider.listSwipeMessage))
+            self.tableRows = tableRows
+        }
+    }
+}
+
+// MARK: - ListViewController
+
+class ListViewController: UIViewController {
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var submitButton: UIButton!
@@ -14,342 +80,204 @@ class ListViewController: UIViewController,
     
     @IBOutlet weak var scanLabel: UILabel!
     
-    var persistenceService = PersistenceService.sharedInstance
-    var scannedBooks = [Book]()
-
+    // MARK: - Stored Properties
+    
+    weak var delegate: ListViewControllerDelegate?
+    
+    enum TableRow {
+        case noItemsMessage(heading: String, bodyScan: String, bodySubmit: String)
+        case swipeLeftMessage(swipeMessage: String)
+        case item(listItem: ListItem, deleteConfirmationTitle: String)
+        
+        var canBeEdited: Bool {
+            switch self {
+            case .noItemsMessage: return false
+            case .swipeLeftMessage: return false
+            case .item: return true
+            }
+        }
+    }
+    private var tableRows: [TableRow] = []
+    
+    enum TableUpdateOption {
+        case noUpdate
+        case reloadAllRows
+        case appendItemRow
+        case removeRow(listItem: ListItem)
+    }
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTableView()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupTableView() {
         tableView.estimatedRowHeight = 74.5
+    }
+    
+    // MARK: - Update
+    
+    func update(with viewData: ListViewData, tableUpdateOption: TableUpdateOption) {
+        self.loadViewIfNeeded()
         
-        self.updateUIForLanguage()
+        self.navigationItem.title = viewData.navigationItemTitle
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateUIForLanguage),
-            name: NSNotification.Name(rawValue: GlobalConstants.Notification.LanguageChanged),
-            object: nil
-        )
+        self.submitLabel.text = viewData.submitLabelText
+        self.submitButton.isEnabled = viewData.isSubmitButtonEnabled
+        self.submitLabel.alpha = viewData.submitLabelAlpha
         
-        self.loadStoredList()
-        self.updateSubmitButtonState()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if UserInfoService.isNotValid {
-            self.performSegue(withIdentifier: "showUserInfo", sender: self)
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    // MARK: - Helpers
-    
-    @objc
-    func updateUIForLanguage() {
-        self.navigationItem.title = LanguageService.listTitle
+        self.scanLabel.text = viewData.scanLabelText
         
-        self.submitLabel.text = LanguageService.submit
-        self.scanLabel.text = LanguageService.scan
-        
-        self.tableView.reloadData()
+        // Determine tableUpdateAction before updating tableRows because the previous values are used to determine indexPaths.
+        let tableUpdateAction = self.tableUpdateAction(for: tableUpdateOption)
+        self.tableRows = viewData.tableRows
+        tableUpdateAction()
     }
     
-    func loadStoredList() {
-        let storedSkuList = PersistenceService.sharedInstance.storedSkuList
-        let context = persistenceService.mainContext
-        for sku in storedSkuList {
-            if let book = Book.withSku(sku, inContext: context) {
-                self.scannedBooks.append(book)
-            } else {
-                let book = Book.createWith(
-                    title: LanguageService.unknown,
-                    sku: sku,
-                    inContext: context
-                )
-                persistenceService.saveContext(context)
-
-                self.scannedBooks.append(book)
-            }
-        }
-        
-        self.tableView.reloadData()
-    }
+    typealias TableUpdateAction = () -> Void
     
-    
-    func addToList(_ book: Book) {
-        self.scannedBooks.append(book)
-        PersistenceService.sharedInstance.addToSkuList(book.sku)
-        
-        self.updateSubmitButtonState()
-    }
-    
-    func removeFromListAtIndex(_ index: Int) {
-        self.scannedBooks.remove(at: index)
-        PersistenceService.sharedInstance.removeFromListAtIndex(index)
-        
-        self.updateSubmitButtonState()
-    }
-    
-    func clearList() {
-        self.scannedBooks.removeAll(keepingCapacity: false)
-        PersistenceService.sharedInstance.clearList()
-        self.tableView.reloadData()
-        self.updateSubmitButtonState()
-    }
-    
-    func updateSubmitButtonState() {
-        if scannedBooks.isEmpty {
-            self.submitButton.isEnabled = false
-            self.submitLabel.alpha = 0.3
-        } else {
-            self.submitButton.isEnabled = true
-            self.submitLabel.alpha = 1.0
-        }
-    }
-
-    // MARK: - Table view data source
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if scannedBooks.isEmpty {
-            return 1 // No items message
+    private func tableUpdateAction(for updateOption: TableUpdateOption) -> TableUpdateAction {
+        switch updateOption {
+        case .noUpdate:
+            return {}
             
-        } else {
-            return scannedBooks.count + 1 // Add for SwipeMessage Cell
+        case .reloadAllRows:
+            return { self.tableView.reloadSections([0], with: .fade) }
+            
+        case .appendItemRow:
+            let lastItemIndexPath = IndexPath(row: tableRows.count - 1, section: 0)
+            let swipeMessageIndexPath = IndexPath(row: tableRows.count, section: 0)
+            
+            return {
+                self.tableView.insertRows(at: [lastItemIndexPath], with: .fade)
+                self.tableView.scrollToRow(at: swipeMessageIndexPath, at: .bottom, animated: true)
+            }
+            
+        case .removeRow(let listItem):
+            guard let indexPath = self.indexPath(for: listItem) else {
+                return { self.tableView.reloadData() }
+            }
+            
+            return { self.tableView.deleteRows(at: [indexPath], with: .fade) }
         }
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    private func indexPath(for listItem: ListItem) -> IndexPath? {
+        guard let rowIndex = tableRows.index(where: { tableRow in
+            switch tableRow {
+            case .item(let item, _): return item == listItem
+            default: return false
+            }
+        }) else { return nil }
         
-        if scannedBooks.isEmpty { // No items message
+        return IndexPath(row: rowIndex, section: 0)
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func userInfoPressed(_ sender: AnyObject) {
+        delegate?.didSelectUserInfo(listViewController: self)
+    }
+    
+    @IBAction func submitPressed(_ sender: AnyObject) {
+        delegate?.didSelectSubmit(listViewController: self)
+    }
+    
+    @IBAction func scanPressed(_ sender: AnyObject) {
+        delegate?.didSelectScan(listViewController: self)
+    }
+}
+
+// MARK: - LoadableFromStoryboard
+
+extension ListViewController: LoadableFromStoryboard {
+    static var storyboardFilename: String { return "List" }
+}
+
+// MARK: - UITableViewDataSource
+
+extension ListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableRows.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch tableRows[indexPath.row] {
+        case .noItemsMessage(let heading, let bodyScan, let bodySubmit):
             let cell = tableView.dequeueReusableCell(withIdentifier: "emptyListCell", for: indexPath) as! EmptyListCell
             
-            cell.headingLabel.text = LanguageService.listEmptyHeading
-            cell.messageOneLabel.text = LanguageService.listBodyScan
-            cell.messageTwoLabel.text = LanguageService.listBodySubmit
+            cell.headingLabel.text = heading
+            cell.messageOneLabel.text = bodyScan
+            cell.messageTwoLabel.text = bodySubmit
             
             return cell
-            
-        } else if indexPath.row == scannedBooks.count { // Swipe left message
+        case .swipeLeftMessage(let swipeMessage):
             let cell = tableView.dequeueReusableCell(withIdentifier: "swipeMessageCell", for: indexPath) as! SwipeMessageCell
             
-            cell.messageLabel.text = LanguageService.listSwipeMessage
+            cell.messageLabel.text = swipeMessage
             
             return cell
             
-        } else { // Item
+        case .item(let listItem, _):
             let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemCell
             
-            let book = scannedBooks[indexPath.row]
-            
-            cell.titleLabel.text = book.title
-            cell.isbnLabel.text = "isbn: \(book.sku)"
+            cell.titleLabel.text = listItem.libraryItem.title
+            cell.isbnLabel.text = "isbn: \(listItem.libraryItem.sku)"
             
             return cell
         }
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+
+extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if scannedBooks.isEmpty {
+        switch tableRows[indexPath.row] {
+        case .noItemsMessage:
             return tableView.bounds.height - tableView.contentInset.top
-        } else {
+            
+        default:
             return UITableViewAutomaticDimension
         }
     }
     
-    // Override to support conditional editing of the table view.
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != scannedBooks.count
-    }
-
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            self.removeFromListAtIndex(indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            // Reload first row to display No items message
-            if scannedBooks.isEmpty {
-                let noItemsIndexPath = IndexPath(row: 0, section: 0)
-                tableView.reloadRows(at: [noItemsIndexPath] , with: UITableViewRowAnimation.fade)
-            }
-            
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        return tableRows[indexPath.row].canBeEdited
     }
     
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return LanguageService.remove
-    }
-
-    // MARK: - Actions
-    
-    @IBAction func userInfoPressed(_ sender: AnyObject) {
-        performSegue(withIdentifier: "showUserInfo", sender: sender)
-    }
-    
-    @IBAction func submitPressed(_ sender: AnyObject) {
-        print("submitPressed")
-        
-        if MFMailComposeViewController.canSendMail() {
-            
-            // Create Sku text file
-            var isbnString = "ISBN\n"
-            
-            for book in self.scannedBooks {
-                isbnString += "\(book.sku)\n"
-            }
-            
-            // Create MailComposeVC and attach file
-            
-            if let isbnStringAsData = isbnString.data(using: String.Encoding.utf8, allowLossyConversion: true) {
-                
-                let mailComposeVC = MFMailComposeViewController()
-                mailComposeVC.mailComposeDelegate = self
-                mailComposeVC.navigationBar.tintColor = self.navigationController?.navigationBar.tintColor
-                
-                mailComposeVC.setToRecipients([ GlobalConstants.email.toRecipient ])
-                
-                if let email = PersistenceService.sharedInstance.userEmail {
-                    mailComposeVC.setCcRecipients([ email ])
-                }
-                
-                mailComposeVC.setSubject( GlobalConstants.email.subject )
-                mailComposeVC.setMessageBody(GlobalConstants.email.body, isHTML: false)
-                mailComposeVC.addAttachmentData(isbnStringAsData, mimeType: "text/plain", fileName: GlobalConstants.email.attachedFileName)
-                
-                self.navigationController!.present(mailComposeVC, animated: true, completion: {
-                    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
-                })
-            } else {
-                print("Could not encode booklist as data for email attachment.")
-            }
-        } else {
-            let alertController = UIAlertController(
-                title: LanguageService.emailNotConfiguredTitle,
-                message: LanguageService.emailNotConfiguredMessage,
-                preferredStyle: UIAlertControllerStyle.alert
-            )
-            
-            let okAction = UIAlertAction(title: LanguageService.save, style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
-    
-    // MARK: - MFMailCompose Delegate
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
-        self.dismiss(animated: true, completion: {
-            switch result.rawValue {
-            case MFMailComposeResult.cancelled.rawValue:
-                print("Cancelled")
-            case MFMailComposeResult.failed.rawValue:
-                print("Failed")
-            case MFMailComposeResult.saved.rawValue:
-                print("Saved")
-            case MFMailComposeResult.sent.rawValue:
-                print("Sent")
-                
-                // Ask to clear list
-                let alertController = UIAlertController(
-                    title: LanguageService.postSubmissionTitle,
-                    message: LanguageService.postSubmissionMessage,
-                    preferredStyle: UIAlertControllerStyle.alert
-                )
-                
-                let keepListAction = UIAlertAction(title: LanguageService.keepAction, style: .default, handler: nil)
-                let clearListAction = UIAlertAction(title: LanguageService.clearAction, style: .default, handler: { alertAction in
-                    self.clearList()
-                })
-                
-                alertController.addAction(keepListAction)
-                alertController.addAction(clearListAction)
-                
-                self.present(alertController, animated: true, completion: nil)
+    func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCellEditingStyle,
+        forRowAt indexPath: IndexPath)
+    {
+        switch editingStyle {
+        case .delete:
+            // Notify delegate of user action. Delegate responsible for updating datasource and instructing this view to perform appropriate animations via the update(:) api.
+            switch tableRows[indexPath.row] {
+            case .item(let listItem, _):
+                delegate?.listViewController(self, didDeleteListItem: listItem)
                 
             default:
-                print("Unknown result")
+                print("Error: User attempted to delete non-item tableRow at indexPath: ", indexPath)
             }
-        })
-    }
-    
-    // MARK: - Scanner Delegate
-    
-    func scannerSuccessfullyScannedSku(_ sku: String) {
-        
-        self.dismiss(animated: true) {
-            let context = self.persistenceService.mainContext
-            if let scannedBook = Book.withSku(sku, inContext: context) {
-                self.addToList(scannedBook)
-                
-                let newItemIndexPath = IndexPath(row: self.scannedBooks.count - 1, section: 0)
-                self.tableView.insertRows(at: [newItemIndexPath], with: UITableViewRowAnimation.fade)
-                
-                let lastIndexPath = IndexPath(row: self.scannedBooks.count, section: 0)
-                if self.scannedBooks.count == 1 {
-                    self.tableView.reloadRows(at: [lastIndexPath], with: UITableViewRowAnimation.fade)
-                }
-                self.tableView.scrollToRow(at: lastIndexPath, at: UITableViewScrollPosition.bottom, animated: true)
-                
-            } else {
-                let alertController = UIAlertController(
-                    title: LanguageService.scanNotFoundTitle,
-                    message: LanguageService.scanNotFoundMessage(sku),
-                    preferredStyle: UIAlertControllerStyle.alert
-                )
-                
-                let cancelAction = UIAlertAction(
-                    title: LanguageService.cancel,
-                    style: .default,
-                    handler: nil
-                )
-                
-                let addAnyAction = UIAlertAction(
-                    title: LanguageService.addAnyway,
-                    style: .default,
-                    handler: { _ in
-                        let unknownBook = Book.createWith(
-                            title: LanguageService.unknown,
-                            sku: sku,
-                            inContext: context
-                        )
-                        PersistenceService.sharedInstance.saveContext(context)
-                        
-                        self.addToList(unknownBook)
-                        
-                        let newItemIndexPath = IndexPath(row: self.scannedBooks.count - 1, section: 0)
-                        self.tableView.insertRows(at: [newItemIndexPath], with: UITableViewRowAnimation.fade)
-                        
-                        let lastIndexPath = IndexPath(row: self.scannedBooks.count, section: 0)
-                        if self.scannedBooks.count == 1 {
-                            self.tableView.reloadRows(at: [lastIndexPath], with: UITableViewRowAnimation.fade)
-                        }
-                        self.tableView.scrollToRow(at: lastIndexPath, at: UITableViewScrollPosition.bottom, animated: true)
-                    }
-                )
-                
-                alertController.addAction(cancelAction)
-                alertController.addAction(addAnyAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-            }
+        case .insert, .none:
+            break
         }
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showScanner" {
-            let scannerVC = segue.destination as! ScannerVC
-            scannerVC.delegate = self
+    func tableView(
+        _ tableView: UITableView,
+        titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String?
+    {
+        switch tableRows[indexPath.row] {
+        case .item(_, let deleteConfirmationTitle): return deleteConfirmationTitle
+        default: return nil
         }
     }
 }

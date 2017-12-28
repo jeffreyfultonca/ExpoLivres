@@ -1,36 +1,34 @@
 import UIKit
+import JFCToolKit
+
+// MARK: - LandingViewControllerDelegate
+
+protocol LandingViewControllerDelegate: AnyObject {
+    func didSelectEnterApplicationInEnglish()
+    func didSelectEnterApplicationInFrench()
+}
+
+// MARK: - LandingViewController
 
 class LandingViewController: UIViewController {
-
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var logoImageView: UIImageView!
     
-    @IBOutlet weak var frenchButton: LandingPageGradientButton!
-    @IBOutlet weak var englishButton: LandingPageGradientButton!
+    // MARK: - Stored Properties
     
-    override func viewDidDisappear(_ animated: Bool) {
-        backgroundImageView.image = nil
-        logoImageView.image = nil
+    weak var delegate: LandingViewControllerDelegate?
+    
+    // MARK: - Actions
+    
+    @IBAction func enterApplicationInFrenchTapped(_ sender: AnyObject?) {
+        delegate?.didSelectEnterApplicationInFrench()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        backgroundImageView.image = UIImage(named: "LandingPageBackground")
-        logoImageView.image = UIImage(named: "Logo")
-    }
-    
-    deinit {
-        print("LandingPageVC.deinit")
-    }
-    
-    @IBAction func enterApplicationPressed(_ sender: AnyObject?) {
-        performSegue(withIdentifier: "enterApplication", sender: sender)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Set lanuage
-        if let senderButton = sender as? LandingPageGradientButton {
-            LanguageService.currentLanguage = (senderButton == frenchButton) ? .french : .english
-        }
+    @IBAction func enterApplicationInEnglishTapped(_ sender: AnyObject?) {
+        delegate?.didSelectEnterApplicationInEnglish()
     }
 }
 
+// MARK: - LoadableFromStoryboard
+
+extension LandingViewController: LoadableFromStoryboard {
+    static var storyboardFilename: String { return "Landing" }
+}

@@ -1,30 +1,66 @@
 import UIKit
 import AVFoundation
+import JFCToolKit
 
-protocol ScannerVCDelegate: class {
-    func scannerSuccessfullyScannedSku(_ sku: String)
+// MARK: - ScannerViewControllerDelegate
+
+protocol ScannerViewControllerDelegate: class {
+    func scannerViewController(
+        _ scannerViewController: ScannerViewController,
+        didScanSku sku: String
+    )
 }
 
-class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+// MARK: - ScannerViewData
+
+struct ScannerViewData {
+    let cancelButtonTitle: String
+}
+
+// MARK: - ScannerViewController
+
+class ScannerViewController: UIViewController {
     
-    weak var delegate: ScannerVCDelegate?
+    // MARK: - Outlets
+    
     @IBOutlet weak var cancelButton: UIButton!
     
-    let session: AVCaptureSession = AVCaptureSession()
-    var previewLayer: AVCaptureVideoPreviewLayer!
+    // MARK: - Stored Properties
     
-    var detectionString : String!
+    weak var delegate: ScannerViewControllerDelegate?
+    
+    private let session: AVCaptureSession = AVCaptureSession()
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.cancelButton.setTitle(LanguageService.cancel, for: UIControlState())
+        setupCaptureSession()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            self.previewLayer.frame = self.view.bounds
+            self.previewLayer.connection?.videoOrientation = .currentDeviceOrientation
+        }, completion: nil)
         
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+    
+    // MARK: - Setup
+    
+    private func setupCaptureSession() {
         // For the sake of discussion this is the camera
-        let device = AVCaptureDevice.default(for: .video)
+        guard let device = AVCaptureDevice.default(for: .video) else {
+            // TODO: Handle.
+            print("Unable to access default AVCaptureDevice for .video")
+            return
+        }
         
         do {
-            let input = try AVCaptureDeviceInput(device: device!)
+            let input = try AVCaptureDeviceInput(device: device)
             session.addInput(input)
             
             let output = AVCaptureMetadataOutput()
@@ -48,15 +84,30 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { context in
-            self.previewLayer.frame = self.view.bounds
-            self.previewLayer.connection?.videoOrientation = .currentDeviceOrientation
-        }, completion: nil)
+    // MARK: - Update
+    
+    func update(with viewData: ScannerViewData) {
+        self.loadViewIfNeeded()
         
-        super.viewWillTransition(to: size, with: coordinator)
+        self.cancelButton.setTitle(viewData.cancelButtonTitle, for: UIControlState())
     }
     
+    // MARK: - Actions
+    
+    @IBAction func cancelPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - LoadableFromStoryboard
+
+extension ScannerViewController: LoadableFromStoryboard {
+    static var storyboardFilename: String { return "Scanner" }
+}
+
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
+
+extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     // This is called when we find a known barcode type with the camera.
     func metadataOutput(
         _ captureOutput: AVCaptureMetadataOutput,
@@ -69,34 +120,20 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         ]
         
         // The scanner is capable of capturing multiple 2-dimensional barcodes in one scan.
-        for metadata in metadataObjects {
-            
-            for barcodeType in barCodeTypes {
-                if (metadata as AnyObject).type == barcodeType {
-                    // Load
-                    let beepURL = Bundle.main.url(forResource: "beep", withExtension: "wav")!
-                    var beepSound: SystemSoundID = 0
-                    AudioServicesCreateSystemSoundID(beepURL as CFURL, &beepSound)
-                    
-                    // Play
-                    AudioServicesPlaySystemSound( SystemSoundID(kSystemSoundID_Vibrate) )
-                    AudioServicesPlaySystemSound(beepSound)
-                    
-                    detectionString = (metadata as! AVMetadataMachineReadableCodeObject).stringValue
-                    
-                    self.session.stopRunning()
-                    
-                    self.delegate?.scannerSuccessfullyScannedSku(detectionString)
-                    
-                    break
-                }
-            }
-        }
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func cancelPressed(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        guard let metadata = metadataObjects.first(where: { barCodeTypes.contains($0.type) }) else { return }
+        guard let sku = (metadata as? AVMetadataMachineReadableCodeObject)?.stringValue else { return }
+        
+        // Load
+        let beepURL = Bundle.main.url(forResource: "beep", withExtension: "wav")!
+        var beepSound: SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(beepURL as CFURL, &beepSound)
+        
+        // Play
+        AudioServicesPlaySystemSound( SystemSoundID(kSystemSoundID_Vibrate) )
+        AudioServicesPlaySystemSound(beepSound)
+        
+        self.session.stopRunning()
+        
+        self.delegate?.scannerViewController(self, didScanSku: sku)
     }
 }

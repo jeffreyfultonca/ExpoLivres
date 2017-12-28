@@ -5,7 +5,10 @@ struct Providers {
     // MARK: - Stored Properties
     
     let languageProvider: LanguageProvider
-    let migrationProvider: MigrationProvider
+    let userProvider: UserProvider
+    let listProvider: ListProvider
+    let libraryProvider: LibraryProvider
+    let emailProvider: EmailProvider
     
     // MARK: - Static
     
@@ -30,8 +33,20 @@ struct Providers {
     private static func makeTestingProviders() -> Providers {
         let userDefaults = UserDefaults(suiteName: UUID().uuidString)!
         
+        let languageProvider = ProductionLanguageProvider(userDefaults: userDefaults)
+        let userProvider = ProductionUserProvider(userDefaults: userDefaults)
+        let listProvider = ProductionListProvider(userDefaults: userDefaults)
+        
         return Providers(
-            languageProvider: ProductionLanguageProvider(userDefaults: userDefaults)
+            languageProvider: languageProvider,
+            userProvider: userProvider,
+            listProvider: listProvider,
+            libraryProvider: ProductionLibraryProvider(userDefaults: userDefaults),
+            emailProvider: ProductionEmailProvider(
+                languageProvider: languageProvider,
+                userProvider: userProvider,
+                listProvider: listProvider
+            )
         )
     }
     
@@ -40,8 +55,20 @@ struct Providers {
     private static func makeDebugProviders() -> Providers {
         let userDefaults = UserDefaults(suiteName: "DebugBuild")!
         
+        let languageProvider = ProductionLanguageProvider(userDefaults: userDefaults)
+        let userProvider = ProductionUserProvider(userDefaults: userDefaults)
+        let listProvider = ProductionListProvider(userDefaults: userDefaults)
+        
         return Providers(
-            languageProvider: ProductionLanguageProvider(userDefaults: userDefaults)
+            languageProvider: languageProvider,
+            userProvider: userProvider,
+            listProvider: listProvider,
+            libraryProvider: ProductionLibraryProvider(userDefaults: userDefaults),
+            emailProvider: ProductionEmailProvider(
+                languageProvider: languageProvider,
+                userProvider: userProvider,
+                listProvider: listProvider
+            )
         )
     }
     
@@ -50,8 +77,20 @@ struct Providers {
     private static func makeReleaseProviders() -> Providers {
         let userDefaults = UserDefaults.standard
         
+        let languageProvider = ProductionLanguageProvider(userDefaults: userDefaults)
+        let userProvider = ProductionUserProvider(userDefaults: userDefaults)
+        let listProvider = ProductionListProvider(userDefaults: userDefaults)
+        
         return Providers(
-            languageProvider: ProductionLanguageProvider(userDefaults: userDefaults)
+            languageProvider: languageProvider,
+            userProvider: userProvider,
+            listProvider: listProvider,
+            libraryProvider: ProductionLibraryProvider(userDefaults: userDefaults),
+            emailProvider: ProductionEmailProvider(
+                languageProvider: languageProvider,
+                userProvider: userProvider,
+                listProvider: listProvider
+            )
         )
     }
 }

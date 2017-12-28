@@ -5,7 +5,6 @@ class ExpoLivresUITests: XCTestCase {
     // MARK: - Stored Properties
     
     private var app: XCUIApplication!
-    private let persistenceService = PersistenceService.sharedInstance
     
     // MARK: - Setup & Tear-down
         
@@ -22,10 +21,6 @@ class ExpoLivresUITests: XCTestCase {
         app.launch()
       
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        
-        persistenceService.userOrganization = "UITesting"
-        persistenceService.userName = "UITesting"
-        persistenceService.userEmail = "ui@testing.com"
     }
     
     override func tearDown() {

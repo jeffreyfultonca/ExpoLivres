@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,7 +15,7 @@
         <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LandingViewController" customModule="ExpoLivres" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" id="BYZ-38-t0r" customClass="LandingViewController" customModule="ExpoLivres" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="enterApplicationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S8I-rS-eUu"/>
+                                    <action selector="enterApplicationInFrenchTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m2V-84-Zpm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6co-vJ-3Tw" userLabel="Get Started" customClass="LandingPageGradientButton" customModule="ExpoLivres" customModuleProvider="target">
@@ -64,7 +64,7 @@
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="enterApplicationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0iB-OM-FF2"/>
+                                    <action selector="enterApplicationInEnglishTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T6d-I3-Dad"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="6Bv-vL-VoS">
@@ -106,25 +106,10 @@
                         <viewLayoutGuide key="safeArea" id="oQP-ME-82d"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="fPb-0y-Xrx" id="llS-qL-XpH"/>
-                        <outlet property="englishButton" destination="6co-vJ-3Tw" id="WxY-Z8-HJU"/>
-                        <outlet property="frenchButton" destination="cCd-74-qUf" id="Po8-im-d37"/>
-                        <outlet property="logoImageView" destination="6Bv-vL-VoS" id="MQh-i0-esn"/>
-                        <segue destination="hYM-xi-Dea" kind="presentation" identifier="enterApplication" modalTransitionStyle="crossDissolve" id="IVl-fy-XfG"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-457" y="417"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="0ZR-3I-MHa">
-            <objects>
-                <viewControllerPlaceholder storyboardName="List" id="hYM-xi-Dea" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ca4-XP-owR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="116" y="416"/>
         </scene>
     </scenes>
     <resources>
